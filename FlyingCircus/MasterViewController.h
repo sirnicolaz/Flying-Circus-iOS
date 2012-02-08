@@ -12,10 +12,16 @@
 
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+    
+    NSArray *_seasons;
+    NSManagedObjectContext *_context;
+    
+}
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
+@property (strong, nonatomic) NSArray *seasons;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 

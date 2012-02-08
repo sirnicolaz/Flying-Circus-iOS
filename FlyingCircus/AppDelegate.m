@@ -10,6 +10,8 @@
 
 #import "MasterViewController.h"
 
+#import "Seeder.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -166,6 +168,11 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }    
+    
+    // Populate DB in case it's not seeded
+    if(![Seeder populated:self.managedObjectContext]) {
+        [Seeder populateWithContext:self.managedObjectContext];
+    }
     
     return __persistentStoreCoordinator;
 }

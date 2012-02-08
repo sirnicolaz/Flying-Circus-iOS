@@ -8,21 +8,25 @@
 
 #import "DetailViewController.h"
 
+#import "Episode.h"
+
 @interface DetailViewController ()
 - (void)configureView;
+- (void)embedYouTube:(NSString*)url frame:(CGRect)frame;
 @end
 
 @implementation DetailViewController
 
-@synthesize detailItem = _detailItem;
+@synthesize episode = _episode;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize videoView = _videoView;
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
+- (void)setEpisode:(id)newEpisode
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if (_episode != newEpisode) {
+        _episode = newEpisode;
         
         // Update the view.
         [self configureView];
@@ -33,10 +37,37 @@
 {
     // Update the user interface for the detail item.
 
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    if (self.episode) {
+        self.detailDescriptionLabel.text = [self.episode title];
+        
+        [self embedYouTube:self.episode.url frame:CGRectMake(40, 45, 240, 128)];
     }
 }
+
+- (void)embedYouTube:(NSString*)url frame:(CGRect)frame {  
+    NSString* embedHTML = @"\
+                            <html>\
+                                <head>\
+                                <style type=\"text/css\">\
+                                body {\
+                                    background-color: transparent;\
+                                    color: white;\
+                                }\
+                                </style>\
+                                </head>\
+                                <body style=\"margin:0\">\
+                                    <embed id=\"yt\" src=\"%@\" type=\"application/x-shockwave-flash\" \
+                                            width=\"%0.0f\" height=\"%0.0f\"></embed>\
+                                </body>\
+                            </html>";  
+    
+    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];  
+    if(self.videoView == nil) {  
+        self.videoView = [[UIWebView alloc] initWithFrame:frame];  
+        [self.view addSubview:self.videoView];  
+    }  
+    [self.videoView loadHTMLString:html baseURL:nil];  
+}  
 
 - (void)didReceiveMemoryWarning
 {

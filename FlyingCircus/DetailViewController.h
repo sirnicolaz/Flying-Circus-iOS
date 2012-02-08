@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+@class Episode;
 
-@property (strong, nonatomic) id detailItem;
+@interface DetailViewController : UIViewController {
+    
+    Episode *_episode;
 
+}
+
+@property (strong, nonatomic) Episode *episode;
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UIWebView *videoView;
 
 @end

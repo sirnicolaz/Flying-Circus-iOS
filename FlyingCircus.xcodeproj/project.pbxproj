@@ -19,6 +19,9 @@
 		D71828BB14E30EF800B2242F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828BA14E30EF800B2242F /* DetailViewController.m */; };
 		D71828BE14E30EF800B2242F /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71828BC14E30EF800B2242F /* MasterViewController.xib */; };
 		D71828C114E30EF800B2242F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71828BF14E30EF800B2242F /* DetailViewController.xib */; };
+		D71828D014E30F5500B2242F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CB14E30F5500B2242F /* Season.m */; };
+		D71828D114E30F5500B2242F /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CD14E30F5500B2242F /* Episode.m */; };
+		D71828D214E30F5500B2242F /* Seeder.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CF14E30F5500B2242F /* Seeder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,19 +30,25 @@
 		D71828A114E30EF700B2242F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D71828A314E30EF700B2242F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D71828A514E30EF700B2242F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D71828A914E30EF700B2242F /* FlyingCircus-Info.plist */ = {isa = PBXFileReference; path = "FlyingCircus-Info.plist"; sourceTree = "<group>"; };
+		D71828A914E30EF700B2242F /* FlyingCircus-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FlyingCircus-Info.plist"; sourceTree = "<group>"; };
 		D71828AB14E30EF700B2242F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D71828AD14E30EF700B2242F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D71828AF14E30EF700B2242F /* FlyingCircus-Prefix.pch */ = {isa = PBXFileReference; path = "FlyingCircus-Prefix.pch"; sourceTree = "<group>"; };
-		D71828B014E30EF800B2242F /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		D71828AF14E30EF700B2242F /* FlyingCircus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FlyingCircus-Prefix.pch"; sourceTree = "<group>"; };
+		D71828B014E30EF800B2242F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D71828B114E30EF800B2242F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D71828B414E30EF800B2242F /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
-		D71828B614E30EF800B2242F /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
-		D71828B714E30EF800B2242F /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		D71828B914E30EF800B2242F /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
-		D71828BA14E30EF800B2242F /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		D71828B614E30EF800B2242F /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MasterViewController.h; path = FlyingCircus/MasterViewController.h; sourceTree = "<group>"; };
+		D71828B714E30EF800B2242F /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MasterViewController.m; path = FlyingCircus/MasterViewController.m; sourceTree = "<group>"; };
+		D71828B914E30EF800B2242F /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = FlyingCircus/DetailViewController.h; sourceTree = "<group>"; };
+		D71828BA14E30EF800B2242F /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = FlyingCircus/DetailViewController.m; sourceTree = "<group>"; };
 		D71828BD14E30EF800B2242F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
 		D71828C014E30EF800B2242F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
+		D71828CA14E30F5500B2242F /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
+		D71828CB14E30F5500B2242F /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
+		D71828CC14E30F5500B2242F /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
+		D71828CD14E30F5500B2242F /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
+		D71828CE14E30F5500B2242F /* Seeder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seeder.h; sourceTree = "<group>"; };
+		D71828CF14E30F5500B2242F /* Seeder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seeder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +69,9 @@
 		D718289014E30EF700B2242F = {
 			isa = PBXGroup;
 			children = (
+				D71828C914E30F1400B2242F /* Controller */,
+				D71828C814E30F0E00B2242F /* View */,
+				D71828C714E30F0200B2242F /* Model */,
 				D71828A714E30EF700B2242F /* FlyingCircus */,
 				D718289E14E30EF700B2242F /* Frameworks */,
 				D718289C14E30EF700B2242F /* Products */,
@@ -90,13 +102,6 @@
 			children = (
 				D71828B014E30EF800B2242F /* AppDelegate.h */,
 				D71828B114E30EF800B2242F /* AppDelegate.m */,
-				D71828B614E30EF800B2242F /* MasterViewController.h */,
-				D71828B714E30EF800B2242F /* MasterViewController.m */,
-				D71828B914E30EF800B2242F /* DetailViewController.h */,
-				D71828BA14E30EF800B2242F /* DetailViewController.m */,
-				D71828BC14E30EF800B2242F /* MasterViewController.xib */,
-				D71828BF14E30EF800B2242F /* DetailViewController.xib */,
-				D71828B314E30EF800B2242F /* FlyingCircus.xcdatamodeld */,
 				D71828A814E30EF700B2242F /* Supporting Files */,
 			);
 			path = FlyingCircus;
@@ -111,6 +116,40 @@
 				D71828AF14E30EF700B2242F /* FlyingCircus-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D71828C714E30F0200B2242F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D71828CA14E30F5500B2242F /* Season.h */,
+				D71828CB14E30F5500B2242F /* Season.m */,
+				D71828CC14E30F5500B2242F /* Episode.h */,
+				D71828CD14E30F5500B2242F /* Episode.m */,
+				D71828CE14E30F5500B2242F /* Seeder.h */,
+				D71828CF14E30F5500B2242F /* Seeder.m */,
+				D71828B314E30EF800B2242F /* FlyingCircus.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D71828C814E30F0E00B2242F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D71828BC14E30EF800B2242F /* MasterViewController.xib */,
+				D71828BF14E30EF800B2242F /* DetailViewController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		D71828C914E30F1400B2242F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D71828B614E30EF800B2242F /* MasterViewController.h */,
+				D71828B714E30EF800B2242F /* MasterViewController.m */,
+				D71828B914E30EF800B2242F /* DetailViewController.h */,
+				D71828BA14E30EF800B2242F /* DetailViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +221,9 @@
 				D71828B514E30EF800B2242F /* FlyingCircus.xcdatamodeld in Sources */,
 				D71828B814E30EF800B2242F /* MasterViewController.m in Sources */,
 				D71828BB14E30EF800B2242F /* DetailViewController.m in Sources */,
+				D71828D014E30F5500B2242F /* Season.m in Sources */,
+				D71828D114E30F5500B2242F /* Episode.m in Sources */,
+				D71828D214E30F5500B2242F /* Seeder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +244,7 @@
 				D71828BD14E30EF800B2242F /* en */,
 			);
 			name = MasterViewController.xib;
+			path = FlyingCircus;
 			sourceTree = "<group>";
 		};
 		D71828BF14E30EF800B2242F /* DetailViewController.xib */ = {
@@ -210,6 +253,7 @@
 				D71828C014E30EF800B2242F /* en */,
 			);
 			name = DetailViewController.xib;
+			path = FlyingCircus;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -219,9 +263,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nicola Miotto (458RFQE64U)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -235,7 +283,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -244,17 +294,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nicola Miotto (458RFQE64U)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -311,7 +367,8 @@
 				D71828B414E30EF800B2242F /* FlyingCircus.xcdatamodel */,
 			);
 			currentVersion = D71828B414E30EF800B2242F /* FlyingCircus.xcdatamodel */;
-			path = FlyingCircus.xcdatamodeld;
+			name = FlyingCircus.xcdatamodeld;
+			path = FlyingCircus/FlyingCircus.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -10,6 +10,9 @@
 
 #import "DetailViewController.h"
 
+#import "Season.h"
+#import "Episode.h"
+
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -19,6 +22,8 @@
 @synthesize detailViewController = _detailViewController;
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
+@synthesize seasons = _seasons;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +51,16 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    // Fetch data
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription 
+                                   entityForName:@"Season" inManagedObjectContext:__managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    
+    self.seasons = [__managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    self.title = @"Monty Python"; 
 }
 
 - (void)viewDidUnload
@@ -81,16 +96,20 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"Season %i", [[self.seasons objectAtIndex:section] number]];
+}
+
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return [self.seasons count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    return [[[self.seasons objectAtIndex:section] episodes] count];
 }
 
 // Customize the appearance of table view cells.
@@ -149,8 +168,9 @@
     if (!self.detailViewController) {
         self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     }
-    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    self.detailViewController.detailItem = selectedObject;    
+    Season *selectedSeason = [self.seasons objectAtIndex:indexPath.section];
+    Episode *selectedEpisode = [[selectedSeason.episodes allObjects] objectAtIndex:indexPath.row];
+    self.detailViewController.episode = selectedEpisode;    
     [self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
@@ -260,8 +280,14 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+    Season *season = [self.seasons objectAtIndex:indexPath.section];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    Episode *episode = [[season.episodes sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = [NSString stringWithFormat:episode.title];
+
 }
 
 - (void)insertNewObject
