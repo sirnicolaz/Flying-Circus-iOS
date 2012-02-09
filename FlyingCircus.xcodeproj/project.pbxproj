@@ -23,6 +23,7 @@
 		D71828D214E30F5500B2242F /* Seeder.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CF14E30F5500B2242F /* Seeder.m */; };
 		D71828D514E3C24500B2242F /* FlyingCircus.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D71828D414E3C24500B2242F /* FlyingCircus.xcdatamodel */; };
 		D71828D814E3C25600B2242F /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828D714E3C25600B2242F /* Part.m */; };
+		D71828DB14E3C8D900B2242F /* PartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828DA14E3C8D900B2242F /* PartView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		D71828D414E3C24500B2242F /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 		D71828D614E3C25600B2242F /* Part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Part.h; sourceTree = "<group>"; };
 		D71828D714E3C25600B2242F /* Part.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Part.m; sourceTree = "<group>"; };
+		D71828D914E3C8D800B2242F /* PartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartView.h; path = FlyingCircus/PartView.h; sourceTree = "<group>"; };
+		D71828DA14E3C8D900B2242F /* PartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartView.m; path = FlyingCircus/PartView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				D71828B714E30EF800B2242F /* MasterViewController.m */,
 				D71828B914E30EF800B2242F /* EpisodeViewController.h */,
 				D71828BA14E30EF800B2242F /* EpisodeViewController.m */,
+				D71828D914E3C8D800B2242F /* PartView.h */,
+				D71828DA14E3C8D900B2242F /* PartView.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				D71828D214E30F5500B2242F /* Seeder.m in Sources */,
 				D71828D514E3C24500B2242F /* FlyingCircus.xcdatamodel in Sources */,
 				D71828D814E3C25600B2242F /* Part.m in Sources */,
+				D71828DB14E3C8D900B2242F /* PartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
