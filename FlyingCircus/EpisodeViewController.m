@@ -11,6 +11,7 @@
 
 #import "Episode.h"
 #import "Part.h"
+#import "Season.h"
 
 @interface EpisodeViewController (Private) 
 - (void)configureView;
@@ -24,17 +25,6 @@
 @synthesize detailDescriptionLabel  = _detailDescriptionLabel;
 @synthesize currentPartLabel        = _currentPartLabel;
 @synthesize currentPart             = _currentPart;
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil 
-               bundle:(NSBundle *)nibBundleOrNil
-              episode:(Episode*)anEpisode
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    self.episode = anEpisode;
-    
-    return self;
-}
 
 #pragma mark - Managing the detail item
 
@@ -62,7 +52,7 @@
     PartView *aView = [[PartView alloc] initWithFrame:container
                                               andPart:self.currentPart];
     
-    // Check whether a view for the same part has already been added
+    // Reuse an already loaded PartView if possible
     NSPredicate *filter = [NSPredicate predicateWithFormat:@"tag == %@", aView.part.number];
     NSArray *filteredViews = [self.videoContainerView.subviews filteredArrayUsingPredicate:filter];
     
@@ -84,11 +74,7 @@
 {
     // Update the user interface for the detail item.
 
-    if (self.episode) {
-        self.detailDescriptionLabel.text = [self.episode title];
-        
-        [self displayPart:1];      
-    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,7 +89,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
 }
 
 - (void)viewDidUnload
@@ -116,6 +101,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.episode.number != self.currentPart.episode.number ||
+        self.episode.season.number != self.currentPart.episode.season.number) {
+        // Episode has been changed, thus
+        // - Reset
+        for(UIView *subview in [self.videoContainerView subviews]) {
+            [subview removeFromSuperview];
+        }
+        self.currentPart = nil;
+        
+        // - And Reload
+        self.detailDescriptionLabel.text = [self.episode title];
+        [self displayPart:1];      
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

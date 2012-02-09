@@ -24,10 +24,6 @@
 @property (strong, nonatomic) IBOutlet UILabel  *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel  *currentPartLabel;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil 
-               bundle:(NSBundle *)nibBundleOrNil
-              episode:(Episode*)anEpisode;
-
 // Move to next part
 - (IBAction)previous:(id)sender;
 

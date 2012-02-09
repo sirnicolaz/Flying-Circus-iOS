@@ -1,22 +1,24 @@
 //
 //  Episode.m
-//  MontyPython
+//  FlyingCircus
 //
-//  Created by Nicola Miotto on 2/8/12.
+//  Created by Nicola Miotto on 2/9/12.
 //  Copyright (c) 2012 Università degli studi di Padova. All rights reserved.
 //
 
 #import "Episode.h"
+#import "Part.h"
+#import "Season.h"
 
 
 @implementation Episode
 
 @dynamic broadcastDate;
-@dynamic number;
-@dynamic title;
 @dynamic duration;
+@dynamic number;
 @dynamic summary;
-@dynamic season;
+@dynamic title;
 @dynamic parts;
+@dynamic season;
 
 @end

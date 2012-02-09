@@ -18,12 +18,12 @@
 		D71828BB14E30EF800B2242F /* EpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828BA14E30EF800B2242F /* EpisodeViewController.m */; };
 		D71828BE14E30EF800B2242F /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71828BC14E30EF800B2242F /* MasterViewController.xib */; };
 		D71828C114E30EF800B2242F /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71828BF14E30EF800B2242F /* EpisodeViewController.xib */; };
-		D71828D014E30F5500B2242F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CB14E30F5500B2242F /* Season.m */; };
-		D71828D114E30F5500B2242F /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CD14E30F5500B2242F /* Episode.m */; };
 		D71828D214E30F5500B2242F /* Seeder.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CF14E30F5500B2242F /* Seeder.m */; };
-		D71828D814E3C25600B2242F /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828D714E3C25600B2242F /* Part.m */; };
 		D71828DB14E3C8D900B2242F /* PartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828DA14E3C8D900B2242F /* PartView.m */; };
 		D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */; };
+		D7D18F1614E4106300CAFCBE /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1514E4106300CAFCBE /* Season.m */; };
+		D7D18F1914E4106300CAFCBE /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1814E4106300CAFCBE /* Episode.m */; };
+		D7D18F1C14E4106300CAFCBE /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1B14E4106300CAFCBE /* Part.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,17 +44,17 @@
 		D71828BA14E30EF800B2242F /* EpisodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EpisodeViewController.m; path = FlyingCircus/EpisodeViewController.m; sourceTree = "<group>"; };
 		D71828BD14E30EF800B2242F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
 		D71828C014E30EF800B2242F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EpisodeViewController.xib; sourceTree = "<group>"; };
-		D71828CA14E30F5500B2242F /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
-		D71828CB14E30F5500B2242F /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
-		D71828CC14E30F5500B2242F /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
-		D71828CD14E30F5500B2242F /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		D71828CE14E30F5500B2242F /* Seeder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seeder.h; sourceTree = "<group>"; };
 		D71828CF14E30F5500B2242F /* Seeder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seeder.m; sourceTree = "<group>"; };
-		D71828D614E3C25600B2242F /* Part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Part.h; sourceTree = "<group>"; };
-		D71828D714E3C25600B2242F /* Part.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Part.m; sourceTree = "<group>"; };
 		D71828D914E3C8D800B2242F /* PartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartView.h; path = FlyingCircus/PartView.h; sourceTree = "<group>"; };
 		D71828DA14E3C8D900B2242F /* PartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartView.m; path = FlyingCircus/PartView.m; sourceTree = "<group>"; };
 		D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
+		D7D18F1414E4106300CAFCBE /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
+		D7D18F1514E4106300CAFCBE /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
+		D7D18F1714E4106300CAFCBE /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
+		D7D18F1814E4106300CAFCBE /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
+		D7D18F1A14E4106300CAFCBE /* Part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Part.h; sourceTree = "<group>"; };
+		D7D18F1B14E4106300CAFCBE /* Part.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Part.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,15 +127,15 @@
 		D71828C714E30F0200B2242F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D71828CA14E30F5500B2242F /* Season.h */,
-				D71828CB14E30F5500B2242F /* Season.m */,
-				D71828CC14E30F5500B2242F /* Episode.h */,
-				D71828CD14E30F5500B2242F /* Episode.m */,
 				D71828CE14E30F5500B2242F /* Seeder.h */,
 				D71828CF14E30F5500B2242F /* Seeder.m */,
-				D71828D614E3C25600B2242F /* Part.h */,
-				D71828D714E3C25600B2242F /* Part.m */,
 				D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */,
+				D7D18F1A14E4106300CAFCBE /* Part.h */,
+				D7D18F1B14E4106300CAFCBE /* Part.m */,
+				D7D18F1714E4106300CAFCBE /* Episode.h */,
+				D7D18F1814E4106300CAFCBE /* Episode.m */,
+				D7D18F1414E4106300CAFCBE /* Season.h */,
+				D7D18F1514E4106300CAFCBE /* Season.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -230,12 +230,12 @@
 				D71828B214E30EF800B2242F /* AppDelegate.m in Sources */,
 				D71828B814E30EF800B2242F /* MasterViewController.m in Sources */,
 				D71828BB14E30EF800B2242F /* EpisodeViewController.m in Sources */,
-				D71828D014E30F5500B2242F /* Season.m in Sources */,
-				D71828D114E30F5500B2242F /* Episode.m in Sources */,
 				D71828D214E30F5500B2242F /* Seeder.m in Sources */,
-				D71828D814E3C25600B2242F /* Part.m in Sources */,
 				D71828DB14E3C8D900B2242F /* PartView.m in Sources */,
 				D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */,
+				D7D18F1614E4106300CAFCBE /* Season.m in Sources */,
+				D7D18F1914E4106300CAFCBE /* Episode.m in Sources */,
+				D7D18F1C14E4106300CAFCBE /* Part.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

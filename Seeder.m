@@ -57,7 +57,7 @@
             [episodes addObject:episode];
         }
         
-        season.episodes = [NSSet setWithArray:[episodes allObjects]];
+        [season addEpisodes:[NSSet setWithArray:[episodes allObjects]]];
         
     }
 
