@@ -20,11 +20,21 @@
 @implementation EpisodeViewController
 
 @synthesize episode                 = _episode;
-@synthesize partViews               = _partViews;
 @synthesize videoContainerView      = _videoContainerView;
 @synthesize detailDescriptionLabel  = _detailDescriptionLabel;
 @synthesize currentPartLabel        = _currentPartLabel;
 @synthesize currentPart             = _currentPart;
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil 
+               bundle:(NSBundle *)nibBundleOrNil
+              episode:(Episode*)anEpisode
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.episode = anEpisode;
+    
+    return self;
+}
 
 #pragma mark - Managing the detail item
 
@@ -33,16 +43,10 @@
     if (_episode != newEpisode) {
         _episode = newEpisode;
         
-        self.partViews = [[NSMutableArray alloc] 
-                          initWithCapacity:[self.episode.parts count]];
-        
         _cachedSortedParts = [self.episode.parts sortedArrayUsingDescriptors:
                               [NSArray arrayWithObject:
                                [[NSSortDescriptor alloc] initWithKey:@"number" 
                                                            ascending:YES]]];
-        
-        // Update the view.
-        [self configureView];
     }
 }
 
@@ -57,7 +61,6 @@
     
     PartView *aView = [[PartView alloc] initWithFrame:container
                                               andPart:self.currentPart];
-    //[self.partViews addObject:aView];
     
     // Check whether a view for the same part has already been added
     NSPredicate *filter = [NSPredicate predicateWithFormat:@"tag == %@", aView.part.number];

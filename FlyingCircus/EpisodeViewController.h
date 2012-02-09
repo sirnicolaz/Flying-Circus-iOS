@@ -19,11 +19,14 @@
 }
 
 @property (strong, nonatomic) Episode           *episode;
-@property (strong, nonatomic) NSMutableArray    *partViews;
 @property (strong, nonatomic) Part              *currentPart;
 @property (strong, nonatomic) IBOutlet UIView   *videoContainerView;
 @property (strong, nonatomic) IBOutlet UILabel  *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel  *currentPartLabel;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil 
+               bundle:(NSBundle *)nibBundleOrNil
+              episode:(Episode*)anEpisode;
 
 // Move to next part
 - (IBAction)previous:(id)sender;

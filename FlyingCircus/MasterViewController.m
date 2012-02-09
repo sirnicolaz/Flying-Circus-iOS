@@ -165,12 +165,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.episodeViewController) {
-        self.episodeViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
-    }
     Season *selectedSeason = [self.seasons objectAtIndex:indexPath.section];
     Episode *selectedEpisode = [[selectedSeason.episodes allObjects] objectAtIndex:indexPath.row];
-    self.episodeViewController.episode = selectedEpisode;    
+    
+    if (!self.episodeViewController) {
+        self.episodeViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" 
+                                                                             bundle:nil 
+                                                                            episode:selectedEpisode];
+    }
+    
     [self.navigationController pushViewController:self.episodeViewController animated:YES];
 }
 
