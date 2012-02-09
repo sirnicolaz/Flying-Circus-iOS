@@ -24,7 +24,7 @@
                           insertNewObjectForEntityForName:@"Season" 
                           inManagedObjectContext:context];
         
-        season.number = [NSNumber numberWithInt:i];
+        season.number = [NSNumber numberWithInt:i+1];
         season.fromDate = [NSDate date];
         season.toDate = [NSDate date];
         NSMutableSet *episodes = [[NSMutableSet alloc] init];
@@ -36,7 +36,7 @@
                                 inManagedObjectContext:context];
             
             episode.title = [NSString stringWithFormat:@"Episode %i", j];
-            episode.number = [NSNumber numberWithInt:j];
+            episode.number = [NSNumber numberWithInt:j+1];
             episode.season = season;
             
             NSMutableSet *parts = [[NSMutableSet alloc] init];
@@ -45,9 +45,10 @@
                 Part *part = [NSEntityDescription
                               insertNewObjectForEntityForName:@"Part" inManagedObjectContext:context];
                 
-                part.url = @"http://www.youtube.com/watch?v=jT3_UCm1A5I";
+                part.url = k == 0 ? @"http://www.youtube.com/watch?v=jT3_UCm1A5I" :
+                                    @"http://www.youtube.com/watch?v=ODshB09FQ8w";
                 part.episode = episode;
-                part.number = [NSNumber numberWithInt:k];
+                part.number = [NSNumber numberWithInt:k+1];
                 
                 [parts addObject:part];
             }

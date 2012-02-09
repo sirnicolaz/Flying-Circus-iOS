@@ -10,7 +10,9 @@
 
 @class Part;
 
-@interface PartView : UIView <UIWebViewDelegate>
+@interface PartView : UIView <UIWebViewDelegate> {
+    Part *_part;
+}
 
 
 @property (nonatomic, strong) Part* part;
