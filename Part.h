@@ -15,6 +15,6 @@
 
 @property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) NSString * url;
-@property (nonatomic, retain) Episode *episode;
+@property (nonatomic, retain) Episode * episode;
 
 @end

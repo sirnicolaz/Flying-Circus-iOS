@@ -14,9 +14,9 @@
     
 }
 
-@property (strong, nonatomic) NSMutableArray *webViews;
-@property (strong, nonatomic) Episode *episode;
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-@property (strong, nonatomic) IBOutlet UIView *partsContainer;
+@property (strong, nonatomic) Episode           *episode;
+@property (strong, nonatomic) NSMutableArray    *partViews;
+@property (strong, nonatomic) IBOutlet UIView   *partsContainer;
+@property (strong, nonatomic) IBOutlet UILabel  *detailDescriptionLabel;
 
 @end

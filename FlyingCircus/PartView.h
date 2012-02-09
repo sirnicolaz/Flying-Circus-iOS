@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PartView : UIView
+@class Part;
+
+@interface PartView : UIView <UIWebViewDelegate>
+
+
+@property (nonatomic, strong) Part* part;
+
+- (id)initWithFrame:(CGRect)frame
+            andPart:(Part*)aPart;
 
 @end
