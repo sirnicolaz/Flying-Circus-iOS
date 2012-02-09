@@ -13,6 +13,7 @@
 @implementation Part
 
 @dynamic number;
+@dynamic url;
 @dynamic episode;
 
 @end

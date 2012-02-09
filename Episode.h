@@ -16,8 +16,9 @@
 @property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * duration;
-@property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSString * summary;
 @property (nonatomic, retain) NSManagedObject *season;
+@property (nonatomic, retain) NSSet *parts;
+
 
 @end

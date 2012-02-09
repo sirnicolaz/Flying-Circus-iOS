@@ -15,8 +15,8 @@
 @dynamic number;
 @dynamic title;
 @dynamic duration;
-@dynamic url;
 @dynamic summary;
 @dynamic season;
+@dynamic parts;
 
 @end

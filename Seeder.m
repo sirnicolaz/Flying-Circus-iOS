@@ -37,7 +37,7 @@
             episode.title = [NSString stringWithFormat:@"Episode %i", j];
             episode.number = [NSNumber numberWithInt:j];
             episode.season = season;
-            episode.url = @"http://www.youtube.com/watch?v=jT3_UCm1A5I";
+            //episode.url = @"http://www.youtube.com/watch?v=jT3_UCm1A5I";
             
             [episodes addObject:episode];
         }

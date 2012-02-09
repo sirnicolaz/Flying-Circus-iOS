@@ -14,6 +14,7 @@
 @interface Part : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * number;
+@property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) Episode *episode;
 
 @end
