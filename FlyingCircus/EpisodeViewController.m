@@ -51,7 +51,6 @@
                                                       andPart:part];
             
             [self.partViews addObject:aView];
-            
         }
     }
 }

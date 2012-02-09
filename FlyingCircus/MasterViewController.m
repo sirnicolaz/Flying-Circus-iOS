@@ -19,7 +19,7 @@
 
 @implementation MasterViewController
 
-@synthesize detailViewController = _detailViewController;
+@synthesize episodeViewController = _episodeViewController;
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize seasons = _seasons;
@@ -165,13 +165,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.detailViewController) {
-        self.detailViewController = [[EpisodeViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+    if (!self.episodeViewController) {
+        self.episodeViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
     }
     Season *selectedSeason = [self.seasons objectAtIndex:indexPath.section];
     Episode *selectedEpisode = [[selectedSeason.episodes allObjects] objectAtIndex:indexPath.row];
-    self.detailViewController.episode = selectedEpisode;    
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    self.episodeViewController.episode = selectedEpisode;    
+    [self.navigationController pushViewController:self.episodeViewController animated:YES];
 }
 
 #pragma mark - Fetched results controller

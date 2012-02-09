@@ -21,9 +21,9 @@
 		D71828D014E30F5500B2242F /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CB14E30F5500B2242F /* Season.m */; };
 		D71828D114E30F5500B2242F /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CD14E30F5500B2242F /* Episode.m */; };
 		D71828D214E30F5500B2242F /* Seeder.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CF14E30F5500B2242F /* Seeder.m */; };
-		D71828D514E3C24500B2242F /* FlyingCircus.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = D71828D414E3C24500B2242F /* FlyingCircus.xcdatamodel */; };
 		D71828D814E3C25600B2242F /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828D714E3C25600B2242F /* Part.m */; };
 		D71828DB14E3C8D900B2242F /* PartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828DA14E3C8D900B2242F /* PartView.m */; };
+		D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,11 +50,11 @@
 		D71828CD14E30F5500B2242F /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		D71828CE14E30F5500B2242F /* Seeder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seeder.h; sourceTree = "<group>"; };
 		D71828CF14E30F5500B2242F /* Seeder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seeder.m; sourceTree = "<group>"; };
-		D71828D414E3C24500B2242F /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 		D71828D614E3C25600B2242F /* Part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Part.h; sourceTree = "<group>"; };
 		D71828D714E3C25600B2242F /* Part.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Part.m; sourceTree = "<group>"; };
 		D71828D914E3C8D800B2242F /* PartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartView.h; path = FlyingCircus/PartView.h; sourceTree = "<group>"; };
 		D71828DA14E3C8D900B2242F /* PartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartView.m; path = FlyingCircus/PartView.m; sourceTree = "<group>"; };
+		D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +133,9 @@
 				D71828CD14E30F5500B2242F /* Episode.m */,
 				D71828CE14E30F5500B2242F /* Seeder.h */,
 				D71828CF14E30F5500B2242F /* Seeder.m */,
-				D71828D414E3C24500B2242F /* FlyingCircus.xcdatamodel */,
 				D71828D614E3C25600B2242F /* Part.h */,
 				D71828D714E3C25600B2242F /* Part.m */,
+				D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -233,9 +233,9 @@
 				D71828D014E30F5500B2242F /* Season.m in Sources */,
 				D71828D114E30F5500B2242F /* Episode.m in Sources */,
 				D71828D214E30F5500B2242F /* Seeder.m in Sources */,
-				D71828D514E3C24500B2242F /* FlyingCircus.xcdatamodel in Sources */,
 				D71828D814E3C25600B2242F /* Part.m in Sources */,
 				D71828DB14E3C8D900B2242F /* PartView.m in Sources */,
+				D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,8 +369,22 @@
 				D71828C614E30EF800B2242F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */,
+			);
+			currentVersion = D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */;
+			path = FlyingCircus.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D718289214E30EF700B2242F /* Project object */;
 }

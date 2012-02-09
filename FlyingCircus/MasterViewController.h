@@ -19,7 +19,7 @@
     
 }
 
-@property (strong, nonatomic) EpisodeViewController *detailViewController;
+@property (strong, nonatomic) EpisodeViewController *episodeViewController;
 
 @property (strong, nonatomic) NSArray *seasons;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
