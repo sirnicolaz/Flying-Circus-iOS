@@ -65,6 +65,7 @@
     aWebView.delegate = self;
     [self addSubview:aWebView];
     [aWebView loadHTMLString:html baseURL:nil];
+
 }
 
 

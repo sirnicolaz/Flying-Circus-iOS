@@ -46,12 +46,19 @@
         self.detailDescriptionLabel.text = [self.episode title];
         
         // Generate as many part views as the episode's parts
+        CGRect container = self.partsContainer.frame;
+        container.origin.y = 0; container.origin.x = 0;
+        
         for (Part *part in self.episode.parts) {
-            PartView *aView = [[PartView alloc] initWithFrame:self.partsContainer.frame
+            PartView *aView = [[PartView alloc] initWithFrame:container
                                                       andPart:part];
             
             [self.partViews addObject:aView];
+            if ([part.number intValue]== 1) {
+                [self.partsContainer addSubview:aView];
+            }
         }
+        [self.partsContainer bringSubviewToFront:[self.partViews objectAtIndex:0]];
     }
 }
 
