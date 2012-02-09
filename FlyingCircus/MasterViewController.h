@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class DetailViewController;
+@class EpisodeViewController;
 
 #import <CoreData/CoreData.h>
 
@@ -19,7 +19,7 @@
     
 }
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) EpisodeViewController *detailViewController;
 
 @property (strong, nonatomic) NSArray *seasons;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

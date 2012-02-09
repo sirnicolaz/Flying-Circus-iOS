@@ -11,6 +11,7 @@
 
 @implementation Episode
 
+@dynamic broadcastDate;
 @dynamic number;
 @dynamic title;
 @dynamic duration;

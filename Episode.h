@@ -12,6 +12,7 @@
 
 @interface Episode : NSManagedObject
 
+@property (nonatomic, retain) NSDate *broadcastDate;
 @property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * duration;

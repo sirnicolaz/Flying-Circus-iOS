@@ -8,7 +8,7 @@
 
 #import "MasterViewController.h"
 
-#import "DetailViewController.h"
+#import "EpisodeViewController.h"
 
 #import "Season.h"
 #import "Episode.h"
@@ -166,7 +166,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.detailViewController) {
-        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+        self.detailViewController = [[EpisodeViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     }
     Season *selectedSeason = [self.seasons objectAtIndex:indexPath.section];
     Episode *selectedEpisode = [[selectedSeason.episodes allObjects] objectAtIndex:indexPath.row];
