@@ -9,6 +9,8 @@
 #import "MasterViewController.h"
 
 #import "EpisodeViewController.h"
+#import "EpisodeViewCell.h"
+#import "SeasonHeaderView.h"
 
 #import "Season.h"
 #import "Episode.h"
@@ -96,9 +98,21 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50.0;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [NSString stringWithFormat:@"Season %i", [[self.seasons objectAtIndex:section] number]];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString *title = [NSString stringWithFormat:@"Season %i", section];
+    SeasonHeaderView *headerView = [[SeasonHeaderView alloc] initWithTitle:title];
+    return headerView;
 }
 
 // Customize the number of sections in the table view.
@@ -117,14 +131,19 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    EpisodeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[EpisodeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 62.0; // TODO: constantify
 }
 
 /*

@@ -70,13 +70,6 @@
     [self.currentPartLabel setText:[self.currentPart.number stringValue]];
 }
 
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-
-    
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
