@@ -10,6 +10,7 @@
 
 #import "Season.h"
 #import "Episode.h"
+#import "Part.h"
 
 #define kNumberOfSeasons 7
 
@@ -37,8 +38,21 @@
             episode.title = [NSString stringWithFormat:@"Episode %i", j];
             episode.number = [NSNumber numberWithInt:j];
             episode.season = season;
-            //episode.url = @"http://www.youtube.com/watch?v=jT3_UCm1A5I";
             
+            NSMutableSet *parts = [[NSMutableSet alloc] init];
+            for(int k = 0; k < 2; k++) {
+                
+                Part *part = [NSEntityDescription
+                              insertNewObjectForEntityForName:@"Part" inManagedObjectContext:context];
+                
+                part.url = @"http://www.youtube.com/watch?v=jT3_UCm1A5I";
+                part.episode = episode;
+                part.number = [NSNumber numberWithInt:k];
+                
+                [parts addObject:part];
+            }
+            
+            episode.parts = parts;
             [episodes addObject:episode];
         }
         
