@@ -85,9 +85,14 @@
     navbarTitle.center = self.navigationController.navigationBar.center;
     CGRect titleFrame = navbarTitle.frame;
     titleFrame.origin.y = 1;
+    self.navigationItem.titleView = [[UIView alloc] initWithFrame:titleFrame];
+    //self.navigationItem.titleView.frame = titleFrame;
+    
+    titleFrame.origin.x = 0; titleFrame.origin.y = 0;
     navbarTitle.frame = titleFrame;
     
-    [self.navigationController.navigationBar addSubview:navbarTitle];
+    [self.navigationItem.titleView addSubview:navbarTitle];
+    //[self.navigationController.navigationBar addSubview:navbarTitle];
     
 }
 
@@ -114,17 +119,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 38.0;
+    return kSectionHeaderHeight;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Season %i", [[self.seasons objectAtIndex:section] number]];
+    return [NSString stringWithFormat:@"Season %i", section];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSString *title = [NSString stringWithFormat:@"Season %i", section];
+    NSString *title = [self tableView:tableView titleForHeaderInSection:section];
     SeasonHeaderView *headerView = [[SeasonHeaderView alloc] initWithTitle:title];
     return headerView;
 }

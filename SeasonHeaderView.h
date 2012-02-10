@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kSectionHeaderHeight 38
+
 @interface SeasonHeaderView : UIView
 
 @property (strong, nonatomic) NSString *title;
