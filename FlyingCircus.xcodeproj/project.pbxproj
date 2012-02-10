@@ -109,6 +109,7 @@
 		D7D18F5114E52E1500CAFCBE /* navbar_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_title@2x.png"; path = "images/navbar_title@2x.png"; sourceTree = "<group>"; };
 		D7D18F5414E53ABB00CAFCBE /* section_header_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = section_header_background.png; path = images/section_header_background.png; sourceTree = "<group>"; };
 		D7D18F5514E53ABB00CAFCBE /* section_header_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "section_header_background@2x.png"; path = "images/section_header_background@2x.png"; sourceTree = "<group>"; };
+		D7D18F5814E542EE00CAFCBE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +218,7 @@
 				D7D18F1E14E4154700CAFCBE /* EpisodeViewCell.m */,
 				D7D18F2914E439D300CAFCBE /* SeasonHeaderView.h */,
 				D7D18F2A14E439D300CAFCBE /* SeasonHeaderView.m */,
+				D7D18F5814E542EE00CAFCBE /* Constants.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

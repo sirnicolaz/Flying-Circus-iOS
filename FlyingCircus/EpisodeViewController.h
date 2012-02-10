@@ -18,12 +18,14 @@
     Part    *_currentPart;
 }
 
-@property (strong, nonatomic) Episode           *episode;
-@property (strong, nonatomic) Part              *currentPart;
-@property (strong, nonatomic) IBOutlet UIView   *videoContainerView;
-@property (strong, nonatomic) IBOutlet UILabel  *detailDescriptionLabel;
-@property (strong, nonatomic) IBOutlet UILabel  *currentPartLabel;
-@property (strong, nonatomic) IBOutlet UILabel  *totPartsLabel;
+@property (strong, nonatomic) Episode               *episode;
+@property (strong, nonatomic) Part                  *currentPart;
+@property (strong, nonatomic) IBOutlet UIView       *videoContainerView;
+@property (strong, nonatomic) IBOutlet UILabel      *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel      *currentPartLabel;
+@property (strong, nonatomic) IBOutlet UILabel      *totPartsLabel;
+@property (strong, nonatomic) IBOutlet UIButton     *nextButton;
+@property (strong, nonatomic) IBOutlet UIButton     *previousButton;
 
 // Move to next part
 - (IBAction)previous:(id)sender;

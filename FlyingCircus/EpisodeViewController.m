@@ -26,6 +26,8 @@
 @synthesize currentPartLabel        = _currentPartLabel;
 @synthesize totPartsLabel           = _totPartsLabel;
 @synthesize currentPart             = _currentPart;
+@synthesize nextButton              = _nextButton;
+@synthesize previousButton          = _previousButton;
 
 #pragma mark - Managing the detail item
 
@@ -83,6 +85,10 @@
     [self.totPartsLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:20.0]];
     [self.totPartsLabel setTextColor:[UIColor yellowColor]];
     [self.totPartsLabel setTextAlignment:UITextAlignmentCenter];
+    
+    // Amend buttons
+    [self.nextButton setBackgroundColor:[UIColor clearColor]];
+    [self.previousButton setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)didReceiveMemoryWarning

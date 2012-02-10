@@ -15,6 +15,8 @@
 #import "Season.h"
 #import "Episode.h"
 
+#import "Constants.h"
+
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -86,13 +88,11 @@
     CGRect titleFrame = navbarTitle.frame;
     titleFrame.origin.y = 1;
     self.navigationItem.titleView = [[UIView alloc] initWithFrame:titleFrame];
-    //self.navigationItem.titleView.frame = titleFrame;
     
     titleFrame.origin.x = 0; titleFrame.origin.y = 0;
     navbarTitle.frame = titleFrame;
     
     [self.navigationItem.titleView addSubview:navbarTitle];
-    //[self.navigationController.navigationBar addSubview:navbarTitle];
     
 }
 
@@ -155,6 +155,9 @@
         cell = [[EpisodeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    else {
+        [cell reset];
+    }
 
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -162,7 +165,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 62.0; // TODO: constantify
+    return [(EpisodeViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath] height];
 }
 
 /*
@@ -317,15 +320,16 @@
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(EpisodeViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Season *season = [self.seasons objectAtIndex:indexPath.section];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     Episode *episode = [[season.episodes sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:episode.title];
+    cell.title = [NSString stringWithFormat:episode.title];
+    cell.number = episode.number;
 
 }
 

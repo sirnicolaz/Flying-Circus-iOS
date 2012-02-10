@@ -35,7 +35,10 @@
                                 insertNewObjectForEntityForName:@"Episode" 
                                 inManagedObjectContext:context];
             
-            episode.title = [NSString stringWithFormat:@"Episode %i", j];
+            episode.title = j == 0 ? 
+            [NSString stringWithFormat:@"And now for something completely different not the movie, the episode %i", j] :
+            [NSString stringWithFormat:@"The pine tree %i", j];
+            
             episode.number = [NSNumber numberWithInt:j+1];
             episode.season = season;
             
