@@ -42,8 +42,8 @@
                             <head>\
                                 <style type=\"text/css\">\
                                 body {\
-                                background-color: transparent;\
-                                color: white;\
+                                background-color: black;\
+                                color: black;\
                                 }\
                                 </style>\
                             </head>\

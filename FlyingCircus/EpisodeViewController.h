@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIView   *videoContainerView;
 @property (strong, nonatomic) IBOutlet UILabel  *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel  *currentPartLabel;
+@property (strong, nonatomic) IBOutlet UILabel  *totPartsLabel;
 
 // Move to next part
 - (IBAction)previous:(id)sender;

@@ -18,12 +18,18 @@
     if(self) {
         self.title = aTitle;
         
-        CGRect labelFrame = CGRectMake(0, 0, 320, 50);
+        CGRect labelFrame = CGRectMake(0, 0, 320, 38);
+        
+        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"section_header_background"]];
+        background.frame = labelFrame;
+        [self addSubview:background];
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
         [titleLabel setTextColor:[UIColor redColor]];
-        [titleLabel setFont:[UIFont fontWithName:@"Ewert-Regular" size:25.0]];
-        [titleLabel setBackgroundColor:[UIColor blackColor]];
+        [titleLabel setFont:[UIFont fontWithName:@"Ewert-Regular" size:18.0]];
+        [titleLabel setShadowColor:[UIColor blackColor]];
+        [titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
+        [titleLabel setBackgroundColor:[UIColor clearColor]];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
         [titleLabel setText:self.title];
         

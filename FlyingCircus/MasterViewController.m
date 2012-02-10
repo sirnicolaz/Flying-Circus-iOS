@@ -31,7 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Master", @"Master");
+        //self.title = NSLocalizedString(@"Master", @"Master");
     }
     return self;
 }
@@ -49,10 +49,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     // Set up the edit and add buttons.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    //self.navigationItem.rightBarButtonItem = addButton;
+    
+    // Setup navigation bar back for iOS5
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
+    }
     
     // Fetch data
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -61,8 +66,7 @@
     [fetchRequest setEntity:entity];
     NSError *error;
     
-    self.seasons = [__managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    self.title = @"Monty Python"; 
+    self.seasons = [__managedObjectContext executeFetchRequest:fetchRequest error:&error]; 
 }
 
 - (void)viewDidUnload
@@ -75,6 +79,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    UIImageView *navbarTitle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbar_title"]];
+    //navbarTitle.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
+    navbarTitle.center = self.navigationController.navigationBar.center;
+    CGRect titleFrame = navbarTitle.frame;
+    titleFrame.origin.y = 1;
+    navbarTitle.frame = titleFrame;
+    
+    [self.navigationController.navigationBar addSubview:navbarTitle];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -100,7 +114,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50.0;
+    return 38.0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

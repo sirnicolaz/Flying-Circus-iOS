@@ -24,6 +24,7 @@
 @synthesize videoContainerView      = _videoContainerView;
 @synthesize detailDescriptionLabel  = _detailDescriptionLabel;
 @synthesize currentPartLabel        = _currentPartLabel;
+@synthesize totPartsLabel           = _totPartsLabel;
 @synthesize currentPart             = _currentPart;
 
 #pragma mark - Managing the detail item
@@ -70,6 +71,20 @@
     [self.currentPartLabel setText:[self.currentPart.number stringValue]];
 }
 
+
+- (void)configureView
+{
+    // Current part label
+    [self.currentPartLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:20.0]];
+    [self.currentPartLabel setTextColor:[UIColor yellowColor]];
+    [self.currentPartLabel setTextAlignment:UITextAlignmentCenter];
+    
+    // Tot parts label
+    [self.totPartsLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:20.0]];
+    [self.totPartsLabel setTextColor:[UIColor yellowColor]];
+    [self.totPartsLabel setTextAlignment:UITextAlignmentCenter];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -81,7 +96,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
+    [self configureView];
 }
 
 - (void)viewDidUnload
@@ -106,6 +122,7 @@
         
         // - And Reload
         self.detailDescriptionLabel.text = [self.episode title];
+        [self.totPartsLabel setText:[NSString stringWithFormat:@"/ %i", [self.episode.parts count]]];
         [self displayPart:1];      
     }
 }
