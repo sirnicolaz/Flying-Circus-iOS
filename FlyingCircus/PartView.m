@@ -11,7 +11,8 @@
 
 @implementation PartView
 
-@synthesize part = _part;
+@synthesize part                = _part;
+@synthesize activityIndicator   = _activityIndicator;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,6 +28,14 @@
 {
     self = [self initWithFrame:frame];
     self.part = aPart;
+    
+    [self setBackgroundColor:[UIColor blackColor]];
+    
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.activityIndicator setHidesWhenStopped:YES];
+    self.activityIndicator.center = self.center;
+    
+    [self addSubview:self.activityIndicator];
     
     return self;
 }
@@ -50,7 +59,8 @@
                             <body style=\"margin:0\">\
                                 <embed id=\"yt\" src=\"%@\"\
                                         type=\"application/x-shockwave-flash\" \
-                                        width=\"%0.0f\" height=\"%0.0f\">\
+                                        width=\"%0.0f\" height=\"%0.0f\"\
+                                        style=\"background-color:black;\">\
                                 </embed>\
                             </body>\
                         </html>";  
@@ -63,9 +73,12 @@
     
     UIWebView *aWebView = [[UIWebView alloc] initWithFrame:self.frame]; 
     aWebView.delegate = self;
-    [self addSubview:aWebView];
     [aWebView loadHTMLString:html baseURL:nil];
-
+    [aWebView setBackgroundColor:[UIColor blackColor]];
+    
+    [self addSubview:aWebView];
+    [aWebView setHidden:YES];
+    
 }
 
 
@@ -79,11 +92,14 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSLog(@"FINISHED");
+    [self.activityIndicator stopAnimating];
+    [webView setHidden:NO];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     NSLog(@"START");
+    [self.activityIndicator startAnimating];
 }
 
 @end

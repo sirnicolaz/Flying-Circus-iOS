@@ -56,9 +56,13 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     //self.navigationItem.rightBarButtonItem = addButton;
     
-    // Setup navigation bar back for iOS5
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
+        // Setup navigation bar back for iOS5
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
+    }
+    else {
+        // Setup navigation bar back for iOS4
+        [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.047 green:0.203 blue:0.070 alpha:1.0]];
     }
     
     // Fetch data
