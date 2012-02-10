@@ -18,6 +18,7 @@
 @dynamic number;
 @dynamic summary;
 @dynamic title;
+@dynamic thumbnailUrl;
 @dynamic parts;
 @dynamic season;
 

@@ -39,6 +39,8 @@
             [NSString stringWithFormat:@"And now for something completely different not the movie, the episode %i", j] :
             [NSString stringWithFormat:@"The pine tree %i", j];
             
+            episode.thumbnailUrl = @"http://img.youtube.com/vi/ur5fGSBsfq8/2.jpg";
+            
             episode.number = [NSNumber numberWithInt:j+1];
             episode.season = season;
             

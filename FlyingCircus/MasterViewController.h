@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @class EpisodeViewController;
-
-#import <CoreData/CoreData.h>
+@class EpisodeViewCell;
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     
@@ -19,8 +19,9 @@
     
 }
 
-@property (strong, nonatomic) EpisodeViewController *episodeViewController;
+@property (nonatomic, assign) IBOutlet EpisodeViewCell *episodeViewCell;
 
+@property (strong, nonatomic) EpisodeViewController *episodeViewController;
 @property (strong, nonatomic) NSArray *seasons;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

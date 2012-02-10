@@ -13,13 +13,17 @@
 #define kTitleFontSize 16
 
 @interface EpisodeViewCell : UITableViewCell {
-    NSString *_title;
-    NSNumber *_number;
+    UILabel     *_durationLabel;
+    UILabel     *_broadCastDateLabel;
+    UILabel     *_titleLabel;
+    UIImageView *_thumbImageView;
 }
 
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSNumber *number;
-@property (readonly, nonatomic) CGFloat height;
+
+@property (strong, nonatomic) IBOutlet UILabel     *durationLabel;
+@property (strong, nonatomic) IBOutlet UILabel     *broadCastDateLabel;
+@property (strong, nonatomic) IBOutlet UILabel     *titleLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *thumbImageView;
 
 - (void)reset;
 

@@ -16,6 +16,7 @@
 #import "Episode.h"
 
 #import "Constants.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -24,6 +25,7 @@
 @implementation MasterViewController
 
 @synthesize episodeViewController = _episodeViewController;
+@synthesize episodeViewCell              = _episodeViewCell;
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize seasons = _seasons;
@@ -152,15 +154,15 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"EpisodeTableViewCell";
     
     EpisodeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[EpisodeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [[NSBundle mainBundle] loadNibNamed:@"EpisodeTableViewCell" owner:self options:nil];
+        cell = self.episodeViewCell;
     }
     else {
-        [cell reset];
+        //[cell reset];
     }
 
     [self configureCell:cell atIndexPath:indexPath];
@@ -169,7 +171,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [(EpisodeViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath] height];
+    return 60;
+    //return [(EpisodeViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath] height];
 }
 
 /*
@@ -332,8 +335,18 @@
     
     Episode *episode = [[season.episodes sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:indexPath.row];
     
-    cell.title = [NSString stringWithFormat:episode.title];
-    cell.number = episode.number;
+    [cell.titleLabel setText:episode.title];
+    [cell.durationLabel setText:@"5:30"];
+    [cell.broadCastDateLabel setText:@"11/05/86"];
+    [cell.thumbImageView setImageWithURL:[NSURL URLWithString:episode.thumbnailUrl]];
+    
+    UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_background"]];
+    [cell setBackgroundView:back];
+    [cell setBackgroundColor:[UIColor blackColor]];
+    
+    //cell.title = [NSString stringWithFormat:episode.title];
+    //cell.number = episode.number;
+    //cell.thumb = episode.thumbnailUrl;
 
 }
 

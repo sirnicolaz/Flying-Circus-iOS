@@ -8,62 +8,16 @@
 
 #import "EpisodeViewCell.h"
 #import "Constants.h"
+#import "UIImageView+AFNetworking.h"
 
 #define kNumberLabelViewTag 84
 
 @implementation EpisodeViewCell
 
-@synthesize title = _title;
-@synthesize number = _number;
-@synthesize height = _height;
-
-- (CGFloat)height
-{
-    CGSize titleSize = [self.title sizeWithFont:[UIFont fontWithName:kDefaultFont size:kTitleFontSize] 
-                              constrainedToSize:CGSizeMake(240, kMaxTitleHeight) 
-                                  lineBreakMode:UILineBreakModeWordWrap];
-    
-    return MAX(kMaxTitleHeight + kRowPadding, titleSize.height + kRowPadding) ; // +10 => padding
-}
-
-- (void)setTitle:(NSString *)title
-{
-    _title = title;
-    
-    /*
-     CGSize titleSize = [title sizeWithFont:[UIFont fontWithName:kDefaultFont size:20] constrainedToSize:CGSizeMake(240, 300) lineBreakMode:UILineBreakModeWordWrap];
-    
-    if (titleSize.height > kMaxTitleHeight) {
-        [self.textLabel setFont:[UIFont fontWithName:kDefaultFont size:15.0]];
-    }
-     */
-    
-    [self.textLabel setText:title];
-}
-
-- (void)setNumber:(NSNumber *)number
-{
-    _number = number;
-    
-    if ([number intValue] == -1) {
-        for (UIView *view in self.imageView.subviews) {
-            [view removeFromSuperview];
-        }
-    }
-    else {
-        CGRect labelFrame = CGRectMake(0, 0, 40, 37.5);
-        UILabel *epNumberLabel = [[UILabel alloc] initWithFrame:labelFrame];
-        epNumberLabel.tag = kNumberLabelViewTag;
-        [epNumberLabel setText:[number stringValue]];
-        [epNumberLabel setTextColor:[UIColor whiteColor]];
-        [epNumberLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:18.0]];
-        [epNumberLabel setBackgroundColor:[UIColor clearColor]];
-        [epNumberLabel setTextAlignment:UITextAlignmentCenter];
-        
-        [self.imageView addSubview:epNumberLabel];
-        [self.imageView bringSubviewToFront:epNumberLabel];
-    }
-}
+@synthesize durationLabel       = _durationLabel;
+@synthesize broadCastDateLabel  = _broadCastDateLabel;
+@synthesize titleLabel          = _titleLabel;
+@synthesize thumbImageView      = _thumbImageView;
 
 - (void)configureTitle
 {
@@ -98,14 +52,17 @@
     [self.imageView setImage:[UIImage imageNamed:@"ep_number_back"]];
 }
 
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         [self configureBackground];
-        [self configureTitle];
-        [self configureImage];
+        //[self configureTitle];
+        //[self configureImage];
+        //[self configureLabels];
+        //self.accessoryView = [[UIView alloc] initWithFrame:self.frame];
         
     }
     return self;
@@ -120,8 +77,9 @@
 
 - (void)reset
 {
-    self.title = @"";
-    self.number = [NSNumber numberWithInt:-1];
+    [self.titleLabel setText:@""];
+    [self.durationLabel setText:@""];
+    [self.broadCastDateLabel setText:@""];
 }
 
 @end

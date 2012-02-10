@@ -5,6 +5,7 @@
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="parts" optional="YES" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="Part" inverseName="episode" inverseEntity="Part" syncable="YES"/>
         <relationship name="season" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Season" inverseName="episodes" inverseEntity="Season" syncable="YES"/>
@@ -24,7 +25,7 @@
         <relationship name="episodes" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="Episode" inverseName="season" inverseEntity="Episode" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Episode" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Episode" positionX="160" positionY="192" width="128" height="165"/>
         <element name="Event" positionX="160" positionY="192" width="128" height="60"/>
         <element name="Part" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Season" positionX="160" positionY="192" width="128" height="105"/>
