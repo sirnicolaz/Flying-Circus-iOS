@@ -24,26 +24,26 @@
     [self.titleLabel setBackgroundColor:[UIColor clearColor]];
     [self.titleLabel setNumberOfLines:1];
     
-    [self.titleLabel setFont:[UIFont fontWithName:kDefaultFont size:kTitleFontSize]];
+    [self.titleLabel setFont:kDefaultFontAndSize(kTitleFontSize)];
     
     [self.titleLabel setTextColor:kDefaultTextColor];
     [self.titleLabel setShadowColor:[UIColor blackColor]];
-    [self.titleLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
+    [self.titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
 }
 
 - (void)configureSubtitles
 {
     // Episode duration label
-    [self.durationLabel setFont:[UIFont fontWithName:kDefaultFont size:kSubtitleFontSize]];
+    [self.durationLabel setFont:kDefaultFontAndSize(kSubtitleFontSize)];
     [self.durationLabel setTextColor:kDefaultTextColor];
     [self.durationLabel setShadowColor:[UIColor blackColor]];
-    [self.durationLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
+    [self.durationLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
     
     // Broadcast date label
-    [self.broadCastDateLabel setFont:[UIFont fontWithName:kDefaultFont size:kSubtitleFontSize]];
+    [self.broadCastDateLabel setFont:kDefaultFontAndSize(kSubtitleFontSize)];
     [self.broadCastDateLabel setTextColor:kDefaultTextColor];
     [self.broadCastDateLabel setShadowColor:[UIColor blackColor]];
-    [self.broadCastDateLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
+    [self.broadCastDateLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
 }
 
 

@@ -30,7 +30,7 @@
         // Configure title
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:frame];
         [titleLabel setTextColor:[UIColor redColor]];
-        [titleLabel setFont:[UIFont fontWithName:kDefaultFont size:18.0]];
+        [titleLabel setFont:kDefaultFontAndSize(18.0)];
         [titleLabel setShadowColor:[UIColor blackColor]];
         [titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
         [titleLabel setBackgroundColor:[UIColor clearColor]];

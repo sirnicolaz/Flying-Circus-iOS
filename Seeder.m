@@ -36,13 +36,22 @@
                                 inManagedObjectContext:context];
             
             episode.title = j == 0 ? 
-            [NSString stringWithFormat:@"And now for something completely different not the movie, the episode %i", j] :
-            [NSString stringWithFormat:@"The pine tree %i", j];
+            @"How to Recognise Different Types of Trees From Quite a Long Way Away" :
+            @"Spam";
             
             episode.thumbnailUrl = @"http://img.youtube.com/vi/ur5fGSBsfq8/2.jpg";
             
             episode.number = [NSNumber numberWithInt:j+1];
             episode.season = season;
+            episode.duration = j == 0 ? @"42:21" : @"1:00";
+            episode.summary = @"Court Scene with Cardinal Richelieu - The Larch - Bicycle Repair Man - Tirade Against Communists - Children's Stories - Restaurant Sketch - Seduced Milkmen - Stolen newsreader - The Horse Chestnut - Children's Interview - Nudge Nudge";
+            
+            NSDateComponents *comps = [[NSDateComponents alloc] init];
+            [comps setDay:10];
+            [comps setMonth:10];
+            [comps setYear:1974];
+            
+            episode.broadcastDate = j == 0 ? [NSDate date] : [[NSCalendar currentCalendar] dateFromComponents:comps];
             
             NSMutableSet *parts = [[NSMutableSet alloc] init];
             for(int k = 0; k < 2; k++) {

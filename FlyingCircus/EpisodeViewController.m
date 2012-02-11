@@ -30,6 +30,7 @@
 @synthesize currentPart             = _currentPart;
 @synthesize nextButton              = _nextButton;
 @synthesize previousButton          = _previousButton;
+@synthesize sketchesTextView        = _sketchesTextView;
 
 #pragma mark - Managing the detail item
 
@@ -79,14 +80,14 @@
 - (void)configureView
 {
     // Current part label
-    [self.currentPartLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:20.0]];
+    [self.currentPartLabel setFont:kDefaultFontAndSize(20)];
     [self.currentPartLabel setTextColor:kDefaultTextColor];
     [self.currentPartLabel setTextAlignment:UITextAlignmentCenter];
     [self.currentPartLabel setShadowColor:[UIColor blackColor]];
     [self.currentPartLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
     
     // Tot parts label
-    [self.totPartsLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:20.0]];
+    [self.totPartsLabel setFont:kDefaultFontAndSize(20)];
     [self.totPartsLabel setTextColor:kDefaultTextColor];
     [self.totPartsLabel setTextAlignment:UITextAlignmentCenter];
     [self.totPartsLabel setShadowColor:[UIColor blackColor]];
@@ -96,23 +97,29 @@
     [self.nextButton setBackgroundColor:[UIColor clearColor]];
     [self.previousButton setBackgroundColor:[UIColor clearColor]];
     
-    // Custom backbutton in navigation bar
+    // Text field with sketches
+    [self.sketchesTextView setBackgroundColor:[UIColor clearColor]];
+    [self.sketchesTextView setFont:kDefaultFontAndSize(14.0)];
+    [self.sketchesTextView setTextColor:kDefaultTextColor];
+    [self.sketchesTextView setTextAlignment:UITextAlignmentCenter];
+    
+    // Custom backbutton for navigation bar
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(3, 0, 45, 28)]; /* initialize your button */
     [button setBackgroundImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"back_button-highlighted"] forState:UIControlStateHighlighted];
     [button setTitle:@"Back" forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont fontWithName:kDefaultFont size:12.0]];
+    [button.titleLabel setFont:kDefaultFontAndSize(12)];
     [button.titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleShadowColor:[UIColor brownColor] forState:UIControlStateNormal];
     [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 9, 2, 0)];
-    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(handleBack:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = barButtonItem;
 }
 
-- (void)back
+- (void)handleBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -155,7 +162,32 @@
         // - And Reload
         self.detailDescriptionLabel.text = [self.episode title];
         [self.totPartsLabel setText:[NSString stringWithFormat:@"/ %i", [self.episode.parts count]]];
-        [self displayPart:1];      
+        [self displayPart:1];     
+        
+        // - Set sketches
+        [self.sketchesTextView setText:[self.episode.summary stringByReplacingOccurrencesOfString:@" - " withString:@"\n"]];
+        
+        // Navigation Title
+        CGFloat titleFontSize; BOOL found = NO;
+        
+        // - Dececrease font size until the episode title fit in the navigation bar 
+        for (float x = 18.0; x > 8.0 && !found; x -= 1.0) {
+            titleFontSize = x;
+            CGSize titleSize = [self.episode.title sizeWithFont:kDefaultFontAndSize(x) constrainedToSize:CGSizeMake(200.0, 300.0) lineBreakMode:UILineBreakModeWordWrap];
+            
+            // - 45 -> 1px more than the navigation bar height -> out of boundaries, decrease size
+            if (titleSize.height <= 44.0) found = YES;
+        } 
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200.0, 44.0)];
+        [titleLabel setNumberOfLines:42];
+        [titleLabel setTextAlignment:UITextAlignmentCenter];
+        [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [titleLabel setFont:kDefaultFontAndSize(titleFontSize)];
+        [titleLabel setTextColor:kDefaultTextColor];
+        [titleLabel setBackgroundColor:[UIColor clearColor]];
+        [titleLabel setText:self.episode.title];
+        
+        self.navigationItem.titleView = titleLabel;
     }
 }
 

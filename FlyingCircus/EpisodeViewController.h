@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel      *totPartsLabel;
 @property (strong, nonatomic) IBOutlet UIButton     *nextButton;
 @property (strong, nonatomic) IBOutlet UIButton     *previousButton;
+@property (strong, nonatomic) IBOutlet UITextView   *sketchesTextView;
 
 // Move to next part
 - (IBAction)previous:(id)sender;

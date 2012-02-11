@@ -16,8 +16,10 @@
 #import "Episode.h"
 
 #import "Constants.h"
+
 #import "UIImageView+AFNetworking.h"
 #import "UIView+SelfFromNib.h"
+#import "NSDate+StringValue.h"
 
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -90,16 +92,11 @@
     [super viewWillAppear:animated];
     
     UIImageView *navbarTitle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbar_title"]];
-    //navbarTitle.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
-    navbarTitle.center = self.navigationController.navigationBar.center;
     CGRect titleFrame = navbarTitle.frame;
     titleFrame.origin.y = 1;
-    self.navigationItem.titleView = [[UIView alloc] initWithFrame:titleFrame];
-    
-    titleFrame.origin.x = 0; titleFrame.origin.y = 0;
     navbarTitle.frame = titleFrame;
     
-    [self.navigationItem.titleView addSubview:navbarTitle];
+    self.navigationItem.titleView = navbarTitle;
     
 }
 
@@ -218,7 +215,11 @@
     }
     
     Season *selectedSeason = [self.seasons objectAtIndex:indexPath.section];
-    Episode *selectedEpisode = [[selectedSeason.episodes allObjects] objectAtIndex:indexPath.row];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    Episode *selectedEpisode = [[selectedSeason.episodes sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:indexPath.row];
+    
     self.episodeViewController.episode = selectedEpisode;    
     
     [self.navigationController pushViewController:self.episodeViewController animated:YES];
@@ -338,8 +339,8 @@
     Episode *episode = [[season.episodes sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:indexPath.row];
     
     [cell.titleLabel setText:episode.title];
-    [cell.durationLabel setText:@"5:30"];
-    [cell.broadCastDateLabel setText:@"11/05/86"];
+    [cell.durationLabel setText:episode.duration];
+    [cell.broadCastDateLabel setText:[episode.broadcastDate stringValue]];
     [cell.thumbImageView setImageWithURL:[NSURL URLWithString:episode.thumbnailUrl]];
     
 }

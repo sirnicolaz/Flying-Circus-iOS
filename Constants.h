@@ -9,7 +9,9 @@
 #ifndef FlyingCircus_Constants_h
 #define FlyingCircus_Constants_h
 
-#define kDefaultFont @"AlikeAngular-Regular"
+#define kDefaultFontName @"AlikeAngular-Regular"
+#define kDefaultFontAndSize(x) [UIFont fontWithName:@"AlikeAngular-Regular" size:(x)]
+
 #define kDefaultTextColor [UIColor colorWithRed:0.99 green:0.47 blue:0.0 alpha:1.0]
 
 
