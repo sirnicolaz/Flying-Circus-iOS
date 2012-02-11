@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class EpisodeViewController;
-@class EpisodeViewCell;
+@class EpisodeTableViewCell;
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     
@@ -19,7 +19,7 @@
     
 }
 
-@property (nonatomic, assign) IBOutlet EpisodeViewCell *episodeViewCell;
+//@property (nonatomic, assign) IBOutlet EpisodeViewCell *episodeViewCell;
 
 @property (strong, nonatomic) EpisodeViewController *episodeViewController;
 @property (strong, nonatomic) NSArray *seasons;

@@ -7,6 +7,7 @@
 //
 
 #import "SeasonHeaderView.h"
+#import "Constants.h"
 
 @implementation SeasonHeaderView
 
@@ -16,7 +17,7 @@
 {
     self = [super init];
     if(self) {
-        self.title = aTitle;
+        self.title = [aTitle uppercaseString];
         
         CGRect frame = CGRectMake(0, 0, 320, kSectionHeaderHeight);
         
@@ -29,7 +30,7 @@
         // Configure title
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:frame];
         [titleLabel setTextColor:[UIColor redColor]];
-        [titleLabel setFont:[UIFont fontWithName:@"Ewert-Regular" size:18.0]];
+        [titleLabel setFont:[UIFont fontWithName:kDefaultFont size:18.0]];
         [titleLabel setShadowColor:[UIColor blackColor]];
         [titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
         [titleLabel setBackgroundColor:[UIColor clearColor]];

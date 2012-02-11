@@ -11,8 +11,9 @@
 #define kMaxTitleHeight 50
 #define kRowPadding 25
 #define kTitleFontSize 16
+#define kSubtitleFontSize 13
 
-@interface EpisodeViewCell : UITableViewCell {
+@interface EpisodeTableViewCell : UITableViewCell {
     UILabel     *_durationLabel;
     UILabel     *_broadCastDateLabel;
     UILabel     *_titleLabel;
@@ -25,6 +26,6 @@
 @property (strong, nonatomic) IBOutlet UILabel     *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *thumbImageView;
 
-- (void)reset;
+- (void)setup;
 
 @end

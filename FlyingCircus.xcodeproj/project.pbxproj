@@ -24,7 +24,7 @@
 		D7D18F1614E4106300CAFCBE /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1514E4106300CAFCBE /* Season.m */; };
 		D7D18F1914E4106300CAFCBE /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1814E4106300CAFCBE /* Episode.m */; };
 		D7D18F1C14E4106300CAFCBE /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1B14E4106300CAFCBE /* Part.m */; };
-		D7D18F1F14E4154700CAFCBE /* EpisodeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1E14E4154700CAFCBE /* EpisodeViewCell.m */; };
+		D7D18F1F14E4154700CAFCBE /* EpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1E14E4154700CAFCBE /* EpisodeTableViewCell.m */; };
 		D7D18F2114E430B100CAFCBE /* AlikeAngular-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7D18F2014E430B000CAFCBE /* AlikeAngular-Regular.ttf */; };
 		D7D18F2714E4347B00CAFCBE /* cell_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D18F2514E4347B00CAFCBE /* cell_background.png */; };
 		D7D18F2814E4347B00CAFCBE /* cell_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D18F2614E4347B00CAFCBE /* cell_background@2x.png */; };
@@ -61,6 +61,7 @@
 		D7D18F7F14E5816500CAFCBE /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F7414E5816500CAFCBE /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D7D18F8014E5816500CAFCBE /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F7614E5816500CAFCBE /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D7D18F8314E58FA200CAFCBE /* EpisodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7D18F8214E58FA200CAFCBE /* EpisodeTableViewCell.xib */; };
+		D7D18F8714E5E89B00CAFCBE /* UIView+SelfFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F8614E5E89B00CAFCBE /* UIView+SelfFromNib.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,8 +93,8 @@
 		D7D18F1814E4106300CAFCBE /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		D7D18F1A14E4106300CAFCBE /* Part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Part.h; sourceTree = "<group>"; };
 		D7D18F1B14E4106300CAFCBE /* Part.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Part.m; sourceTree = "<group>"; };
-		D7D18F1D14E4154700CAFCBE /* EpisodeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpisodeViewCell.h; sourceTree = "<group>"; };
-		D7D18F1E14E4154700CAFCBE /* EpisodeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpisodeViewCell.m; sourceTree = "<group>"; };
+		D7D18F1D14E4154700CAFCBE /* EpisodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; path = EpisodeTableViewCell.h; sourceTree = "<group>"; };
+		D7D18F1E14E4154700CAFCBE /* EpisodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpisodeTableViewCell.m; sourceTree = "<group>"; };
 		D7D18F2014E430B000CAFCBE /* AlikeAngular-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlikeAngular-Regular.ttf"; sourceTree = "<group>"; };
 		D7D18F2514E4347B00CAFCBE /* cell_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell_background.png; path = images/cell_background.png; sourceTree = "<group>"; };
 		D7D18F2614E4347B00CAFCBE /* cell_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cell_background@2x.png"; path = "images/cell_background@2x.png"; sourceTree = "<group>"; };
@@ -144,6 +145,8 @@
 		D7D18F7514E5816500CAFCBE /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		D7D18F7614E5816500CAFCBE /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		D7D18F8214E58FA200CAFCBE /* EpisodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeTableViewCell.xib; sourceTree = "<group>"; };
+		D7D18F8514E5E89B00CAFCBE /* UIView+SelfFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SelfFromNib.h"; sourceTree = "<group>"; };
+		D7D18F8614E5E89B00CAFCBE /* UIView+SelfFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SelfFromNib.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,7 @@
 		D718289014E30EF700B2242F = {
 			isa = PBXGroup;
 			children = (
+				D7D18F8414E5E87800CAFCBE /* Helpers */,
 				D7D18F5F14E5811600CAFCBE /* Libraries */,
 				D7D18F2214E430C400CAFCBE /* Resources */,
 				D71828C914E30F1400B2242F /* Controller */,
@@ -250,8 +254,8 @@
 				D71828BA14E30EF800B2242F /* EpisodeViewController.m */,
 				D71828D914E3C8D800B2242F /* PartView.h */,
 				D71828DA14E3C8D900B2242F /* PartView.m */,
-				D7D18F1D14E4154700CAFCBE /* EpisodeViewCell.h */,
-				D7D18F1E14E4154700CAFCBE /* EpisodeViewCell.m */,
+				D7D18F1D14E4154700CAFCBE /* EpisodeTableViewCell.h */,
+				D7D18F1E14E4154700CAFCBE /* EpisodeTableViewCell.m */,
 				D7D18F2914E439D300CAFCBE /* SeasonHeaderView.h */,
 				D7D18F2A14E439D300CAFCBE /* SeasonHeaderView.m */,
 				D7D18F5814E542EE00CAFCBE /* Constants.h */,
@@ -341,6 +345,15 @@
 				D7D18F7614E5816500CAFCBE /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		D7D18F8414E5E87800CAFCBE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D7D18F8514E5E89B00CAFCBE /* UIView+SelfFromNib.h */,
+				D7D18F8614E5E89B00CAFCBE /* UIView+SelfFromNib.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,7 +455,7 @@
 				D7D18F1614E4106300CAFCBE /* Season.m in Sources */,
 				D7D18F1914E4106300CAFCBE /* Episode.m in Sources */,
 				D7D18F1C14E4106300CAFCBE /* Part.m in Sources */,
-				D7D18F1F14E4154700CAFCBE /* EpisodeViewCell.m in Sources */,
+				D7D18F1F14E4154700CAFCBE /* EpisodeTableViewCell.m in Sources */,
 				D7D18F2B14E439D300CAFCBE /* SeasonHeaderView.m in Sources */,
 				D7D18F7714E5816500CAFCBE /* AFHTTPClient.m in Sources */,
 				D7D18F7814E5816500CAFCBE /* AFHTTPRequestOperation.m in Sources */,
@@ -454,6 +467,7 @@
 				D7D18F7E14E5816500CAFCBE /* AFURLConnectionOperation.m in Sources */,
 				D7D18F7F14E5816500CAFCBE /* AFXMLRequestOperation.m in Sources */,
 				D7D18F8014E5816500CAFCBE /* UIImageView+AFNetworking.m in Sources */,
+				D7D18F8714E5E89B00CAFCBE /* UIView+SelfFromNib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

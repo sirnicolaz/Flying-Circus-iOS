@@ -13,6 +13,8 @@
 #import "Part.h"
 #import "Season.h"
 
+#import "Constants.h"
+
 @interface EpisodeViewController (Private) 
 - (void)configureView;
 - (void)displayPart:(int)number;
@@ -78,13 +80,17 @@
 {
     // Current part label
     [self.currentPartLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:20.0]];
-    [self.currentPartLabel setTextColor:[UIColor yellowColor]];
+    [self.currentPartLabel setTextColor:kDefaultTextColor];
     [self.currentPartLabel setTextAlignment:UITextAlignmentCenter];
+    [self.currentPartLabel setShadowColor:[UIColor blackColor]];
+    [self.currentPartLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
     
     // Tot parts label
     [self.totPartsLabel setFont:[UIFont fontWithName:@"AlikeAngular-Regular" size:20.0]];
-    [self.totPartsLabel setTextColor:[UIColor yellowColor]];
+    [self.totPartsLabel setTextColor:kDefaultTextColor];
     [self.totPartsLabel setTextAlignment:UITextAlignmentCenter];
+    [self.totPartsLabel setShadowColor:[UIColor blackColor]];
+    [self.totPartsLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
     
     // Amend buttons
     [self.nextButton setBackgroundColor:[UIColor clearColor]];

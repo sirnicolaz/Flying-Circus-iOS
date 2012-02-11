@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 
 #import "EpisodeViewController.h"
-#import "EpisodeViewCell.h"
+#import "EpisodeTableViewCell.h"
 #import "SeasonHeaderView.h"
 
 #import "Season.h"
@@ -17,6 +17,7 @@
 
 #import "Constants.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIView+SelfFromNib.h"
 
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -25,7 +26,7 @@
 @implementation MasterViewController
 
 @synthesize episodeViewController = _episodeViewController;
-@synthesize episodeViewCell              = _episodeViewCell;
+//@synthesize episodeViewCell              = _episodeViewCell;
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize seasons = _seasons;
@@ -156,13 +157,13 @@
 {
     static NSString *CellIdentifier = @"EpisodeTableViewCell";
     
-    EpisodeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    EpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"EpisodeTableViewCell" owner:self options:nil];
-        cell = self.episodeViewCell;
+        cell = [EpisodeTableViewCell selfFromNib];
+        [cell setup];
     }
     else {
-        //[cell reset];
+        //[cell prepareForReuse];
     }
 
     [self configureCell:cell atIndexPath:indexPath];
@@ -172,7 +173,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
-    //return [(EpisodeViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath] height];
 }
 
 /*
@@ -327,7 +327,7 @@
 }
  */
 
-- (void)configureCell:(EpisodeViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(EpisodeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Season *season = [self.seasons objectAtIndex:indexPath.section];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES];
@@ -340,14 +340,6 @@
     [cell.broadCastDateLabel setText:@"11/05/86"];
     [cell.thumbImageView setImageWithURL:[NSURL URLWithString:episode.thumbnailUrl]];
     
-    UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_background"]];
-    [cell setBackgroundView:back];
-    [cell setBackgroundColor:[UIColor blackColor]];
-    
-    //cell.title = [NSString stringWithFormat:episode.title];
-    //cell.number = episode.number;
-    //cell.thumb = episode.thumbnailUrl;
-
 }
 
 - (void)insertNewObject
