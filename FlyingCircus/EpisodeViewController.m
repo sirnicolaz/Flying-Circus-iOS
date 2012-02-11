@@ -95,6 +95,26 @@
     // Amend buttons
     [self.nextButton setBackgroundColor:[UIColor clearColor]];
     [self.previousButton setBackgroundColor:[UIColor clearColor]];
+    
+    // Custom backbutton in navigation bar
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(3, 0, 45, 28)]; /* initialize your button */
+    [button setBackgroundImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"back_button-highlighted"] forState:UIControlStateHighlighted];
+    [button setTitle:@"Back" forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont fontWithName:kDefaultFont size:12.0]];
+    [button.titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleShadowColor:[UIColor brownColor] forState:UIControlStateNormal];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 9, 2, 0)];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

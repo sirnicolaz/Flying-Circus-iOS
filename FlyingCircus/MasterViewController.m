@@ -220,7 +220,9 @@
     Season *selectedSeason = [self.seasons objectAtIndex:indexPath.section];
     Episode *selectedEpisode = [[selectedSeason.episodes allObjects] objectAtIndex:indexPath.row];
     self.episodeViewController.episode = selectedEpisode;    
+    
     [self.navigationController pushViewController:self.episodeViewController animated:YES];
+    
 }
 
 #pragma mark - Fetched results controller
