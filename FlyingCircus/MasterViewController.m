@@ -25,20 +25,26 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
+@interface MasterViewController (Searchable)
+- (void)searchText:(NSString*)text;
+@end
+
 @implementation MasterViewController
 
-@synthesize episodeViewController = _episodeViewController;
-//@synthesize episodeViewCell              = _episodeViewCell;
-@synthesize fetchedResultsController = __fetchedResultsController;
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize seasons = _seasons;
-
+@synthesize episodeViewController       = _episodeViewController;
+@synthesize tableSearchBar              = _tableSearchBar;
+@synthesize fetchedResultsController    = __fetchedResultsController;
+@synthesize managedObjectContext        = __managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //self.title = NSLocalizedString(@"Master", @"Master");
+        _searching = NO;
+        _letUserSelectRow = YES;
+        
+        self.tableSearchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     }
     return self;
 }
@@ -71,13 +77,13 @@
     }
     
     // Fetch data
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription 
-                                   entityForName:@"Season" inManagedObjectContext:__managedObjectContext];
-    [fetchRequest setEntity:entity];
     NSError *error;
-    
-    self.seasons = [__managedObjectContext executeFetchRequest:fetchRequest error:&error]; 
+
+    if (![self.fetchedResultsController performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		exit(-1);  // Fail
+	}
 }
 
 - (void)viewDidUnload
@@ -121,6 +127,8 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+#pragma mark - UITableViewDelegate methods
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return kSectionHeaderHeight;
@@ -141,12 +149,14 @@
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.seasons count];
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[self.seasons objectAtIndex:section] episodes] count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
 }
 
 // Customize the appearance of table view cells.
@@ -208,19 +218,26 @@
     return NO;
 }
 
+- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Search currently activate
+    if(_letUserSelectRow) {
+        return indexPath;
+    }
+    else {
+        return nil;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.episodeViewController) {
         self.episodeViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
     }
     
-    Season *selectedSeason = [self.seasons objectAtIndex:indexPath.section];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-    
-    Episode *selectedEpisode = [[selectedSeason.episodes sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:indexPath.row];
-    
-    self.episodeViewController.episode = selectedEpisode;    
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
+
+    self.episodeViewController.episode = [[sectionInfo objects] objectAtIndex:indexPath.row];    
     
     [self.navigationController pushViewController:self.episodeViewController animated:YES];
     
@@ -238,21 +255,23 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Season" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"season.number" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES];
     
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1, sortDescriptor2, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                                                                                managedObjectContext:self.managedObjectContext 
+                                                                                                  sectionNameKeyPath:@"season" 
+                                                                                                           cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -332,11 +351,8 @@
 
 - (void)configureCell:(EpisodeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    Season *season = [self.seasons objectAtIndex:indexPath.section];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-    
-    Episode *episode = [[season.episodes sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:indexPath.row];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section]; 
+    Episode *episode = [[sectionInfo objects] objectAtIndex:indexPath.row];
     
     [cell.titleLabel setText:episode.title];
     [cell.durationLabel setText:episode.duration];
@@ -367,6 +383,63 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+}
+
+#pragma mark - Filtering logic
+
+// The method to change the predicate of the FRC
+- (void)filterContentForSearchText:(NSString*)searchText
+{
+    NSString *query = searchText;
+    if (query && query.length) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[c] %@ or summary contains[c] %@", query, query];
+        //NSArray *results
+        [self.fetchedResultsController.fetchRequest setPredicate:predicate];
+    }
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        // Handle error
+        exit(-1);
+    }
+    
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - UISearchBarDelegate methods
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
+    
+    _searching = YES;
+    _letUserSelectRow = NO;
+    self.tableView.scrollEnabled = NO;
+    
+    //Add the done button.
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                           target:self 
+                                                                                           action:@selector(doneSearching:)];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self filterContentForSearchText:searchBar.text];
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    if([searchText length] > 0) {
+        _searching = YES;
+        _letUserSelectRow = NO;
+        self.tableView.scrollEnabled = NO;
+    }
+    else {
+        _searching = NO;
+        _letUserSelectRow = YES;
+        self.tableView.scrollEnabled = YES;
+    }
+    
+    [self filterContentForSearchText:searchText];
 }
 
 @end

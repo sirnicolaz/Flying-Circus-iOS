@@ -37,7 +37,7 @@
             
             episode.title = j == 0 ? 
             @"How to Recognise Different Types of Trees From Quite a Long Way Away" :
-            @"Spam";
+            [NSString stringWithFormat:@"Spam %i", j];
             
             episode.thumbnailUrl = @"http://img.youtube.com/vi/ur5fGSBsfq8/2.jpg";
             

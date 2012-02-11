@@ -17,12 +17,14 @@
     NSArray *_seasons;
     NSManagedObjectContext *_context;
     
+    @private
+    BOOL _searching;
+    BOOL _letUserSelectRow;
 }
 
-//@property (nonatomic, assign) IBOutlet EpisodeViewCell *episodeViewCell;
+@property (nonatomic, assign) IBOutlet UISearchBar *tableSearchBar;
 
 @property (strong, nonatomic) EpisodeViewController *episodeViewController;
-@property (strong, nonatomic) NSArray *seasons;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
