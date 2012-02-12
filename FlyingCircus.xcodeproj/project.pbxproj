@@ -23,6 +23,10 @@
 		D7666ADD14E6EBFA0088F672 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D7666ADC14E6EBFA0088F672 /* Episode.m */; };
 		D7666AE014E6EF370088F672 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666ADE14E6EF370088F672 /* play.png */; };
 		D7666AE114E6EF370088F672 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666ADF14E6EF370088F672 /* play@2x.png */; };
+		D7666AEB14E7C6910088F672 /* ReactiveOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7666AE914E7C6910088F672 /* ReactiveOverlayViewController.m */; };
+		D7666AEC14E7C6910088F672 /* ReactiveOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7666AEA14E7C6910088F672 /* ReactiveOverlayViewController.xib */; };
+		D7666AEF14E7E7800088F672 /* paper.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666AED14E7E7800088F672 /* paper.png */; };
+		D7666AF014E7E7800088F672 /* paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666AEE14E7E7800088F672 /* paper@2x.png */; };
 		D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */; };
 		D7D18F1614E4106300CAFCBE /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1514E4106300CAFCBE /* Season.m */; };
 		D7D18F1C14E4106300CAFCBE /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1B14E4106300CAFCBE /* Part.m */; };
@@ -101,6 +105,11 @@
 		D7666ADC14E6EBFA0088F672 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		D7666ADE14E6EF370088F672 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = images/play.png; sourceTree = "<group>"; };
 		D7666ADF14E6EF370088F672 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play@2x.png"; path = "images/play@2x.png"; sourceTree = "<group>"; };
+		D7666AE814E7C6910088F672 /* ReactiveOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactiveOverlayViewController.h; sourceTree = "<group>"; };
+		D7666AE914E7C6910088F672 /* ReactiveOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactiveOverlayViewController.m; sourceTree = "<group>"; };
+		D7666AEA14E7C6910088F672 /* ReactiveOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReactiveOverlayViewController.xib; sourceTree = "<group>"; };
+		D7666AED14E7E7800088F672 /* paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paper.png; path = images/paper.png; sourceTree = "<group>"; };
+		D7666AEE14E7E7800088F672 /* paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paper@2x.png"; path = "images/paper@2x.png"; sourceTree = "<group>"; };
 		D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 		D7D18F1414E4106300CAFCBE /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
 		D7D18F1514E4106300CAFCBE /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
@@ -261,6 +270,7 @@
 		D71828C814E30F0E00B2242F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D7666AEA14E7C6910088F672 /* ReactiveOverlayViewController.xib */,
 				D71828BC14E30EF800B2242F /* MasterViewController.xib */,
 				D71828BF14E30EF800B2242F /* EpisodeViewController.xib */,
 				D7D18F8214E58FA200CAFCBE /* EpisodeTableViewCell.xib */,
@@ -282,6 +292,8 @@
 				D7D18F2914E439D300CAFCBE /* SeasonHeaderView.h */,
 				D7D18F2A14E439D300CAFCBE /* SeasonHeaderView.m */,
 				D7D18F5814E542EE00CAFCBE /* Constants.h */,
+				D7666AE814E7C6910088F672 /* ReactiveOverlayViewController.h */,
+				D7666AE914E7C6910088F672 /* ReactiveOverlayViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -337,6 +349,8 @@
 				D7666ADE14E6EF370088F672 /* play.png */,
 				D7666ADF14E6EF370088F672 /* play@2x.png */,
 				D7D18F3414E4524B00CAFCBE /* television.png */,
+				D7666AED14E7E7800088F672 /* paper.png */,
+				D7666AEE14E7E7800088F672 /* paper@2x.png */,
 				D7D18F3614E45E9200CAFCBE /* television@2x.png */,
 				D7D18F2F14E44B6100CAFCBE /* ep_number_back@2x.png */,
 			);
@@ -480,6 +494,9 @@
 				D7D18FA414E68D2F00CAFCBE /* checkbox-unchecked@2x.png in Resources */,
 				D7666AE014E6EF370088F672 /* play.png in Resources */,
 				D7666AE114E6EF370088F672 /* play@2x.png in Resources */,
+				D7666AEC14E7C6910088F672 /* ReactiveOverlayViewController.xib in Resources */,
+				D7666AEF14E7E7800088F672 /* paper.png in Resources */,
+				D7666AF014E7E7800088F672 /* paper@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +531,7 @@
 				D7D18F8714E5E89B00CAFCBE /* UIView+SelfFromNib.m in Sources */,
 				D7D18F9B14E682A400CAFCBE /* NSDate+StringValue.m in Sources */,
 				D7666ADD14E6EBFA0088F672 /* Episode.m in Sources */,
+				D7666AEB14E7C6910088F672 /* ReactiveOverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

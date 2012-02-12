@@ -11,21 +11,19 @@
 #import "EpisodeTableViewCell.h"
 
 @class EpisodeViewController;
+@class ReactiveOverlayViewController;
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     
     NSArray *_seasons;
     NSManagedObjectContext *_context;
-    
-    @private
-    BOOL _searching;
-    BOOL _letUserSelectRow;
 }
 
-@property (nonatomic, assign) IBOutlet UISearchBar *tableSearchBar;
+@property (nonatomic, assign) IBOutlet UISearchBar                      *tableSearchBar;
+@property (strong, nonatomic) IBOutlet ReactiveOverlayViewController    *disableOverlayView;
 
-@property (strong, nonatomic) EpisodeViewController *episodeViewController;
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) EpisodeViewController         *episodeViewController;
+@property (strong, nonatomic) NSFetchedResultsController    *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext        *managedObjectContext;
 
 @end

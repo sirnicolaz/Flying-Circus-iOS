@@ -10,6 +10,7 @@
 
 #import "EpisodeViewController.h"
 #import "SeasonHeaderView.h"
+#import "ReactiveOverlayViewController.h"
 
 #import "Season.h"
 #import "Episode.h"
@@ -32,6 +33,7 @@
 @implementation MasterViewController
 
 @synthesize episodeViewController       = _episodeViewController;
+@synthesize disableOverlayView          = _disableOverlayView;
 @synthesize tableSearchBar              = _tableSearchBar;
 @synthesize fetchedResultsController    = __fetchedResultsController;
 @synthesize managedObjectContext        = __managedObjectContext;
@@ -40,11 +42,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.title = NSLocalizedString(@"Master", @"Master");
-        _searching = NO;
-        _letUserSelectRow = YES;
-        
-        self.tableSearchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     }
     return self;
 }
@@ -52,7 +49,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -60,25 +56,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    // Set up the edit and add buttons.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	
+    // -- Configure search bar
+    // - Put the search bar out of the visible part
+    CGRect bounds = self.tableView.bounds;
+	bounds.origin.y = bounds.origin.y + self.tableSearchBar.bounds.size.height;
+	self.tableView.bounds = bounds;
+    // - other stff
+    self.tableSearchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     
+    // -- To correctly handle touch during row editing
     [self.tableView setAllowsSelectionDuringEditing:YES];
     
+    // -- Configure black translucend overlay for searching mode--
+    self.disableOverlayView = [[ReactiveOverlayViewController alloc] initWithNibName:@"ReactiveOverlayViewController" bundle:[NSBundle mainBundle]];
+    
+    CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = self.view.frame.size.height;
+    
+    CGRect frame = CGRectMake(0, yaxis, width, height);
+    self.disableOverlayView.view.frame = frame;
+    self.disableOverlayView.view.backgroundColor = [UIColor blackColor];
+    
+    // - Configure touch handling
+    self.disableOverlayView.target = self;
+    self.disableOverlayView.action = @selector(exitSearch);
+    
+    // -- Configure navigation bar
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-        // Setup navigation bar back for iOS5
+        // - Setup navigation bar back for iOS5
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
     }
     else {
-        // Setup navigation bar back for iOS4
+        // - Setup navigation bar back for iOS4
         [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.047 green:0.203 blue:0.070 alpha:1.0]];
     }
     
-    // Fetch data
+    // -- Fetch data
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
-		// Update to handle the error appropriately.
+		// - Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
@@ -87,8 +105,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -412,34 +428,37 @@
 
 #pragma mark - UISearchBarDelegate methods
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
+- (void)searchBar:(UISearchBar *)searchBar activate:(BOOL) active{	
     
-    _searching = YES;
-    _letUserSelectRow = NO;
-    self.tableView.scrollEnabled = NO;
-    
+    if (!active) {
+        [searchBar resignFirstResponder];
+        [self.disableOverlayView.view removeFromSuperview];
+    } else {
+        self.disableOverlayView.view.alpha = 0;
+        [self.tableView insertSubview:self.disableOverlayView.view aboveSubview:self.parentViewController.view];
+        
+        [UIView beginAnimations:@"FadeIn" context:nil];
+        [UIView setAnimationDuration:0.5];
+        self.disableOverlayView.view.alpha = 0.6;
+        [UIView commitAnimations];
+		
+    }
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self searchBar:searchBar activate:YES];
+}
+
+- (void)exitSearch {
+    [self searchBar:self.tableSearchBar activate:NO];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self filterContentForSearchText:searchBar.text];
-    [searchBar resignFirstResponder];
-    _searching = NO;
-    _letUserSelectRow = YES;
+    [self searchBar:searchBar activate:NO];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    
-    if([searchText length] > 0) {
-        _searching = YES;
-        _letUserSelectRow = NO;
-        self.tableView.scrollEnabled = NO;
-    }
-    else {
-        _searching = NO;
-        _letUserSelectRow = YES;
-        self.tableView.scrollEnabled = YES;
-    }
-    
     [self filterContentForSearchText:searchText];
 }
 

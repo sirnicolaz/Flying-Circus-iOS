@@ -100,7 +100,7 @@
     // Text field with sketches
     [self.sketchesTextView setBackgroundColor:[UIColor clearColor]];
     [self.sketchesTextView setFont:kDefaultFontAndSize(14.0)];
-    [self.sketchesTextView setTextColor:kDefaultTextColor];
+    [self.sketchesTextView setTextColor:[UIColor blackColor]];
     [self.sketchesTextView setTextAlignment:UITextAlignmentCenter];
     
     // Custom backbutton for navigation bar
