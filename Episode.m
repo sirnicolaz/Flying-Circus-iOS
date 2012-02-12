@@ -2,7 +2,7 @@
 //  Episode.m
 //  FlyingCircus
 //
-//  Created by Nicola Miotto on 2/9/12.
+//  Created by Nicola Miotto on 2/11/12.
 //  Copyright (c) 2012 Università degli studi di Padova. All rights reserved.
 //
 
@@ -15,10 +15,11 @@
 
 @dynamic broadcastDate;
 @dynamic duration;
+@dynamic isWatched;
 @dynamic number;
 @dynamic summary;
-@dynamic title;
 @dynamic thumbnailUrl;
+@dynamic title;
 @dynamic parts;
 @dynamic season;
 

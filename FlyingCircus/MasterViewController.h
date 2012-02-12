@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "EpisodeTableViewCell.h"
 
 @class EpisodeViewController;
-@class EpisodeTableViewCell;
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     

@@ -3,6 +3,7 @@
     <entity name="Episode" representedClassName="Episode" syncable="YES">
         <attribute name="broadcastDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isWatched" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,7 +26,7 @@
         <relationship name="episodes" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="Episode" inverseName="season" inverseEntity="Episode" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Episode" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="Episode" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Event" positionX="160" positionY="192" width="128" height="60"/>
         <element name="Part" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Season" positionX="160" positionY="192" width="128" height="105"/>

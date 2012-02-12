@@ -20,9 +20,11 @@
 		D71828C114E30EF800B2242F /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71828BF14E30EF800B2242F /* EpisodeViewController.xib */; };
 		D71828D214E30F5500B2242F /* Seeder.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828CF14E30F5500B2242F /* Seeder.m */; };
 		D71828DB14E3C8D900B2242F /* PartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828DA14E3C8D900B2242F /* PartView.m */; };
+		D7666ADD14E6EBFA0088F672 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D7666ADC14E6EBFA0088F672 /* Episode.m */; };
+		D7666AE014E6EF370088F672 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666ADE14E6EF370088F672 /* play.png */; };
+		D7666AE114E6EF370088F672 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666ADF14E6EF370088F672 /* play@2x.png */; };
 		D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */; };
 		D7D18F1614E4106300CAFCBE /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1514E4106300CAFCBE /* Season.m */; };
-		D7D18F1914E4106300CAFCBE /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1814E4106300CAFCBE /* Episode.m */; };
 		D7D18F1C14E4106300CAFCBE /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1B14E4106300CAFCBE /* Part.m */; };
 		D7D18F1F14E4154700CAFCBE /* EpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1E14E4154700CAFCBE /* EpisodeTableViewCell.m */; };
 		D7D18F2114E430B100CAFCBE /* AlikeAngular-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7D18F2014E430B000CAFCBE /* AlikeAngular-Regular.ttf */; };
@@ -95,11 +97,13 @@
 		D71828CF14E30F5500B2242F /* Seeder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seeder.m; sourceTree = "<group>"; };
 		D71828D914E3C8D800B2242F /* PartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartView.h; path = FlyingCircus/PartView.h; sourceTree = "<group>"; };
 		D71828DA14E3C8D900B2242F /* PartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartView.m; path = FlyingCircus/PartView.m; sourceTree = "<group>"; };
+		D7666ADB14E6EBFA0088F672 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
+		D7666ADC14E6EBFA0088F672 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
+		D7666ADE14E6EF370088F672 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = images/play.png; sourceTree = "<group>"; };
+		D7666ADF14E6EF370088F672 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play@2x.png"; path = "images/play@2x.png"; sourceTree = "<group>"; };
 		D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 		D7D18F1414E4106300CAFCBE /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
 		D7D18F1514E4106300CAFCBE /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
-		D7D18F1714E4106300CAFCBE /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
-		D7D18F1814E4106300CAFCBE /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		D7D18F1A14E4106300CAFCBE /* Part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Part.h; sourceTree = "<group>"; };
 		D7D18F1B14E4106300CAFCBE /* Part.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Part.m; sourceTree = "<group>"; };
 		D7D18F1D14E4154700CAFCBE /* EpisodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpisodeTableViewCell.h; sourceTree = "<group>"; };
@@ -244,10 +248,10 @@
 				D71828CE14E30F5500B2242F /* Seeder.h */,
 				D71828CF14E30F5500B2242F /* Seeder.m */,
 				D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */,
+				D7666ADB14E6EBFA0088F672 /* Episode.h */,
+				D7666ADC14E6EBFA0088F672 /* Episode.m */,
 				D7D18F1A14E4106300CAFCBE /* Part.h */,
 				D7D18F1B14E4106300CAFCBE /* Part.m */,
-				D7D18F1714E4106300CAFCBE /* Episode.h */,
-				D7D18F1814E4106300CAFCBE /* Episode.m */,
 				D7D18F1414E4106300CAFCBE /* Season.h */,
 				D7D18F1514E4106300CAFCBE /* Season.m */,
 			);
@@ -330,6 +334,8 @@
 				D7D18F9E14E68D2F00CAFCBE /* checkbox-checked@2x.png */,
 				D7D18F9F14E68D2F00CAFCBE /* checkbox-unchecked.png */,
 				D7D18FA014E68D2F00CAFCBE /* checkbox-unchecked@2x.png */,
+				D7666ADE14E6EF370088F672 /* play.png */,
+				D7666ADF14E6EF370088F672 /* play@2x.png */,
 				D7D18F3414E4524B00CAFCBE /* television.png */,
 				D7D18F3614E45E9200CAFCBE /* television@2x.png */,
 				D7D18F2F14E44B6100CAFCBE /* ep_number_back@2x.png */,
@@ -472,6 +478,8 @@
 				D7D18FA214E68D2F00CAFCBE /* checkbox-checked@2x.png in Resources */,
 				D7D18FA314E68D2F00CAFCBE /* checkbox-unchecked.png in Resources */,
 				D7D18FA414E68D2F00CAFCBE /* checkbox-unchecked@2x.png in Resources */,
+				D7666AE014E6EF370088F672 /* play.png in Resources */,
+				D7666AE114E6EF370088F672 /* play@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +498,6 @@
 				D71828DB14E3C8D900B2242F /* PartView.m in Sources */,
 				D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */,
 				D7D18F1614E4106300CAFCBE /* Season.m in Sources */,
-				D7D18F1914E4106300CAFCBE /* Episode.m in Sources */,
 				D7D18F1C14E4106300CAFCBE /* Part.m in Sources */,
 				D7D18F1F14E4154700CAFCBE /* EpisodeTableViewCell.m in Sources */,
 				D7D18F2B14E439D300CAFCBE /* SeasonHeaderView.m in Sources */,
@@ -506,6 +513,7 @@
 				D7D18F8014E5816500CAFCBE /* UIImageView+AFNetworking.m in Sources */,
 				D7D18F8714E5E89B00CAFCBE /* UIView+SelfFromNib.m in Sources */,
 				D7D18F9B14E682A400CAFCBE /* NSDate+StringValue.m in Sources */,
+				D7666ADD14E6EBFA0088F672 /* Episode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,9 @@
 #import "UIImageView+AFNetworking.h"
 
 #define kNumberLabelViewTag 84
+#define kEditingHorizontalOffset 35
+
+#define kCheckButtonTag 1
 
 @implementation EpisodeTableViewCell
 
@@ -18,6 +21,7 @@
 @synthesize broadCastDateLabel  = _broadCastDateLabel;
 @synthesize titleLabel          = _titleLabel;
 @synthesize thumbImageView      = _thumbImageView;
+@synthesize watched             = _watched;
 
 - (void)configureTitle
 {
@@ -54,26 +58,124 @@
     [self setBackgroundColor:[UIColor blackColor]];
 }
 
+- (void)configureCheckbox
+{
+    UIImageView *checkboxView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkbox-unchecked"]];
+    checkboxView.tag = kCheckButtonTag;
+    
+    CGRect checkboxFrame = self.contentView.frame;
+    checkboxFrame.size = checkboxView.frame.size;
+    checkboxFrame.origin.x = -kEditingHorizontalOffset / 2 - checkboxView.frame.size.width / 2;
+    checkboxFrame.origin.y = self.contentView.center.y - checkboxView.frame.size.height / 2;
+    checkboxView.frame = checkboxFrame;
+    
+    [self.contentView addSubview:checkboxView];
+}
+
 - (void)setup
 {
     [self configureBackground];
     [self configureTitle];
     [self configureSubtitles];
+    [self configureCheckbox];
+    [self.accessoryView setBackgroundColor:[UIColor clearColor]];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
+    //[super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
 
-- (void)prepareForReuse
+- (void)simulateEditing:(BOOL)editing animated:(BOOL)animated
 {
-    [self.titleLabel setText:@""];
-    [self.durationLabel setText:@""];
-    [self.broadCastDateLabel setText:@""];
+    [UIView beginAnimations:nil context:nil];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+    
+	if (editing)
+	{
+		CGRect contentFrame = self.contentView.frame;
+		contentFrame.origin.x = kEditingHorizontalOffset;
+		self.contentView.frame = contentFrame;
+        
+        CGRect accessoryFrame = self.accessoryView.frame;
+        accessoryFrame.origin.x += kEditingHorizontalOffset;
+        self.accessoryView.frame = accessoryFrame;
+        
+        if ([self isWatched]) {
+            UIImageView *checkboxView = (UIImageView*)[self.contentView viewWithTag:kCheckButtonTag];
+            [checkboxView setImage:[UIImage imageNamed:@"checkbox-checked"]];
+        }
+	}
+	else
+	{
+		CGRect contentFrame = self.contentView.frame;
+		contentFrame.origin.x = 0;
+		self.contentView.frame = contentFrame;
+        
+        CGRect accessoryFrame = self.accessoryView.frame;
+        accessoryFrame.origin.x = contentFrame.origin.x + contentFrame.size.width;
+        self.accessoryView.frame = accessoryFrame;
+	}
+    
+	[UIView commitAnimations];
 }
 
+- (void)willTransitionToState:(UITableViewCellStateMask)state
+{
+    [super willTransitionToState:state];
+    
+    if ((state & UITableViewCellStateShowingDeleteConfirmationMask) == UITableViewCellStateShowingDeleteConfirmationMask)
+    {
+        for (UIView *subview in self.subviews)
+        {
+            NSLog(@"%@", NSStringFromClass([subview class]));
+            if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellDeleteConfirmationControl"])
+            {
+                // Do whatever you want with this Delete Confirmation subview
+                subview.hidden = YES;
+                subview.alpha = 0.0;
+            }
+        }
+    }
+}
+
+- (void) didTransitionToState:(UITableViewCellStateMask)state
+{
+    [super didTransitionToState:state];
+    
+    if ((state & UITableViewCellStateShowingDeleteConfirmationMask) == UITableViewCellStateShowingDeleteConfirmationMask)
+    {
+        [self simulateEditing:YES animated:YES];
+    }
+}
+- (void) layoutSubviews {
+    if(![self isEditing]){
+        [super layoutSubviews];
+    }
+    // you can manipulate cell subviews, like self.textLabel, self.detailTextLabel...
+}
+
+- (void)prepareForReuse
+{
+}
+
+#pragma mark - Actions
+
+- (void)switchCheck
+{
+    if ([self isWatched]) {
+        UIImageView *checkboxView = (UIImageView*)[self.contentView viewWithTag:kCheckButtonTag];
+        [checkboxView setImage:[UIImage imageNamed:@"checkbox-unchecked"]];
+    }
+    else {
+        UIImageView *checkboxView = (UIImageView*)[self.contentView viewWithTag:kCheckButtonTag];
+        [checkboxView setImage:[UIImage imageNamed:@"checkbox-checked"]];
+    }
+    
+    self.watched = ![self isWatched];
+}
 
 @end

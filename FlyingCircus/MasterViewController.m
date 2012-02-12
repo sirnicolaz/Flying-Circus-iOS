@@ -9,7 +9,6 @@
 #import "MasterViewController.h"
 
 #import "EpisodeViewController.h"
-#import "EpisodeTableViewCell.h"
 #import "SeasonHeaderView.h"
 
 #import "Season.h"
@@ -23,6 +22,7 @@
 
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (Episode*)episodeForRowAtIndexPath:(NSIndexPath*)indexPath;
 @end
 
 @interface MasterViewController (Searchable)
@@ -63,9 +63,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     // Set up the edit and add buttons.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
-    //self.navigationItem.rightBarButtonItem = addButton;
+    
+    [self.tableView setAllowsSelectionDuringEditing:YES];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
         // Setup navigation bar back for iOS5
@@ -78,7 +77,6 @@
     
     // Fetch data
     NSError *error;
-
     if (![self.fetchedResultsController performFetch:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -187,19 +185,22 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 */
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the managed object for the given index path
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    if (editingStyle == UITableViewCellEditingStyleNone) {
+        // Modify entry "watched" value
+        EpisodeTableViewCell *episodeCell = (EpisodeTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        [episodeCell switchCheck];
         
-        // Save the context.
-        NSError *error = nil;
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        Episode* episode = [self episodeForRowAtIndexPath:indexPath];
+        episode.isWatched = [NSNumber numberWithBool:episodeCell.isWatched];
+        
+        NSError *error;
         if (![context save:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
@@ -209,7 +210,7 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-    }   
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,26 +222,31 @@
 - (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Search currently activate
-    if(_letUserSelectRow) {
+    if( [[self.tableView cellForRowAtIndexPath:indexPath] isEditing] ) {
         return indexPath;
     }
-    else {
+    else if ([self isEditing]){
+        [self setEditing:NO animated:YES]; 
         return nil;
+    }
+    else {
+        return indexPath;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.episodeViewController) {
-        self.episodeViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
+    if([self isEditing]) {
+        [self tableView:self.tableView commitEditingStyle:UITableViewCellEditingStyleNone forRowAtIndexPath:indexPath];
     }
-    
-    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section];
-
-    self.episodeViewController.episode = [[sectionInfo objects] objectAtIndex:indexPath.row];    
-    
-    [self.navigationController pushViewController:self.episodeViewController animated:YES];
-    
+    else {
+        if (!self.episodeViewController) {
+            self.episodeViewController = [[EpisodeViewController alloc] initWithNibName:@"EpisodeViewController" bundle:nil];
+        }
+        
+        self.episodeViewController.episode = [self episodeForRowAtIndexPath:indexPath];  
+        [self.navigationController pushViewController:self.episodeViewController animated:YES];
+    }
 }
 
 #pragma mark - Fetched results controller
@@ -349,40 +355,37 @@
 }
  */
 
+#pragma mark - Overridden methods
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    
+    // Prevent from scrolling if editing mode enabled
+    [self.tableView setScrollEnabled:!editing];
+}
+
+#pragma mark - Utiliy methods
+
 - (void)configureCell:(EpisodeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section]; 
-    Episode *episode = [[sectionInfo objects] objectAtIndex:indexPath.row];
+    Episode *episode = [self episodeForRowAtIndexPath:indexPath];;
     
     [cell.titleLabel setText:episode.title];
     [cell.durationLabel setText:episode.duration];
     [cell.broadCastDateLabel setText:[episode.broadcastDate stringValue]];
     [cell.thumbImageView setImageWithURL:[NSURL URLWithString:episode.thumbnailUrl]];
     
+    cell.watched = [episode.isWatched boolValue];
+    
 }
 
-- (void)insertNewObject
+- (Episode*)episodeForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    // Create a new instance of the entity managed by the fetched results controller.
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section]; 
+    Episode *episode = [[sectionInfo objects] objectAtIndex:indexPath.row];
     
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    return episode;
 }
 
 #pragma mark - Filtering logic
@@ -415,15 +418,13 @@
     _letUserSelectRow = NO;
     self.tableView.scrollEnabled = NO;
     
-    //Add the done button.
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                           target:self 
-                                                                                           action:@selector(doneSearching:)];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self filterContentForSearchText:searchBar.text];
     [searchBar resignFirstResponder];
+    _searching = NO;
+    _letUserSelectRow = YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {

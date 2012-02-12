@@ -13,7 +13,7 @@
 #define kTitleFontSize 16
 #define kSubtitleFontSize 13
 
-@interface EpisodeTableViewCell : UITableViewCell {
+@interface EpisodeTableViewCell : UITableViewCell<UIGestureRecognizerDelegate> {
     UILabel     *_durationLabel;
     UILabel     *_broadCastDateLabel;
     UILabel     *_titleLabel;
@@ -25,7 +25,11 @@
 @property (strong, nonatomic) IBOutlet UILabel     *broadCastDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel     *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *thumbImageView;
+@property (nonatomic, getter = isWatched) BOOL      watched;
 
 - (void)setup;
+
+// Check if unchecked and vice-versa. Moreover, return the current state (checked = YES, unchecked = NO)
+- (void)switchCheck;
 
 @end
