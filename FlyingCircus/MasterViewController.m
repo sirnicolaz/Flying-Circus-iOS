@@ -415,6 +415,9 @@
         //NSArray *results
         [self.fetchedResultsController.fetchRequest setPredicate:predicate];
     }
+    else {
+        [self.fetchedResultsController.fetchRequest setPredicate:nil];
+    }
     
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -444,6 +447,7 @@
 		
     }
 }
+
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [self searchBar:searchBar activate:YES];

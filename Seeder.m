@@ -11,68 +11,107 @@
 #import "Season.h"
 #import "Episode.h"
 #import "Part.h"
+#import "TouchXML.h"
 
 #define kNumberOfSeasons 7
 
 @implementation Seeder
 
++ (CXMLDocument*)getSeasonDoc
+{
+    //  using local resource file
+    NSString *XMLPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"database.xml"];
+    NSData *XMLData   = [NSData dataWithContentsOfFile:XMLPath];
+    CXMLDocument *doc = [[CXMLDocument alloc] initWithData:XMLData options:0 error:nil];
+    return doc;
+}
+
++ (CXMLDocument*)getVideoDoc
+{
+    //  using local resource file
+    NSString *XMLPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"links.xml"];
+    NSData *XMLData   = [NSData dataWithContentsOfFile:XMLPath];
+    CXMLDocument *doc = [[CXMLDocument alloc] initWithData:XMLData options:0 error:nil];
+    return doc;
+}
+
 + (void) populateWithContext:(NSManagedObjectContext*)context {
         
     // Generate seasons
-    for (int i = 0; i < kNumberOfSeasons; i++) {
+    CXMLDocument *seasonDoc = [self getSeasonDoc];
+    
+    
+    NSArray *nodes = [seasonDoc nodesForXPath:@"//season" error:nil];
+    
+    for (CXMLElement *node in nodes) {
         Season *season = [NSEntityDescription
                           insertNewObjectForEntityForName:@"Season" 
                           inManagedObjectContext:context];
+        int number =  [[[node attributeForName:@"number"] stringValue] intValue];
+        season.number = [NSNumber numberWithInt:number];
         
-        season.number = [NSNumber numberWithInt:i+1];
-        season.fromDate = [NSDate date];
-        season.toDate = [NSDate date];
         NSMutableSet *episodes = [[NSMutableSet alloc] init];
+        NSArray *episodeNodes = [seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode", [season.number intValue]] error:nil];
+        ;
         
-        // Generate episodes
-        for (int j = 0; j < 8; j++) {
+        for (CXMLElement *episodeNode in episodeNodes) {
             Episode *episode = [NSEntityDescription
                                 insertNewObjectForEntityForName:@"Episode" 
                                 inManagedObjectContext:context];
             
-            episode.title = j == 0 ? 
-            @"How to Recognise Different Types of Trees From Quite a Long Way Away" :
-            [NSString stringWithFormat:@"Spam %i", j];
+            int number =  [[[episodeNode attributeForName:@"number"] stringValue] intValue];
+            NSString *title = [[episodeNode attributeForName:@"title"] stringValue];
             
-            episode.thumbnailUrl = @"http://img.youtube.com/vi/ur5fGSBsfq8/2.jpg";
-            
-            episode.number = [NSNumber numberWithInt:j+1];
+            episode.title = title;
+            episode.number = [NSNumber numberWithInt:number];
             episode.season = season;
-            episode.duration = j == 0 ? @"42:21" : @"1:00";
-            episode.summary = @"Court Scene with Cardinal Richelieu - The Larch - Bicycle Repair Man - Tirade Against Communists - Children's Stories - Restaurant Sketch - Seduced Milkmen - Stolen newsreader - The Horse Chestnut - Children's Interview - Nudge Nudge";
             
-            NSDateComponents *comps = [[NSDateComponents alloc] init];
-            [comps setDay:10];
-            [comps setMonth:10];
-            [comps setYear:1974];
+            CXMLElement *summaryElement = [[seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/summary", [season.number intValue], [episode.number intValue]] error:nil] objectAtIndex:0];
+            NSString *trimmedSummary = [[summaryElement stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            episode.summary = [trimmedSummary stringByReplacingOccurrencesOfString:@"\n" withString:@" - "];
             
-            episode.broadcastDate = j == 0 ? [NSDate date] : [[NSCalendar currentCalendar] dateFromComponents:comps];
+            CXMLElement *dateElement = [[seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/broadcastDate", [season.number intValue], [episode.number intValue]] error:nil] objectAtIndex:0];
+        
+            [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            //[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehaviorDefault];
+            [dateFormatter setDateFormat:@"dd MMMM yyyy"];
             
-            NSMutableSet *parts = [[NSMutableSet alloc] init];
-            for(int k = 0; k < 2; k++) {
+            episode.broadcastDate = [dateFormatter dateFromString:[dateElement stringValue]];
+            
+            CXMLDocument *videoDoc = [self getVideoDoc];
+            NSArray *videoElemens = [videoDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part[1]/thumbnail", [season.number intValue], [episode.number intValue]] error:nil];
+            
+            
+            if ([videoElemens count] > 0) {
+                CXMLElement *aPartElement = (CXMLElement*)[videoElemens objectAtIndex:0];
+                episode.thumbnailUrl = [aPartElement stringValue];
+                //NSArray *videoElemens = [doc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part[1]/thumbnail/text()", season.number, episode.number] error:nil];
                 
-                Part *part = [NSEntityDescription
-                              insertNewObjectForEntityForName:@"Part" inManagedObjectContext:context];
+                NSArray *partNodes = [videoDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part", [season.number intValue], [episode.number intValue]] error:nil];
                 
-                part.url = k == 0 ? @"http://www.youtube.com/watch?v=jT3_UCm1A5I" :
-                                    @"http://www.youtube.com/watch?v=ODshB09FQ8w";
-                part.episode = episode;
-                part.number = [NSNumber numberWithInt:k+1];
+                NSMutableSet *parts = [[NSMutableSet alloc] init];
+                int duration = 0;
+                for (CXMLElement *partNode in partNodes) {
+                    Part *part = [NSEntityDescription
+                                  insertNewObjectForEntityForName:@"Part" inManagedObjectContext:context];
+                    part.episode = episode;
+                    part.number = [NSNumber numberWithInt:[[[partNode attributeForName:@"number"] stringValue] intValue]];
+                    part.url = [(CXMLElement*)[[partNode elementsForName:@"url"] objectAtIndex:0] stringValue]; 
+                    duration += [[(CXMLElement*)[[partNode elementsForName:@"duration"] objectAtIndex:0] stringValue] intValue];
+                    [parts addObject:part];
+                }
                 
-                [parts addObject:part];
+                int minutesDuration = duration / 60;
+                int secontsDuration = duration - (60 * minutesDuration);
+                episode.duration = [NSString stringWithFormat:@"%i:%i", minutesDuration, secontsDuration];
+                episode.parts = parts;
             }
-            
-            episode.parts = parts;
+
             [episodes addObject:episode];
         }
         
         [season addEpisodes:[NSSet setWithArray:[episodes allObjects]]];
-        
     }
 
     NSError *error;
@@ -83,6 +122,8 @@
 }
 
 + (BOOL) populated:(NSManagedObjectContext*)context {
+    [Seeder getVideoDoc];
+    [Seeder getSeasonDoc];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription 
                                    entityForName:@"Season" inManagedObjectContext:context];

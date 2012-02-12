@@ -61,12 +61,13 @@
 								<reference key="NSNextResponder" ref="935900827"/>
 								<int key="NSvFlags">292</int>
 								<array class="NSMutableArray" key="NSSubviews">
-									<object class="IBUIImageView" id="710991658">
+									<object class="IBUIImageView" id="732177971">
 										<reference key="NSNextResponder" ref="1045727008"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrame">{{10, 16}, {24, 27}}</string>
+										<string key="NSFrame">{{0, 16}, {24, 27}}</string>
 										<reference key="NSSuperview" ref="1045727008"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">4</int>
@@ -78,10 +79,10 @@
 										</object>
 									</object>
 								</array>
-								<string key="NSFrame">{{275, 0}, {45, 59}}</string>
+								<string key="NSFrame">{{285, 0}, {35, 59}}</string>
 								<reference key="NSSuperview" ref="935900827"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="732177971"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -170,7 +171,7 @@
 							<object class="IBUILabel" id="984603480">
 								<reference key="NSNextResponder" ref="935900827"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{214, 33}, {53, 21}}</string>
+								<string key="NSFrame">{{214, 33}, {63, 21}}</string>
 								<reference key="NSSuperview" ref="935900827"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1045727008"/>
@@ -375,7 +376,7 @@
 						<int key="objectID">22</int>
 						<reference key="object" ref="1045727008"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="710991658"/>
+							<reference ref="732177971"/>
 						</array>
 						<reference key="parent" ref="501273341"/>
 						<string key="objectName">View - Accessory</string>
@@ -387,7 +388,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">34</int>
-						<reference key="object" ref="710991658"/>
+						<reference key="object" ref="732177971"/>
 						<reference key="parent" ref="1045727008"/>
 					</object>
 				</array>
@@ -419,17 +420,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">EpisodeTableViewCell</string>
 					<string key="superclassName">UITableViewCell</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">checkUncheck:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">checkUncheck:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">checkUncheck:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="broadCastDateLabel">UILabel</string>
 						<string key="durationLabel">UILabel</string>
