@@ -37,5 +37,6 @@
 #define kImageCheckboxChecked               @"checkbox-checked"
 #define kImageTVFrame                       @"television"
 #define kImagePaper                         @"paper"
+#define kImageSplash                        @"Default"
  
 #endif

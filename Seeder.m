@@ -25,19 +25,10 @@
 }
 
 
-+ (CXMLDocument*)getSeasonDoc
++ (CXMLDocument*)getXMLDbHandler:(NSString*)fileName
 {
     //  using local resource file
-    NSString *XMLPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"info.xml"];
-    NSData *XMLData   = [NSData dataWithContentsOfFile:XMLPath];
-    CXMLDocument *doc = [[CXMLDocument alloc] initWithData:XMLData options:0 error:nil];
-    return doc;
-}
-
-+ (CXMLDocument*)getVideoDoc
-{
-    //  using local resource file
-    NSString *XMLPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"links.xml"];
+    NSString *XMLPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fileName];
     NSData *XMLData   = [NSData dataWithContentsOfFile:XMLPath];
     CXMLDocument *doc = [[CXMLDocument alloc] initWithData:XMLData options:0 error:nil];
     return doc;
@@ -46,7 +37,8 @@
 + (void) populateWithContext:(NSManagedObjectContext*)context {
         
     // Generate seasons
-    CXMLDocument *seasonDoc = [self getSeasonDoc];
+    CXMLDocument *seasonDoc = [Seeder getXMLDbHandler:@"info.xml"];
+    CXMLDocument *videoDoc = [Seeder getXMLDbHandler:@"links.xml"];
     
     
     NSArray *nodes = [seasonDoc nodesForXPath:@"//season" error:nil];
@@ -92,7 +84,6 @@
             
             episode.broadcastDate = [dateFormatter dateFromString:[dateElement stringValue]];
             
-            CXMLDocument *videoDoc = [self getVideoDoc];
             NSArray *videoElemens = [videoDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part[1]/thumbnail", [season.number intValue], [episode.number intValue]] error:nil];
             
             
@@ -137,8 +128,7 @@
 }
 
 + (BOOL) populated:(NSManagedObjectContext*)context {
-    [Seeder getVideoDoc];
-    [Seeder getSeasonDoc];
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription 
                                    entityForName:@"Season" inManagedObjectContext:context];

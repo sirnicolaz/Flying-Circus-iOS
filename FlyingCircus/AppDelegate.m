@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import "MasterViewController.h"
-
+#import "Imports.h"
 #import "Seeder.h"
 
 @interface AppDelegate(Private)
@@ -38,7 +38,10 @@
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
+    // This will prevent the application from getting stcuk some seconds
+    // when entering the EpisodeViewController the first time
     [self preloadYoutubePlugin];
+    
     [self showSplash];
     
     return YES;
@@ -203,21 +206,28 @@
 
 - (void) showSplash
 {
+    
     UIImageView *splashView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
-	splashView.image = [UIImage imageNamed:@"Default.png"];
-	[self.window addSubview:splashView];
+	splashView.image = [UIImage imageNamed:kImageSplash];
+    [self.window addSubview:splashView];
 	[self.window bringSubviewToFront:splashView];
-	usleep(1600000);
-	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.7];
-	[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.window cache:YES];
-	[UIView setAnimationDelegate:self]; 
-	[UIView setAnimationDidStopSelector:@selector(startupAnimationDone:finished:context:)];
-	splashView.alpha = 0.0;
 	
-	splashView.frame = CGRectMake(-60, -60, 440, 600);
-	
-	[UIView commitAnimations];
+    [UIView animateWithDuration:0.7 
+                          delay:1.0 
+                        options:UIViewAnimationOptionTransitionNone 
+                     animations:^{
+                         // Fade out
+                         splashView.alpha = 0.0;
+                         // Zoom in
+                         splashView.frame = CGRectMake(-60, -60, 440, 600);
+                         
+                         // Re-show status bar
+                         [[UIApplication sharedApplication] setStatusBarHidden:NO];
+                         [UIApplication sharedApplication].keyWindow.frame=CGRectMake(0, 20, 320, 460);
+                    }
+                     completion:^(BOOL finished){
+                         [splashView removeFromSuperview];
+                     }];
 }
 
 - (void) preloadYoutubePlugin
