@@ -158,10 +158,6 @@
     
 }
 
-- (void)prepareForReuse
-{
-}
-
 #pragma mark - Actions
 
 - (void)switchCheck

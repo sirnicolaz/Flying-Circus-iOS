@@ -22,12 +22,10 @@
 #import "NSDate+StringValue.h"
 
 @interface MasterViewController ()
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void) configureSearchBar;
+- (void) configureNavigationBar;
 - (Episode*)episodeForRowAtIndexPath:(NSIndexPath*)indexPath;
-@end
-
-@interface MasterViewController (Searchable)
-- (void)searchText:(NSString*)text;
 @end
 
 @implementation MasterViewController
@@ -46,52 +44,20 @@
     return self;
 }
 							
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 	
-    // -- Configure search bar
-    // - Put the search bar out of the visible part
-    CGRect bounds = self.tableView.bounds;
-	bounds.origin.y = bounds.origin.y + self.tableSearchBar.bounds.size.height;
-	self.tableView.bounds = bounds;
-    // - other stff
-    self.tableSearchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self configureSearchBar];
     
-    // -- To correctly handle touch during row editing
-    [self.tableView setAllowsSelectionDuringEditing:YES];
-    
-    // -- Configure black translucend overlay for searching mode--
-    self.disableOverlayView = [[ReactiveOverlayViewController alloc] initWithNibName:@"ReactiveOverlayViewController" bundle:[NSBundle mainBundle]];
-    
-    CGFloat y = self.navigationController.navigationBar.frame.size.height;
-    CGFloat width = self.view.frame.size.width;
-    CGFloat height = self.view.frame.size.height;
-    
-    CGRect frame = CGRectMake(0, y, width, height);
-    self.disableOverlayView.view.frame = frame;
-    self.disableOverlayView.view.backgroundColor = [UIColor blackColor];
-    
-    // - Configure touch handling
-    self.disableOverlayView.target = self;
-    self.disableOverlayView.action = @selector(exitSearch);
-    
-    // -- Configure navigation bar
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-        // - Setup navigation bar background for iOS5
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:kImageNavigationBarBackground] forBarMetrics:UIBarMetricsDefault];
-    }
-    else {
-        // - Setup navigation bar background for iOS4
-        [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.047 green:0.203 blue:0.070 alpha:1.0]];
-    }
+    [self configureNavigationBar];
     
     // -- Fetch data
     NSError *error;
@@ -102,15 +68,16 @@
 	}
 }
 
-- (void)viewDidUnload
+- (void) viewDidUnload
 {
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    // Here in will appear in order to have the navigationBar already layed-out
     UIImageView *navbarTitle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kImageMontyPythonLogo]];
     CGRect titleFrame = navbarTitle.frame;
     titleFrame.origin.y = 1;
@@ -120,37 +87,37 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void) viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void) viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait || 
             interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown );
 }
 
-#pragma mark - UITableViewDelegate methods
+#pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return kSectionHeaderHeight;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     // "Euristhical" approach to save one transaction with db. Yeah, really cheap.
     return [NSString stringWithFormat:@"%@ %i", 
@@ -158,7 +125,7 @@
             section+1];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSString *title = [self tableView:tableView titleForHeaderInSection:section];
     SeasonHeaderView *headerView = [[SeasonHeaderView alloc] initWithTitle:title];
@@ -166,12 +133,12 @@
 }
 
 // Customize the number of sections in the table view.
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[self.fetchedResultsController sections] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     
@@ -179,7 +146,7 @@
 }
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"EpisodeTableViewCell";
     
@@ -189,15 +156,12 @@
         [cell setup];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
-    else {
-        //[cell prepareForReuse];
-    }
 
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return kRowHeight;
 }
@@ -211,10 +175,10 @@
 }
 */
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleNone) {
-        // Modify entry "watched" value
+        // Modify "watched" attribute value
         EpisodeTableViewCell *episodeCell = (EpisodeTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         [episodeCell switchCheck];
         
@@ -237,30 +201,33 @@
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // The table view should not be re-orderable.
     return NO;
 }
 
-- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSIndexPath*) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Search currently activate
     if( [[self.tableView cellForRowAtIndexPath:indexPath] isEditing] ) {
+        // The row is being edited, thus selection => check/uncheck
         return indexPath;
     }
     else if ([self isEditing]){
+        // Another row is being edited. Thus, as the standard behaviour, exit editing mode
         [self setEditing:NO animated:YES]; 
         return nil;
     }
     else {
+        // Normal behaviour while not editing
         return indexPath;
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self isEditing]) {
+        // Store the new "watched" value
         [self tableView:self.tableView commitEditingStyle:UITableViewCellEditingStyleNone forRowAtIndexPath:indexPath];
     }
     else {
@@ -275,7 +242,7 @@
 
 #pragma mark - Fetched results controller
 
-- (NSFetchedResultsController *)fetchedResultsController
+- (NSFetchedResultsController *) fetchedResultsController
 {
     if (__fetchedResultsController != nil) {
         return __fetchedResultsController;
@@ -319,12 +286,12 @@
     return __fetchedResultsController;
 }    
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+- (void) controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+- (void) controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
     switch(type) {
@@ -338,7 +305,7 @@
     }
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+- (void) controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
@@ -364,7 +331,7 @@
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
 }
@@ -372,16 +339,16 @@
 /*
 // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
  
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+ - (void) controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     // In the simplest, most efficient, case, reload the table view.
     [self.tableView reloadData];
 }
  */
 
-#pragma mark - Overridden methods
+#pragma mark - UITableView override
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
     
@@ -389,9 +356,9 @@
     [self.tableView setScrollEnabled:!editing];
 }
 
-#pragma mark - Utiliy methods
+#pragma mark - Utiliies
 
-- (void)configureCell:(EpisodeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void) configureCell:(EpisodeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Episode *episode = [self episodeForRowAtIndexPath:indexPath];;
     
@@ -401,10 +368,51 @@
     [cell.thumbImageView setImageWithURL:[NSURL URLWithString:episode.thumbnailUrl]];
     
     cell.watched = [episode.isWatched boolValue];
+}
+
+- (void) configureSearchBar
+{
+    // Put the search bar out of the visible part
+    CGRect bounds = self.tableView.bounds;
+	bounds.origin.y = bounds.origin.y + self.tableSearchBar.bounds.size.height;
+	self.tableView.bounds = bounds;
+    // Do not autocorrect
+    self.tableSearchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    // To correctly handle touch during row editing
+    // i.e. you can touch while editing to stop editing
+    [self.tableView setAllowsSelectionDuringEditing:YES];
+    
+    // Black translucent overlay for searching mode
+    self.disableOverlayView = [[ReactiveOverlayViewController alloc] initWithNibName:@"ReactiveOverlayViewController" bundle:[NSBundle mainBundle]];
+    
+    CGFloat y = self.navigationController.navigationBar.frame.size.height;
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = self.view.frame.size.height;
+    
+    CGRect frame = CGRectMake(0, y, width, height);
+    self.disableOverlayView.view.frame = frame;
+    self.disableOverlayView.view.backgroundColor = [UIColor blackColor];
+    
+    self.disableOverlayView.target = self;
+    self.disableOverlayView.action = @selector(exitSearch);
     
 }
 
-- (Episode*)episodeForRowAtIndexPath:(NSIndexPath*)indexPath
+- (void)  configureNavigationBar
+{
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
+        // Setup navigation bar background for iOS5
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:kImageNavigationBarBackground] forBarMetrics:UIBarMetricsDefault];
+    }
+    else {
+        // Setup navigation bar background for iOS4
+        [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.047 green:0.203 blue:0.070 alpha:1.0]];
+    }
+    
+}
+
+- (Episode*) episodeForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:indexPath.section]; 
     Episode *episode = [[sectionInfo objects] objectAtIndex:indexPath.row];
@@ -412,13 +420,13 @@
     return episode;
 }
 
-#pragma mark - Filtering logic
+#pragma mark - Search logic
 
-// The method to change the predicate of the FRC
-- (void)filterContentForSearchText:(NSString*)searchText
+- (void) filterContentForSearchText:(NSString*)searchText
 {
     NSString *query = searchText;
     if (query && query.length) {
+        // Set a new predicate to filter out rows based on title or summary
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[c] %@ or summary contains[c] %@", query, query];
         [self.fetchedResultsController.fetchRequest setPredicate:predicate];
     }
@@ -435,10 +443,7 @@
     [self.tableView reloadData];
 }
 
-
-#pragma mark - UISearchBarDelegate methods
-
-- (void)searchBar:(UISearchBar *)searchBar activate:(BOOL) active{	
+- (void) searchBar:(UISearchBar *)searchBar activate:(BOOL) active{	
     
     if (!active) {
         [searchBar resignFirstResponder];
@@ -456,20 +461,20 @@
 }
 
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+- (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [self searchBar:searchBar activate:YES];
 }
 
-- (void)exitSearch {
+- (void) exitSearch {
     [self searchBar:self.tableSearchBar activate:NO];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self filterContentForSearchText:searchBar.text];
     [self searchBar:searchBar activate:NO];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self filterContentForSearchText:searchText];
 }
 

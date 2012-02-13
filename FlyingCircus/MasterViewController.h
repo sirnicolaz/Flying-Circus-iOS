@@ -19,11 +19,13 @@
     NSManagedObjectContext *_context;
 }
 
-@property (nonatomic, assign) IBOutlet UISearchBar                      *tableSearchBar;
+// To handle black translucent view over tableView while in search mode
 @property (strong, nonatomic) IBOutlet ReactiveOverlayViewController    *disableOverlayView;
+@property (nonatomic, assign) IBOutlet UISearchBar                      *tableSearchBar;
 
 @property (strong, nonatomic) EpisodeViewController         *episodeViewController;
 @property (strong, nonatomic) NSFetchedResultsController    *fetchedResultsController;
+
 @property (strong, nonatomic) NSManagedObjectContext        *managedObjectContext;
 
 @end
