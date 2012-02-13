@@ -7,13 +7,14 @@
 //
 
 #import "EpisodeTableViewCell.h"
-#import "Constants.h"
+#import "Imports.h"
 #import "UIImageView+AFNetworking.h"
 
 #define kNumberLabelViewTag 84
+#define kCheckButtonTag 85
+
 #define kEditingHorizontalOffset 35
 
-#define kCheckButtonTag 1
 
 @implementation EpisodeTableViewCell
 
@@ -25,7 +26,7 @@
 
 - (void)configureTitle
 {
-    [self.titleLabel setBackgroundColor:[UIColor clearColor]];
+    //[self.titleLabel setBackgroundColor:[UIColor clearColor]];
     [self.titleLabel setNumberOfLines:1];
     
     [self.titleLabel setFont:kDefaultFontAndSize(kTitleFontSize)];
@@ -101,7 +102,7 @@
 		self.contentView.frame = contentFrame;
         
         CGRect accessoryFrame = self.accessoryView.frame;
-        accessoryFrame.origin.x += kEditingHorizontalOffset;
+        accessoryFrame.origin.x = SCREEN_WIDTH;
         self.accessoryView.frame = accessoryFrame;
         
         if ([self isWatched]) {
@@ -134,9 +135,7 @@
             NSLog(@"%@", NSStringFromClass([subview class]));
             if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellDeleteConfirmationControl"])
             {
-                // Do whatever you want with this Delete Confirmation subview
-                subview.hidden = YES;
-                subview.alpha = 0.0;
+                [subview removeFromSuperview];
             }
         }
     }

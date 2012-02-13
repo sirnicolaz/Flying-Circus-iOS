@@ -17,6 +17,14 @@
 
 @implementation Seeder
 
++ (NSString *)stripDoubleSpaceFrom:(NSString *)str {
+    while ([str rangeOfString:@"  "].location != NSNotFound) {
+        str = [str stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+    }
+    return str;
+}
+
+
 + (CXMLDocument*)getSeasonDoc
 {
     //  using local resource file
@@ -67,8 +75,13 @@
             episode.season = season;
             
             CXMLElement *summaryElement = [[seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/summary", [season.number intValue], [episode.number intValue]] error:nil] objectAtIndex:0];
-            NSString *trimmedSummary = [[summaryElement stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            episode.summary = [trimmedSummary stringByReplacingOccurrencesOfString:@"\n" withString:@" - "];
+            NSString *amendedString = [[summaryElement stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            amendedString = [Seeder stripDoubleSpaceFrom:amendedString];
+            amendedString = [amendedString stringByReplacingOccurrencesOfString:@"\n " withString:@"\n"];
+            amendedString = [amendedString stringByReplacingOccurrencesOfString:@" \n " withString:@"\n"];
+            amendedString = [amendedString stringByReplacingOccurrencesOfString:@" \n" withString:@"\n"];
+            
+            episode.summary = [amendedString stringByReplacingOccurrencesOfString:@"\n" withString:@","];
             
             CXMLElement *dateElement = [[seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/broadcastDate", [season.number intValue], [episode.number intValue]] error:nil] objectAtIndex:0];
         

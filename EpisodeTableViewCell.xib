@@ -61,7 +61,7 @@
 								<reference key="NSNextResponder" ref="935900827"/>
 								<int key="NSvFlags">292</int>
 								<array class="NSMutableArray" key="NSSubviews">
-									<object class="IBUIImageView" id="732177971">
+									<object class="IBUIImageView" id="319925632">
 										<reference key="NSNextResponder" ref="1045727008"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{0, 16}, {24, 27}}</string>
@@ -82,13 +82,14 @@
 								<string key="NSFrame">{{285, 0}, {35, 59}}</string>
 								<reference key="NSSuperview" ref="935900827"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="732177971"/>
+								<reference key="NSNextKeyView" ref="319925632"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 									<reference key="NSCustomColorSpace" ref="523598556"/>
 								</object>
 								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 							<object class="IBUILabel" id="615287470">
@@ -376,7 +377,7 @@
 						<int key="objectID">22</int>
 						<reference key="object" ref="1045727008"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="732177971"/>
+							<reference ref="319925632"/>
 						</array>
 						<reference key="parent" ref="501273341"/>
 						<string key="objectName">View - Accessory</string>
@@ -388,7 +389,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">34</int>
-						<reference key="object" ref="732177971"/>
+						<reference key="object" ref="319925632"/>
 						<reference key="parent" ref="1045727008"/>
 					</object>
 				</array>

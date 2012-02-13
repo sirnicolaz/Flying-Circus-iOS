@@ -15,7 +15,7 @@
 #import "Season.h"
 #import "Episode.h"
 
-#import "Constants.h"
+#import "Imports.h"
 
 #import "UIImageView+AFNetworking.h"
 #import "UIView+SelfFromNib.h"
@@ -71,11 +71,11 @@
     // -- Configure black translucend overlay for searching mode--
     self.disableOverlayView = [[ReactiveOverlayViewController alloc] initWithNibName:@"ReactiveOverlayViewController" bundle:[NSBundle mainBundle]];
     
-    CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+    CGFloat y = self.navigationController.navigationBar.frame.size.height;
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
     
-    CGRect frame = CGRectMake(0, yaxis, width, height);
+    CGRect frame = CGRectMake(0, y, width, height);
     self.disableOverlayView.view.frame = frame;
     self.disableOverlayView.view.backgroundColor = [UIColor blackColor];
     
@@ -138,7 +138,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait || 
+            interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown );
 }
 
 #pragma mark - UITableViewDelegate methods
@@ -150,7 +151,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Season %i", section];
+    // "Euristhical" approach to save one transaction with db. Yeah, really cheap.
+    return [NSString stringWithFormat:@"Season %i", section+1];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

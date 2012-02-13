@@ -40,6 +40,10 @@
 		D7666B1914E816740088F672 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7666B0814E816740088F672 /* CXMLNode_PrivateExtensions.m */; };
 		D7666B1A14E816740088F672 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D7666B0A14E816740088F672 /* CXMLNode_XPathExtensions.m */; };
 		D7666B1B14E816740088F672 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7666B0D14E816740088F672 /* CTidy.m */; };
+		D7666B2D14E844D80088F672 /* links.xml in Resources */ = {isa = PBXBuildFile; fileRef = D7666B2B14E844D80088F672 /* links.xml */; };
+		D7666B2E14E844D80088F672 /* database.xml in Resources */ = {isa = PBXBuildFile; fileRef = D7666B2C14E844D80088F672 /* database.xml */; };
+		D7666B3114E84C440088F672 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666B2F14E84C440088F672 /* icon.png */; };
+		D7666B3214E84C440088F672 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7666B3014E84C440088F672 /* icon@2x.png */; };
 		D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */; };
 		D7D18F1614E4106300CAFCBE /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1514E4106300CAFCBE /* Season.m */; };
 		D7D18F1C14E4106300CAFCBE /* Part.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1B14E4106300CAFCBE /* Part.m */; };
@@ -150,6 +154,10 @@
 		D7666B0C14E816740088F672 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
 		D7666B0D14E816740088F672 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		D7666B0E14E816740088F672 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		D7666B2B14E844D80088F672 /* links.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = links.xml; sourceTree = "<group>"; };
+		D7666B2C14E844D80088F672 /* database.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = database.xml; sourceTree = "<group>"; };
+		D7666B2F14E84C440088F672 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = images/icon.png; sourceTree = "<group>"; };
+		D7666B3014E84C440088F672 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "images/icon@2x.png"; sourceTree = "<group>"; };
 		D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 		D7D18F1414E4106300CAFCBE /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
 		D7D18F1514E4106300CAFCBE /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
@@ -219,6 +227,8 @@
 		D7D18F9E14E68D2F00CAFCBE /* checkbox-checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-checked@2x.png"; path = "images/checkbox-checked@2x.png"; sourceTree = "<group>"; };
 		D7D18F9F14E68D2F00CAFCBE /* checkbox-unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-unchecked.png"; path = "images/checkbox-unchecked.png"; sourceTree = "<group>"; };
 		D7D18FA014E68D2F00CAFCBE /* checkbox-unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-unchecked@2x.png"; path = "images/checkbox-unchecked@2x.png"; sourceTree = "<group>"; };
+		D7DFF8C514E907DB0044C23E /* iPhoneSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneSizes.h; sourceTree = "<group>"; };
+		D7DFF8C614E909980044C23E /* Imports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imports.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,7 +249,8 @@
 		D718289014E30EF700B2242F = {
 			isa = PBXGroup;
 			children = (
-				D7D18F8414E5E87800CAFCBE /* Helpers */,
+				D7DFF8C414E907A90044C23E /* Utilities */,
+				D7D18F8414E5E87800CAFCBE /* Categories */,
 				D7D18F5F14E5811600CAFCBE /* Libraries */,
 				D7D18F2214E430C400CAFCBE /* Resources */,
 				D71828C914E30F1400B2242F /* Controller */,
@@ -287,6 +298,7 @@
 				D71828AA14E30EF700B2242F /* InfoPlist.strings */,
 				D71828AD14E30EF700B2242F /* main.m */,
 				D71828AF14E30EF700B2242F /* FlyingCircus-Prefix.pch */,
+				D7DFF8C614E909980044C23E /* Imports.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -331,7 +343,6 @@
 				D7D18F1E14E4154700CAFCBE /* EpisodeTableViewCell.m */,
 				D7D18F2914E439D300CAFCBE /* SeasonHeaderView.h */,
 				D7D18F2A14E439D300CAFCBE /* SeasonHeaderView.m */,
-				D7D18F5814E542EE00CAFCBE /* Constants.h */,
 				D7666AE814E7C6910088F672 /* ReactiveOverlayViewController.h */,
 				D7666AE914E7C6910088F672 /* ReactiveOverlayViewController.m */,
 			);
@@ -392,6 +403,8 @@
 		D7666B1C14E816DD0088F672 /* xml */ = {
 			isa = PBXGroup;
 			children = (
+				D7666B2B14E844D80088F672 /* links.xml */,
+				D7666B2C14E844D80088F672 /* database.xml */,
 			);
 			name = xml;
 			sourceTree = "<group>";
@@ -445,6 +458,8 @@
 				D7D18F9E14E68D2F00CAFCBE /* checkbox-checked@2x.png */,
 				D7D18F9F14E68D2F00CAFCBE /* checkbox-unchecked.png */,
 				D7D18FA014E68D2F00CAFCBE /* checkbox-unchecked@2x.png */,
+				D7666B2F14E84C440088F672 /* icon.png */,
+				D7666B3014E84C440088F672 /* icon@2x.png */,
 				D7666ADE14E6EF370088F672 /* play.png */,
 				D7666ADF14E6EF370088F672 /* play@2x.png */,
 				D7D18F3414E4524B00CAFCBE /* television.png */,
@@ -494,7 +509,7 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
-		D7D18F8414E5E87800CAFCBE /* Helpers */ = {
+		D7D18F8414E5E87800CAFCBE /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				D7D18F8514E5E89B00CAFCBE /* UIView+SelfFromNib.h */,
@@ -502,7 +517,16 @@
 				D7D18F9914E682A400CAFCBE /* NSDate+StringValue.h */,
 				D7D18F9A14E682A400CAFCBE /* NSDate+StringValue.m */,
 			);
-			name = Helpers;
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		D7DFF8C414E907A90044C23E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D7D18F5814E542EE00CAFCBE /* Constants.h */,
+				D7DFF8C514E907DB0044C23E /* iPhoneSizes.h */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -597,6 +621,10 @@
 				D7666AEC14E7C6910088F672 /* ReactiveOverlayViewController.xib in Resources */,
 				D7666AEF14E7E7800088F672 /* paper.png in Resources */,
 				D7666AF014E7E7800088F672 /* paper@2x.png in Resources */,
+				D7666B2D14E844D80088F672 /* links.xml in Resources */,
+				D7666B2E14E844D80088F672 /* database.xml in Resources */,
+				D7666B3114E84C440088F672 /* icon.png in Resources */,
+				D7666B3214E84C440088F672 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

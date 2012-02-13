@@ -13,10 +13,12 @@
 #import "Part.h"
 #import "Season.h"
 
-#import "Constants.h"
+#import "Imports.h"
 
 @interface EpisodeViewController (Private) 
 - (void)configureView;
+- (CGFloat)getSizeToFitText:(NSString*)text
+                      inBox:(CGSize)size;
 - (void)displayPart:(int)number;
 @end
 
@@ -44,79 +46,6 @@
                                [[NSSortDescriptor alloc] initWithKey:@"number" 
                                                            ascending:YES]]];
     }
-}
-
-// Show the _number_ part on the partContainer view
-- (void)displayPart:(int)number
-{
-    // Update the current part
-    self.currentPart = [_cachedSortedParts objectAtIndex:number - 1];
-    
-    CGRect container = self.videoContainerView.frame;
-    container.origin.y = 0; container.origin.x = 0;
-    
-    PartView *aView = [[PartView alloc] initWithFrame:container
-                                              andPart:self.currentPart];
-    
-    // Reuse an already loaded PartView if possible
-    NSPredicate *filter = [NSPredicate predicateWithFormat:@"tag == %@", aView.part.number];
-    NSArray *filteredViews = [self.videoContainerView.subviews filteredArrayUsingPredicate:filter];
-    
-    if([filteredViews count] > 0) {
-        // Bring it to front
-        [self.videoContainerView bringSubviewToFront:[filteredViews objectAtIndex:0]];
-    }
-    else {
-        // Add it
-        aView.tag = [self.currentPart.number intValue];
-        [self.videoContainerView addSubview:aView];
-    }
-    
-    // Update current part label
-    [self.currentPartLabel setText:[self.currentPart.number stringValue]];
-}
-
-
-- (void)configureView
-{
-    // Current part label
-    [self.currentPartLabel setFont:kDefaultFontAndSize(20)];
-    [self.currentPartLabel setTextColor:kDefaultTextColor];
-    [self.currentPartLabel setTextAlignment:UITextAlignmentCenter];
-    [self.currentPartLabel setShadowColor:[UIColor blackColor]];
-    [self.currentPartLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
-    
-    // Tot parts label
-    [self.totPartsLabel setFont:kDefaultFontAndSize(20)];
-    [self.totPartsLabel setTextColor:kDefaultTextColor];
-    [self.totPartsLabel setTextAlignment:UITextAlignmentCenter];
-    [self.totPartsLabel setShadowColor:[UIColor blackColor]];
-    [self.totPartsLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
-    
-    // Amend buttons
-    [self.nextButton setBackgroundColor:[UIColor clearColor]];
-    [self.previousButton setBackgroundColor:[UIColor clearColor]];
-    
-    // Text field with sketches
-    [self.sketchesTextView setBackgroundColor:[UIColor clearColor]];
-    [self.sketchesTextView setFont:kDefaultFontAndSize(14.0)];
-    [self.sketchesTextView setTextColor:[UIColor blackColor]];
-    [self.sketchesTextView setTextAlignment:UITextAlignmentCenter];
-    
-    // Custom backbutton for navigation bar
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(3, 0, 45, 28)]; /* initialize your button */
-    [button setBackgroundImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"back_button-highlighted"] forState:UIControlStateHighlighted];
-    [button setTitle:@"Back" forState:UIControlStateNormal];
-    [button.titleLabel setFont:kDefaultFontAndSize(12)];
-    [button.titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setTitleShadowColor:[UIColor brownColor] forState:UIControlStateNormal];
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 9, 2, 0)];
-    [button addTarget:self action:@selector(handleBack:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.leftBarButtonItem = barButtonItem;
 }
 
 - (void)handleBack:(id)sender
@@ -165,20 +94,12 @@
         [self displayPart:1];     
         
         // - Set sketches
-        [self.sketchesTextView setText:[self.episode.summary stringByReplacingOccurrencesOfString:@" - " withString:@"\n"]];
+        [self.sketchesTextView setText:[self.episode.summary stringByReplacingOccurrencesOfString:@"," withString:@"\n------------\n"]];
         
-        // Navigation Title
-        CGFloat titleFontSize; BOOL found = NO;
-        
-        // - Dececrease font size until the episode title fit in the navigation bar 
-        for (float x = 18.0; x > 8.0 && !found; x -= 1.0) {
-            titleFontSize = x;
-            CGSize titleSize = [self.episode.title sizeWithFont:kDefaultFontAndSize(x) constrainedToSize:CGSizeMake(200.0, 300.0) lineBreakMode:UILineBreakModeWordWrap];
-            
-            // - 45 -> 1px more than the navigation bar height -> out of boundaries, decrease size
-            if (titleSize.height <= 44.0) found = YES;
-        } 
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200.0, 44.0)];
+        CGFloat titleViewWidth = 200.0;
+        CGFloat titleFontSize = [self getSizeToFitText:self.episode.title 
+                                                 inBox:CGSizeMake(titleViewWidth, 420.0)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleViewWidth, NAVIGATION_BAR_HEIGHT)];
         [titleLabel setNumberOfLines:42];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
         [titleLabel setLineBreakMode:UILineBreakModeWordWrap];
@@ -209,14 +130,14 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait || 
+            interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown );
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Detail", @"Detail");
     }
     return self;
 }
@@ -240,4 +161,106 @@
 }
 
 							
+@end
+
+
+// Private
+#pragma mark
+#pragma mark - Private
+
+@implementation EpisodeViewController(Private)
+
+- (void)configureView
+{
+    // Current part label
+    [self.currentPartLabel setFont:kDefaultFontAndSize(20)];
+    [self.currentPartLabel setTextColor:kDefaultTextColor];
+    [self.currentPartLabel setTextAlignment:UITextAlignmentCenter];
+    [self.currentPartLabel setShadowColor:[UIColor blackColor]];
+    [self.currentPartLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
+    
+    // Tot parts label
+    [self.totPartsLabel setFont:kDefaultFontAndSize(20)];
+    [self.totPartsLabel setTextColor:kDefaultTextColor];
+    [self.totPartsLabel setTextAlignment:UITextAlignmentCenter];
+    [self.totPartsLabel setShadowColor:[UIColor blackColor]];
+    [self.totPartsLabel setShadowOffset:CGSizeMake(1.5, 1.5)];
+    
+    // Amend buttons
+    [self.nextButton setBackgroundColor:[UIColor clearColor]];
+    [self.previousButton setBackgroundColor:[UIColor clearColor]];
+    
+    // Text field with sketches
+    [self.sketchesTextView setBackgroundColor:[UIColor clearColor]];
+    [self.sketchesTextView setFont:kDefaultFontAndSize(14.0)];
+    [self.sketchesTextView setTextColor:[UIColor blackColor]];
+    [self.sketchesTextView setTextAlignment:UITextAlignmentCenter];
+    
+    // Custom backbutton for navigation bar
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(3, 0, 45, 28)];
+    [button setBackgroundImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"back_button-highlighted"] forState:UIControlStateHighlighted];
+    [button setTitle:@"Back" forState:UIControlStateNormal];
+    [button.titleLabel setFont:kDefaultFontAndSize(12)];
+    [button.titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleShadowColor:[UIColor brownColor] forState:UIControlStateNormal];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 9, 2, 0)];
+    [button addTarget:self action:@selector(handleBack:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+
+- (CGFloat)getSizeToFitText:(NSString*)text
+                      inBox:(CGSize)size
+{
+    // Navigation Title
+    CGFloat textFontSize; BOOL found = NO;
+    
+    // - Decrease font size until the text fits in the box 
+    for (float x = 18.0; x > 8.0 && !found; x -= 1.0) {
+        textFontSize = x;
+        CGSize titleSize = [self.episode.title sizeWithFont:kDefaultFontAndSize(x) 
+                                          constrainedToSize:size 
+                                              lineBreakMode:UILineBreakModeWordWrap];
+        
+        if (titleSize.height <= NAVIGATION_BAR_HEIGHT) found = YES;
+    } 
+    
+    return textFontSize;
+}
+
+// Show the _number_ part on the partContainer view
+- (void)displayPart:(int)number
+{
+    // Update the current part
+    self.currentPart = [_cachedSortedParts objectAtIndex:number - 1];
+    
+    CGRect container = self.videoContainerView.frame;
+    container.origin.y = 0; container.origin.x = 0;
+    
+    PartView *aView = [[PartView alloc] initWithFrame:container
+                                              andPart:self.currentPart];
+    
+    // Reuse an already loaded PartView if possible
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"tag == %@", aView.part.number];
+    NSArray *filteredViews = [self.videoContainerView.subviews filteredArrayUsingPredicate:filter];
+    
+    if([filteredViews count] > 0) {
+        // Bring it to front
+        [self.videoContainerView bringSubviewToFront:[filteredViews objectAtIndex:0]];
+    }
+    else {
+        // Add it
+        aView.tag = [self.currentPart.number intValue];
+        [self.videoContainerView addSubview:aView];
+    }
+    
+    // Update current part label
+    [self.currentPartLabel setText:[self.currentPart.number stringValue]];
+}
+
+
 @end
