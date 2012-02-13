@@ -2,7 +2,7 @@ Monty Python's Flying Circus TV for iOS
 =======================================
 
 Introduction
-------------
+-------------
 
 This application offers a fancy interface to watch Monty Python's Flying Circus episodes in srtreaming from YouTube.
 The idea arised from a need of tributing my favourite TV series.
