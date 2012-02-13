@@ -38,5 +38,25 @@
 #define kImageTVFrame                       @"television"
 #define kImagePaper                         @"paper"
 #define kImageSplash                        @"Default"
- 
+
+// Others
+#define kHTMLYouTubeEmbedding(src, w, h) [NSString stringWithFormat:@"\
+                                <html>\
+                                    <head>\
+                                        <style type=\"text/css\">\
+                                        body {\
+                                        background-color: black;\
+                                        color: black;\
+                                        }\
+                                        </style>\
+                                    </head>\
+                                        <body style=\"margin:0\">\
+                                            <embed id=\"yt\" src=\"%@\"\
+                                                type=\"application/x-shockwave-flash\" \
+                                                width=\"%0.0f\" height=\"%0.0f\"\
+                                                style=\"background-color:black;\">\
+                                            </embed>\
+                                        </body>\
+                                </html>", (src), (w), (h)];
+
 #endif

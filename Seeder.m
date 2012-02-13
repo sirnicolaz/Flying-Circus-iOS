@@ -34,6 +34,7 @@
     return doc;
 }
 
+// Just roughly parsing XML to populate DB
 + (void) populateWithContext:(NSManagedObjectContext*)context {
         
     // Generate seasons
@@ -127,7 +128,7 @@
     
 }
 
-+ (BOOL) populated:(NSManagedObjectContext*)context {
++ (BOOL) isPopulated:(NSManagedObjectContext*)context {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription 

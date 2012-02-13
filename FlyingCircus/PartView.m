@@ -8,13 +8,14 @@
 
 #import "PartView.h"
 #import "Part.h"
+#import "Imports.h"
 
 @implementation PartView
 
 @synthesize part                = _part;
 @synthesize activityIndicator   = _activityIndicator;
 
-- (id)initWithFrame:(CGRect)frame
+- (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -23,8 +24,8 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
-            andPart:(Part*)aPart;
+- (id) initWithFrame:(CGRect)frame
+             andPart:(Part*)aPart;
 {
     self = [self initWithFrame:frame];
     self.part = aPart;
@@ -41,35 +42,9 @@
 }
 
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
-    NSString* embedHTML = @"\
-                        <html>\
-                            <head>\
-                                <style type=\"text/css\">\
-                                body {\
-                                background-color: black;\
-                                color: black;\
-                                }\
-                                </style>\
-                            </head>\
-                            <body style=\"margin:0\">\
-                                <embed id=\"yt\" src=\"%@\"\
-                                        type=\"application/x-shockwave-flash\" \
-                                        width=\"%0.0f\" height=\"%0.0f\"\
-                                        style=\"background-color:black;\">\
-                                </embed>\
-                            </body>\
-                        </html>";  
-    
-    NSString* html = [NSString stringWithFormat:
-                      embedHTML, 
-                      self.part.url, 
-                      self.frame.size.width, 
-                      self.frame.size.height];
+    NSString* html =  kHTMLYouTubeEmbedding(self.part.url, self.frame.size.width, self.frame.size.height);
     
     UIWebView *aWebView = [[UIWebView alloc] initWithFrame:self.frame]; 
     aWebView.delegate = self;

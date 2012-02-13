@@ -184,7 +184,7 @@
     }    
     
     // Populate DB in case it's not seeded
-    if(![Seeder populated:self.managedObjectContext]) {
+    if(![Seeder isPopulated:self.managedObjectContext]) {
         [Seeder populateWithContext:self.managedObjectContext];
     }
     
@@ -234,16 +234,8 @@
 {
     // Dummy UIWebView to preload WebKit code
     UIWebView *dummyWebView = [[UIWebView alloc] initWithFrame:self.window.rootViewController.view.frame];
-    [dummyWebView loadHTMLString:@"<html>\
-     <head>\
-     <head>\
-     <body>\
-     <embed id=\"yt\" src=\"http://www.youtube.com/watch?v=G0VkqDGZsz4\"\
-     type=\"application/x-shockwave-flash\" \
-     width=\"0f\" height=\"0f\"\
-     style=\"background-color:black;\">\
-     </embed>\
-     </body></html>" baseURL:nil];
+    NSString *dummyHTML = kHTMLYouTubeEmbedding(@"http://www.youtube.com/watch?v=G0VkqDGZsz4",0,0);
+    [dummyWebView loadHTMLString:dummyHTML baseURL:nil];
     [self.window.rootViewController.view addSubview:dummyWebView];
     [dummyWebView setHidden:YES];
 }

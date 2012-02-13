@@ -12,16 +12,13 @@
 
 @interface PartView : UIView <UIWebViewDelegate> {
     Part *_part;
-    
-    @private
-    UIActivityIndicatorView *_activityIndicator;
 }
 
 
-@property (nonatomic, strong) Part      *part;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) Part                      *part;
+@property (nonatomic, strong) UIActivityIndicatorView   *activityIndicator;
 
-- (id)initWithFrame:(CGRect)frame
-            andPart:(Part*)aPart;
+- (id) initWithFrame:(CGRect)frame
+             andPart:(Part*)aPart;
 
 @end

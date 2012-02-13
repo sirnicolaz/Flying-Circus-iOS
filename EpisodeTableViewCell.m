@@ -39,9 +39,7 @@
 {
     //[self.titleLabel setBackgroundColor:[UIColor clearColor]];
     [self.titleLabel setNumberOfLines:1];
-    
     [self.titleLabel setFont:kDefaultFontAndSize(kTitleFontSize)];
-    
     [self.titleLabel setTextColor:kDefaultTextColor];
     [self.titleLabel setShadowColor:[UIColor blackColor]];
     [self.titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
@@ -84,16 +82,6 @@
     [self.contentView addSubview:checkboxView];
 }
 
-- (void)setup
-{
-    [self configureBackground];
-    [self configureTitle];
-    [self configureSubtitles];
-    [self configureCheckbox];
-    [self.accessoryView setBackgroundColor:[UIColor clearColor]];
-    
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     //[super setSelected:selected animated:animated];
@@ -101,6 +89,10 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - Custom editing mode handling
+
+// Simulate the content shift to the right, fading-out the accessory view
+// and showing the checkbox on the left. And vice-versa.
 - (void)simulateEditing:(BOOL)editing animated:(BOOL)animated
 {
     [UIView beginAnimations:nil context:nil];
@@ -134,8 +126,10 @@
 {
     [super willTransitionToState:state];
     
+    // If entering edit state
     if ((state & UITableViewCellStateShowingDeleteConfirmationMask) == UITableViewCellStateShowingDeleteConfirmationMask)
     {
+        // Remove the delete button that's going to appear on the right
         for (UIView *subview in self.subviews)
         {
             NSLog(@"%@", NSStringFromClass([subview class]));
@@ -153,12 +147,24 @@
     
     if ((state & UITableViewCellStateShowingDeleteConfirmationMask) == UITableViewCellStateShowingDeleteConfirmationMask)
     {
+        // Button previously deleted. Now animate to custom editing mode
         [self simulateEditing:YES animated:YES];
     }
     
 }
 
-#pragma mark - Actions
+#pragma mark - Public interface
+
+// Preliminary setup
+- (void)setup
+{
+    [self configureBackground];
+    [self configureTitle];
+    [self configureSubtitles];
+    [self configureCheckbox];
+    [self.accessoryView setBackgroundColor:[UIColor clearColor]];
+    
+}
 
 - (void)switchCheck
 {

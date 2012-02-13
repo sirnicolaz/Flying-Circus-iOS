@@ -27,9 +27,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *thumbImageView;
 @property (nonatomic, getter = isWatched) BOOL      watched;
 
-- (void)setup;
 
-// Check if unchecked and vice-versa. Moreover, return the current state (checked = YES, unchecked = NO)
+// Check if unchecked and vice-versa.
 - (void)switchCheck;
+- (void)setup;
 
 @end

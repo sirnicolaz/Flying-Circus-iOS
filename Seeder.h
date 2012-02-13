@@ -11,6 +11,6 @@
 @interface Seeder : NSObject
 
 + (void) populateWithContext:(NSManagedObjectContext*)context;
-+ (BOOL) populated:(NSManagedObjectContext*)context;
++ (BOOL) isPopulated:(NSManagedObjectContext*)context;
 
 @end
