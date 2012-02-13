@@ -22,7 +22,7 @@
         CGRect frame = CGRectMake(0, 0, 320, kSectionHeaderHeight);
         
         // Configure background
-        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"section_header_background"]];
+        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kImageSectionHeaderBackground]];
         background.frame = frame;
         
         [self addSubview:background];

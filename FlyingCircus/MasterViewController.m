@@ -85,11 +85,11 @@
     
     // -- Configure navigation bar
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-        // - Setup navigation bar back for iOS5
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
+        // - Setup navigation bar background for iOS5
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:kImageNavigationBarBackground] forBarMetrics:UIBarMetricsDefault];
     }
     else {
-        // - Setup navigation bar back for iOS4
+        // - Setup navigation bar background for iOS4
         [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.047 green:0.203 blue:0.070 alpha:1.0]];
     }
     
@@ -111,7 +111,7 @@
 {
     [super viewWillAppear:animated];
     
-    UIImageView *navbarTitle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbar_title"]];
+    UIImageView *navbarTitle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kImageMontyPythonLogo]];
     CGRect titleFrame = navbarTitle.frame;
     titleFrame.origin.y = 1;
     navbarTitle.frame = titleFrame;
@@ -152,7 +152,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     // "Euristhical" approach to save one transaction with db. Yeah, really cheap.
-    return [NSString stringWithFormat:@"Season %i", section+1];
+    return [NSString stringWithFormat:@"%@ %i", 
+            NSLocalizedString(@"Season", nil),
+            section+1];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -184,6 +186,7 @@
     if (cell == nil) {
         cell = [EpisodeTableViewCell selfFromNib];
         [cell setup];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     else {
         //[cell prepareForReuse];
@@ -195,7 +198,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return kRowHeight;
 }
 
 /*
@@ -414,7 +417,6 @@
     NSString *query = searchText;
     if (query && query.length) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[c] %@ or summary contains[c] %@", query, query];
-        //NSArray *results
         [self.fetchedResultsController.fetchRequest setPredicate:predicate];
     }
     else {

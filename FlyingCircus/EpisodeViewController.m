@@ -198,9 +198,9 @@
     
     // Custom backbutton for navigation bar
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(3, 0, 45, 28)];
-    [button setBackgroundImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"back_button-highlighted"] forState:UIControlStateHighlighted];
-    [button setTitle:@"Back" forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:kImageBackButton] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:kImageBackButtonHighlighted] forState:UIControlStateHighlighted];
+    [button setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
     [button.titleLabel setFont:kDefaultFontAndSize(12)];
     [button.titleLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

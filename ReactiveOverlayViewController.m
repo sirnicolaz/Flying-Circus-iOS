@@ -57,7 +57,8 @@
     
     if (self.target != nil && self.action != nil && 
         [self.target respondsToSelector:self.action]) {
-        
+        // This is not supposed to return any object, as far as this controller
+        // is concerned. Thus, theoretically, there will be no leaks.
         [self.target performSelector:self.action];
     }
 }

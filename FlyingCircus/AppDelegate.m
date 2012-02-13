@@ -12,6 +12,13 @@
 
 #import "Seeder.h"
 
+@interface AppDelegate(Private)
+
+- (void)showSplash;
+- (void)preloadYoutubePlugin;
+
+@end
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -24,12 +31,16 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-
+    
     MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
     masterViewController.managedObjectContext = self.managedObjectContext;
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+    
+    [self preloadYoutubePlugin];
+    [self showSplash];
+    
     return YES;
 }
 
@@ -186,5 +197,46 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+#pragma mark
+#pragma mark - Private
+
+- (void) showSplash
+{
+    UIImageView *splashView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+	splashView.image = [UIImage imageNamed:@"Default.png"];
+	[self.window addSubview:splashView];
+	[self.window bringSubviewToFront:splashView];
+	usleep(1600000);
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.7];
+	[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.window cache:YES];
+	[UIView setAnimationDelegate:self]; 
+	[UIView setAnimationDidStopSelector:@selector(startupAnimationDone:finished:context:)];
+	splashView.alpha = 0.0;
+	
+	splashView.frame = CGRectMake(-60, -60, 440, 600);
+	
+	[UIView commitAnimations];
+}
+
+- (void) preloadYoutubePlugin
+{
+    // Dummy UIWebView to preload WebKit code
+    UIWebView *dummyWebView = [[UIWebView alloc] initWithFrame:self.window.rootViewController.view.frame];
+    [dummyWebView loadHTMLString:@"<html>\
+     <head>\
+     <head>\
+     <body>\
+     <embed id=\"yt\" src=\"http://www.youtube.com/watch?v=G0VkqDGZsz4\"\
+     type=\"application/x-shockwave-flash\" \
+     width=\"0f\" height=\"0f\"\
+     style=\"background-color:black;\">\
+     </embed>\
+     </body></html>" baseURL:nil];
+    [self.window.rootViewController.view addSubview:dummyWebView];
+    [dummyWebView setHidden:YES];
+}
+
 
 @end

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Università degli studi di Padova. All rights reserved.
 //
 
-#ifndef FlyingCircus_iPhoneUISizes_h
-#define FlyingCircus_iPhoneUISizes_h
+#ifndef iSizes_h
+#define iSizes_h
 
 // -- Sizes as pts --
 

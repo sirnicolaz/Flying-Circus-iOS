@@ -10,6 +10,6 @@
 #define FlyingCircus_Imports_h
 
 #import "Constants.h"
-#import "iPhoneSizes.h"
+#import "iSizes.h"
 
 #endif

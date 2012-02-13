@@ -28,7 +28,7 @@
 + (CXMLDocument*)getSeasonDoc
 {
     //  using local resource file
-    NSString *XMLPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"database.xml"];
+    NSString *XMLPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"info.xml"];
     NSData *XMLData   = [NSData dataWithContentsOfFile:XMLPath];
     CXMLDocument *doc = [[CXMLDocument alloc] initWithData:XMLData options:0 error:nil];
     return doc;
@@ -116,8 +116,10 @@
                 }
                 
                 int minutesDuration = duration / 60;
-                int secontsDuration = duration - (60 * minutesDuration);
-                episode.duration = [NSString stringWithFormat:@"%i:%i", minutesDuration, secontsDuration];
+                int secondsDuration = duration - (60 * minutesDuration);
+                int secondsDec = secondsDuration / 10;
+                int secondsUnit = secondsDuration % 10;
+                episode.duration = [NSString stringWithFormat:@"%i:%i%i", minutesDuration, secondsDec, secondsUnit];
                 episode.parts = parts;
             }
 

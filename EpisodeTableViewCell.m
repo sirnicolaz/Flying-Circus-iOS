@@ -24,6 +24,17 @@
 @synthesize thumbImageView      = _thumbImageView;
 @synthesize watched             = _watched;
 
+- (void)setCheckboxChecked:(BOOL)checked
+{
+    UIImageView *checkboxView = (UIImageView*)[self.contentView viewWithTag:kCheckButtonTag];
+    if (checked) {
+        [checkboxView setImage:[UIImage imageNamed:kImageCheckboxChecked]];
+    }
+    else {
+        [checkboxView setImage:[UIImage imageNamed:kImageCheckboxUnchecked]];
+    }
+}
+
 - (void)configureTitle
 {
     //[self.titleLabel setBackgroundColor:[UIColor clearColor]];
@@ -54,14 +65,14 @@
 
 - (void)configureBackground
 {
-    UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_background"]];
+    UIImageView *back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kImageCellBackground]];
     [self setBackgroundView:back];
     [self setBackgroundColor:[UIColor blackColor]];
 }
 
 - (void)configureCheckbox
 {
-    UIImageView *checkboxView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkbox-unchecked"]];
+    UIImageView *checkboxView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kImageCheckboxUnchecked]];
     checkboxView.tag = kCheckButtonTag;
     
     CGRect checkboxFrame = self.contentView.frame;
@@ -101,13 +112,10 @@
 		contentFrame.origin.x = kEditingHorizontalOffset;
 		self.contentView.frame = contentFrame;
         
-        CGRect accessoryFrame = self.accessoryView.frame;
-        accessoryFrame.origin.x = SCREEN_WIDTH;
-        self.accessoryView.frame = accessoryFrame;
+        self.accessoryView.alpha = 0.0;
         
         if ([self isWatched]) {
-            UIImageView *checkboxView = (UIImageView*)[self.contentView viewWithTag:kCheckButtonTag];
-            [checkboxView setImage:[UIImage imageNamed:@"checkbox-checked"]];
+            [self setCheckboxChecked:YES];
         }
 	}
 	else
@@ -116,9 +124,7 @@
 		contentFrame.origin.x = 0;
 		self.contentView.frame = contentFrame;
         
-        CGRect accessoryFrame = self.accessoryView.frame;
-        accessoryFrame.origin.x = contentFrame.origin.x + contentFrame.size.width;
-        self.accessoryView.frame = accessoryFrame;
+        self.accessoryView.alpha = 1.0;
 	}
     
 	[UIView commitAnimations];
@@ -149,12 +155,7 @@
     {
         [self simulateEditing:YES animated:YES];
     }
-}
-- (void) layoutSubviews {
-    if(![self isEditing]){
-        [super layoutSubviews];
-    }
-    // you can manipulate cell subviews, like self.textLabel, self.detailTextLabel...
+    
 }
 
 - (void)prepareForReuse
@@ -165,15 +166,7 @@
 
 - (void)switchCheck
 {
-    if ([self isWatched]) {
-        UIImageView *checkboxView = (UIImageView*)[self.contentView viewWithTag:kCheckButtonTag];
-        [checkboxView setImage:[UIImage imageNamed:@"checkbox-unchecked"]];
-    }
-    else {
-        UIImageView *checkboxView = (UIImageView*)[self.contentView viewWithTag:kCheckButtonTag];
-        [checkboxView setImage:[UIImage imageNamed:@"checkbox-checked"]];
-    }
-    
+    [self isWatched] ? [self setCheckboxChecked:NO] : [self setCheckboxChecked:YES];
     self.watched = ![self isWatched];
 }
 
