@@ -29,9 +29,9 @@
 @property (strong, nonatomic) IBOutlet UITextView   *sketchesTextView;
 
 // Move to next part
-- (IBAction)previous:(id)sender;
+- (IBAction) previous:(id)sender;
 
 // Move to previous part
-- (IBAction)next:(id)sender;
+- (IBAction) next:(id)sender;
 
 @end

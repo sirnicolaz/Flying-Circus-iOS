@@ -16,10 +16,10 @@
 #import "Imports.h"
 
 @interface EpisodeViewController (Private) 
-- (void)configureView;
-- (CGFloat)getSizeToFitText:(NSString*)text
-                      inBox:(CGSize)size;
-- (void)displayPart:(int)number;
+- (void) configureView;
+- (void) displayPart:(int)number;
+- (CGFloat) getSizeToFitText:(NSString*)text
+                       inBox:(CGSize)size;
 @end
 
 @implementation EpisodeViewController
@@ -36,7 +36,7 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setEpisode:(id)newEpisode
+- (void) setEpisode:(id)newEpisode
 {
     if (_episode != newEpisode) {
         _episode = newEpisode;
@@ -48,12 +48,12 @@
     }
 }
 
-- (void)handleBack:(id)sender
+- (void) handleBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
@@ -61,41 +61,42 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
     [self configureView];
 }
 
-- (void)viewDidUnload
+- (void) viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    if (self.episode.number != self.currentPart.episode.number ||
-        self.episode.season.number != self.currentPart.episode.season.number) {
+    if (self.episode.number         != self.currentPart.episode.number ||
+        self.episode.season.number  != self.currentPart.episode.season.number) {
+        
         // Episode has been changed, thus
-        // - Reset
+        // - Reset parts
         for(UIView *subview in [self.videoContainerView subviews]) {
             [subview removeFromSuperview];
         }
         self.currentPart = nil;
         
-        // - And Reload
+        // - Reset labels
         self.detailDescriptionLabel.text = [self.episode title];
         [self.totPartsLabel setText:[NSString stringWithFormat:@"/ %i", [self.episode.parts count]]];
         [self displayPart:1];     
         
-        // - Set sketches
-        [self.sketchesTextView setText:[self.episode.summary stringByReplacingOccurrencesOfString:@"," withString:@"\n------------\n"]];
+        // - Reset sketches
+        [self.sketchesTextView setText:[self.episode.summary stringByReplacingOccurrencesOfString:@"," 
+                                                                                       withString:@"\n------------\n"]];
         
+        // - Reset title
         CGFloat titleViewWidth = 200.0;
         CGFloat titleFontSize = [self getSizeToFitText:self.episode.title 
                                                  inBox:CGSizeMake(titleViewWidth, 420.0)];
@@ -112,29 +113,29 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void) viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void) viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait || 
             interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown );
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -144,7 +145,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)next:(id)sender
+- (IBAction) next:(id)sender
 {
     int nextPart = [self.currentPart.number intValue] + 1;
     if ([_cachedSortedParts count] >= nextPart) {
@@ -152,7 +153,7 @@
     }
 }
 
-- (IBAction)previous:(id)sender
+- (IBAction) previous:(id)sender
 {
     int previousPart = [self.currentPart.number intValue] - 1;
     if (1 <= previousPart) {
@@ -170,7 +171,7 @@
 
 @implementation EpisodeViewController(Private)
 
-- (void)configureView
+- (void) configureView
 {
     // Current part label
     [self.currentPartLabel setFont:kDefaultFontAndSize(20)];
@@ -213,13 +214,13 @@
 }
 
 
-- (CGFloat)getSizeToFitText:(NSString*)text
-                      inBox:(CGSize)size
+- (CGFloat) getSizeToFitText:(NSString*)text
+                       inBox:(CGSize)size
 {
-    // Navigation Title
-    CGFloat textFontSize; BOOL found = NO;
+    CGFloat textFontSize; 
+    BOOL found = NO;
     
-    // - Decrease font size until the text fits in the box 
+    // Decrease font size until the text fits in the box 
     for (float x = 18.0; x > 8.0 && !found; x -= 1.0) {
         textFontSize = x;
         CGSize titleSize = [self.episode.title sizeWithFont:kDefaultFontAndSize(x) 
@@ -232,8 +233,8 @@
     return textFontSize;
 }
 
-// Show the _number_ part on the partContainer view
-- (void)displayPart:(int)number
+// Show the <number> part on the partContainer view
+- (void) displayPart:(int)number
 {
     // Update the current part
     self.currentPart = [_cachedSortedParts objectAtIndex:number - 1];
