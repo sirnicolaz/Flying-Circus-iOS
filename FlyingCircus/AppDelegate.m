@@ -232,11 +232,11 @@
 
 - (void) preloadYoutubePlugin
 {
-    // Dummy UIWebView to preload WebKit code
+    // Dummy UIWebView to preload Youtube plugin
     UIWebView *dummyWebView = [[UIWebView alloc] initWithFrame:self.window.rootViewController.view.frame];
     NSString *dummyHTML = kHTMLYouTubeEmbedding(@"http://www.youtube.com/watch?v=G0VkqDGZsz4",0,0);
     [dummyWebView loadHTMLString:dummyHTML baseURL:nil];
-    [self.window.rootViewController.view addSubview:dummyWebView];
+    [self.window addSubview:dummyWebView];
     [dummyWebView setHidden:YES];
 }
 
