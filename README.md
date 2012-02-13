@@ -1,17 +1,22 @@
+Monty Python's Flying Circus TV for iOS
+=======================================
+
 Introduction
-============
+------------
+
 This application offers a fancy interface to watch Monty Python's Flying Circus episodes in srtreaming from YouTube.
 The idea arised from a need of tributing my favourite TV series.
 
 Soon in the AppStore ;)
 
 Credits
-=======
+-------
+
 Many thanks to Patrik Larsson (www.larssonpatrik.com) for his freebies,
 that really helped me in the "woody" part of the graphics.
 
 Licence
-=======
+-------
 This code is licensed under the 2-clause BSD license ("Simplified BSD License" or "FreeBSD License") license. The license is reproduced below:
 
 Copyright 2012 Nicola Miotto. All rights reserved.
@@ -22,4 +27,4 @@ Copyright 2012 Nicola Miotto. All rights reserved.
 
 THIS SOFTWARE IS PROVIDED BY NICOLA MIOTTO ''AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JONATHAN WIGHT OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-The views and conclusions contained in the software and documentation are those of the authors and should not be interpreted as representing official policies, either expressed or implied, of Nicola Miotto.
+The views and conclusions contained in the software and documentation are those of the authors and should not be interpreted as representing official policies, either expressed or implied, of Nicola Miotto..
