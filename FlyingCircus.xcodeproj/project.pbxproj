@@ -83,16 +83,17 @@
 		D70C359614E982C00014407A /* CXHTMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C358514E982C00014407A /* CXHTMLDocument.m */; };
 		D70C359714E982C00014407A /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C358914E982C00014407A /* CXMLDocument_CreationExtensions.m */; };
 		D70C359814E982C00014407A /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C358B14E982C00014407A /* CXMLNode_CreationExtensions.m */; };
-		D70C35B014E982D00014407A /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C359B14E982D00014407A /* AFHTTPClient.m */; };
-		D70C35B114E982D00014407A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C359D14E982D00014407A /* AFHTTPRequestOperation.m */; };
-		D70C35B214E982D00014407A /* AFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C359F14E982D00014407A /* AFImageCache.m */; };
-		D70C35B314E982D00014407A /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A114E982D00014407A /* AFImageRequestOperation.m */; };
-		D70C35B414E982D00014407A /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A314E982D00014407A /* AFJSONRequestOperation.m */; };
-		D70C35B514E982D00014407A /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A614E982D00014407A /* AFNetworkActivityIndicatorManager.m */; };
-		D70C35B614E982D00014407A /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A914E982D00014407A /* AFPropertyListRequestOperation.m */; };
-		D70C35B714E982D00014407A /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35AB14E982D00014407A /* AFURLConnectionOperation.m */; };
-		D70C35B814E982D00014407A /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35AD14E982D00014407A /* AFXMLRequestOperation.m */; };
-		D70C35B914E982D00014407A /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35AF14E982D00014407A /* UIImageView+AFNetworking.m */; };
+		D70C35B014E982D00014407A /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C359B14E982D00014407A /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B114E982D00014407A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C359D14E982D00014407A /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B214E982D00014407A /* AFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C359F14E982D00014407A /* AFImageCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B314E982D00014407A /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A114E982D00014407A /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B414E982D00014407A /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A314E982D00014407A /* AFJSONRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B514E982D00014407A /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A614E982D00014407A /* AFNetworkActivityIndicatorManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B614E982D00014407A /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A914E982D00014407A /* AFPropertyListRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B714E982D00014407A /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35AB14E982D00014407A /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B814E982D00014407A /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35AD14E982D00014407A /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35B914E982D00014407A /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35AF14E982D00014407A /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D70C35C414E98A320014407A /* FlyingCircus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D70C35C214E98A320014407A /* FlyingCircus.xcdatamodeld */; };
 		D71828A014E30EF700B2242F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D718289F14E30EF700B2242F /* UIKit.framework */; };
 		D71828A214E30EF700B2242F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71828A114E30EF700B2242F /* Foundation.framework */; };
 		D71828A414E30EF700B2242F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71828A314E30EF700B2242F /* CoreGraphics.framework */; };
@@ -100,7 +101,6 @@
 		D71828AC14E30EF700B2242F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D71828AA14E30EF700B2242F /* InfoPlist.strings */; };
 		D71828AE14E30EF700B2242F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828AD14E30EF700B2242F /* main.m */; };
 		D71828B214E30EF800B2242F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828B114E30EF800B2242F /* AppDelegate.m */; };
-		D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -230,6 +230,7 @@
 		D70C35AD14E982D00014407A /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		D70C35AE14E982D00014407A /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		D70C35AF14E982D00014407A /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		D70C35C314E98A320014407A /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 		D718289B14E30EF700B2242F /* FlyingCircus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyingCircus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D718289F14E30EF700B2242F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D71828A114E30EF700B2242F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -241,7 +242,6 @@
 		D71828AF14E30EF700B2242F /* FlyingCircus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FlyingCircus-Prefix.pch"; sourceTree = "<group>"; };
 		D71828B014E30EF800B2242F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D71828B114E30EF800B2242F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
 		D7DFF8C614E909980044C23E /* Imports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imports.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -350,6 +350,7 @@
 		D71828A714E30EF700B2242F /* FlyingCircus */ = {
 			isa = PBXGroup;
 			children = (
+				D70C35C214E98A320014407A /* FlyingCircus.xcdatamodeld */,
 				D7DFF8C614E909980044C23E /* Imports.h */,
 				D71828B014E30EF800B2242F /* AppDelegate.h */,
 				D71828B114E30EF800B2242F /* AppDelegate.m */,
@@ -382,7 +383,6 @@
 				D70C350114E982340014407A /* PartView.h */,
 				D70C350214E982340014407A /* Seeder.m */,
 				D70C350314E982340014407A /* Seeder.h */,
-				D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -668,7 +668,6 @@
 			files = (
 				D71828AE14E30EF700B2242F /* main.m in Sources */,
 				D71828B214E30EF800B2242F /* AppDelegate.m in Sources */,
-				D7D18F1314E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld in Sources */,
 				D70C34E914E981BC0014407A /* ReactiveOverlayViewController.m in Sources */,
 				D70C34EA14E981BC0014407A /* SeasonHeaderView.m in Sources */,
 				D70C34EB14E981BC0014407A /* EpisodeTableViewCell.m in Sources */,
@@ -704,6 +703,7 @@
 				D70C35B714E982D00014407A /* AFURLConnectionOperation.m in Sources */,
 				D70C35B814E982D00014407A /* AFXMLRequestOperation.m in Sources */,
 				D70C35B914E982D00014407A /* UIImageView+AFNetworking.m in Sources */,
+				D70C35C414E98A320014407A /* FlyingCircus.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,14 +828,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D7D18F1114E3D3FB00CAFCBE /* FlyingCircus.xcdatamodeld */ = {
+		D70C35C214E98A320014407A /* FlyingCircus.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */,
+				D70C35C314E98A320014407A /* FlyingCircus.xcdatamodel */,
 			);
-			currentVersion = D7D18F1214E3D3FB00CAFCBE /* FlyingCircus.xcdatamodel */;
+			currentVersion = D70C35C314E98A320014407A /* FlyingCircus.xcdatamodel */;
 			path = FlyingCircus.xcdatamodeld;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
