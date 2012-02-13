@@ -57,6 +57,10 @@
 {
     [super viewDidLoad];
 	
+    // -- Re-show status bar
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [UIApplication sharedApplication].keyWindow.frame=CGRectMake(0, 20, 320, 460);
+    
     // -- Configure search bar
     // - Put the search bar out of the visible part
     CGRect bounds = self.tableView.bounds;
