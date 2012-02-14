@@ -12,6 +12,7 @@
 
 @class EpisodeViewController;
 @class ReactiveOverlayViewController;
+@class Reachability;
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     
@@ -25,7 +26,12 @@
 
 @property (strong, nonatomic) EpisodeViewController         *episodeViewController;
 @property (strong, nonatomic) NSFetchedResultsController    *fetchedResultsController;
-
 @property (strong, nonatomic) NSManagedObjectContext        *managedObjectContext;
+
+@property (strong, nonatomic) Reachability  *internetReachable;
+@property (strong, nonatomic) Reachability  *hostReachable;
+
+
+-(void) didCheckNetworkStatus:(NSNotification *)notice;
 
 @end

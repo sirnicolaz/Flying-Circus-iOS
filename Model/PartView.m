@@ -62,6 +62,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
     NSLog(@"FAIL");
+    [[[UIAlertView alloc] initWithTitle:kAlertConnectionErrorTitle message:kAlertConnectionErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView

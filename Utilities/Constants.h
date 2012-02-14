@@ -39,6 +39,12 @@
 #define kImagePaper                         @"paper"
 #define kImageSplash                        @"Default"
 
+// Alert messages
+#define kAlertDbErrorTitle                  @"Transaction error"
+#define kAlertDbErrorDescription            @"An error occured attempting to save changes"
+#define kAlertConnectionErrorTitle          @"Connection error"
+#define kAlertConnectionErrorDescription    @"An error occured attempting to access the Internet. Check your connection."
+
 // Others
 #define kHTMLYouTubeEmbedding(src, w, h) [NSString stringWithFormat:@"\
                                 <html>\

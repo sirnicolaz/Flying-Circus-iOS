@@ -16,6 +16,7 @@
 #import "Episode.h"
 
 #import "Imports.h"
+#import "Reachability.h"
 
 #import "UIImageView+AFNetworking.h"
 #import "UIView+SelfFromNib.h"
@@ -25,6 +26,7 @@
 - (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void) configureSearchBar;
 - (void) configureNavigationBar;
+- (void) checkNetworkStatus;
 - (Episode*)episodeForRowAtIndexPath:(NSIndexPath*)indexPath;
 @end
 
@@ -35,6 +37,8 @@
 @synthesize tableSearchBar              = _tableSearchBar;
 @synthesize fetchedResultsController    = __fetchedResultsController;
 @synthesize managedObjectContext        = __managedObjectContext;
+@synthesize hostReachable               = _hostReachable;
+@synthesize internetReachable           = _internetReachable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,9 +66,7 @@
     // -- Fetch data
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
-		// - Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		exit(-1);  // Fail
+		[[[UIAlertView alloc] initWithTitle:kAlertDbErrorTitle message:kAlertDbErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
 	}
 }
 
@@ -84,6 +86,8 @@
     navbarTitle.frame = titleFrame;
     
     self.navigationItem.titleView = navbarTitle;
+    
+    [self checkNetworkStatus];
     
 }
 
@@ -188,13 +192,7 @@
         
         NSError *error;
         if (![context save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            [[[UIAlertView alloc] initWithTitle:kAlertDbErrorTitle message:kAlertDbErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
         }
         
         [self setEditing:NO animated:YES];
@@ -274,13 +272,7 @@
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
-
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
+        [[[UIAlertView alloc] initWithTitle:kAlertDbErrorTitle message:kAlertDbErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
 	}
     
     return __fetchedResultsController;
@@ -419,6 +411,35 @@
     
     return episode;
 }
+
+#pragma mark - Connection check
+
+- (void) checkNetworkStatus
+{
+    // check for internet connection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCheckNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    
+    self.internetReachable = [Reachability reachabilityForInternetConnection];
+    [self.internetReachable startNotifier];
+    
+    // check if a pathway to a random host exists
+    self.hostReachable = [Reachability reachabilityWithHostName: @"www.android.com"];
+    [self.hostReachable startNotifier];
+}
+
+- (void) didCheckNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [self.internetReachable currentReachabilityStatus];
+    NetworkStatus hostStatus = [self.hostReachable currentReachabilityStatus];
+    
+    if (internetStatus == NotReachable || hostStatus == NotReachable) {
+        NSLog(@"The internet is down.");
+        [[[UIAlertView alloc] initWithTitle:kAlertConnectionErrorTitle message:kAlertConnectionErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    }
+}
+
+
 
 #pragma mark - Search logic
 

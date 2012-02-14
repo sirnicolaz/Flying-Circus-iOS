@@ -212,6 +212,7 @@
     [self.window addSubview:splashView];
 	[self.window bringSubviewToFront:splashView];
 	
+    // TODO: add support to animation for iOS 4?
     [UIView animateWithDuration:0.7 
                           delay:1.0 
                         options:UIViewAnimationOptionTransitionNone 

@@ -101,6 +101,8 @@
 		D71828AC14E30EF700B2242F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D71828AA14E30EF700B2242F /* InfoPlist.strings */; };
 		D71828AE14E30EF700B2242F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828AD14E30EF700B2242F /* main.m */; };
 		D71828B214E30EF800B2242F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828B114E30EF800B2242F /* AppDelegate.m */; };
+		D7F5C61914EAC6BA0052FD01 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F5C61714EAC6BA0052FD01 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D7F5C61B14EAC6D90052FD01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,6 +245,9 @@
 		D71828B014E30EF800B2242F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D71828B114E30EF800B2242F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D7DFF8C614E909980044C23E /* Imports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imports.h; sourceTree = "<group>"; };
+		D7F5C61714EAC6BA0052FD01 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D7F5C61814EAC6BA0052FD01 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F5C61B14EAC6D90052FD01 /* SystemConfiguration.framework in Frameworks */,
 				D71828A014E30EF700B2242F /* UIKit.framework in Frameworks */,
 				D71828A214E30EF700B2242F /* Foundation.framework in Frameworks */,
 				D71828A414E30EF700B2242F /* CoreGraphics.framework in Frameworks */,
@@ -339,6 +345,7 @@
 		D718289E14E30EF700B2242F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */,
 				D718289F14E30EF700B2242F /* UIKit.framework */,
 				D71828A114E30EF700B2242F /* Foundation.framework */,
 				D71828A314E30EF700B2242F /* CoreGraphics.framework */,
@@ -379,8 +386,6 @@
 				D70C34FD14E982340014407A /* Season.h */,
 				D70C34FE14E982340014407A /* Part.m */,
 				D70C34FF14E982340014407A /* Part.h */,
-				D70C350014E982340014407A /* PartView.m */,
-				D70C350114E982340014407A /* PartView.h */,
 				D70C350214E982340014407A /* Seeder.m */,
 				D70C350314E982340014407A /* Seeder.h */,
 			);
@@ -401,6 +406,8 @@
 		D71828C914E30F1400B2242F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D70C350014E982340014407A /* PartView.m */,
+				D70C350114E982340014407A /* PartView.h */,
 				D70C34DF14E981BC0014407A /* ReactiveOverlayViewController.m */,
 				D70C34E014E981BC0014407A /* ReactiveOverlayViewController.h */,
 				D70C34E114E981BC0014407A /* SeasonHeaderView.m */,
@@ -527,6 +534,7 @@
 		D7D18F5F14E5811600CAFCBE /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D7F5C61614EAC6930052FD01 /* Reachability */,
 				D70C359914E982D00014407A /* AFNetworking */,
 				D7666AF114E816740088F672 /* TouchXML */,
 			);
@@ -551,6 +559,15 @@
 				D70C356E14E982A00014407A /* Constants.h */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		D7F5C61614EAC6930052FD01 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				D7F5C61714EAC6BA0052FD01 /* Reachability.m */,
+				D7F5C61814EAC6BA0052FD01 /* Reachability.h */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -704,6 +721,7 @@
 				D70C35B814E982D00014407A /* AFXMLRequestOperation.m in Sources */,
 				D70C35B914E982D00014407A /* UIImageView+AFNetworking.m in Sources */,
 				D70C35C414E98A320014407A /* FlyingCircus.xcdatamodeld in Sources */,
+				D7F5C61914EAC6BA0052FD01 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
