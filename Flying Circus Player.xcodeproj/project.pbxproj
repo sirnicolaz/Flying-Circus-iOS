@@ -31,8 +31,6 @@
 		D70C353D14E9826E0014407A /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351214E9826E0014407A /* play@2x.png */; };
 		D70C353E14E9826E0014407A /* play-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351314E9826E0014407A /* play-highlighted.png */; };
 		D70C353F14E9826E0014407A /* play-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351414E9826E0014407A /* play-highlighted@2x.png */; };
-		D70C354014E9826E0014407A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351514E9826E0014407A /* icon.png */; };
-		D70C354114E9826E0014407A /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351614E9826E0014407A /* icon@2x.png */; };
 		D70C354214E9826E0014407A /* paper.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351714E9826E0014407A /* paper.png */; };
 		D70C354314E9826E0014407A /* paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351814E9826E0014407A /* paper@2x.png */; };
 		D70C354414E9826E0014407A /* checkbox-unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351914E9826E0014407A /* checkbox-unchecked.png */; };
@@ -103,6 +101,8 @@
 		D71828B214E30EF800B2242F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828B114E30EF800B2242F /* AppDelegate.m */; };
 		D7F5C61914EAC6BA0052FD01 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F5C61714EAC6BA0052FD01 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D7F5C61B14EAC6D90052FD01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */; };
+		D7F5C61E14EAD3460052FD01 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F5C61C14EAD3460052FD01 /* Icon.png */; };
+		D7F5C61F14EAD3460052FD01 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F5C61D14EAD3460052FD01 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,8 +140,6 @@
 		D70C351214E9826E0014407A /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play@2x.png"; path = "Resources/images/play@2x.png"; sourceTree = "<group>"; };
 		D70C351314E9826E0014407A /* play-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play-highlighted.png"; path = "Resources/images/play-highlighted.png"; sourceTree = "<group>"; };
 		D70C351414E9826E0014407A /* play-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play-highlighted@2x.png"; path = "Resources/images/play-highlighted@2x.png"; sourceTree = "<group>"; };
-		D70C351514E9826E0014407A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/images/icon.png; sourceTree = "<group>"; };
-		D70C351614E9826E0014407A /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/images/icon@2x.png"; sourceTree = "<group>"; };
 		D70C351714E9826E0014407A /* paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paper.png; path = Resources/images/paper.png; sourceTree = "<group>"; };
 		D70C351814E9826E0014407A /* paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paper@2x.png"; path = "Resources/images/paper@2x.png"; sourceTree = "<group>"; };
 		D70C351914E9826E0014407A /* checkbox-unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-unchecked.png"; path = "Resources/images/checkbox-unchecked.png"; sourceTree = "<group>"; };
@@ -233,21 +231,23 @@
 		D70C35AE14E982D00014407A /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		D70C35AF14E982D00014407A /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		D70C35C314E98A320014407A /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
-		D718289B14E30EF700B2242F /* FlyingCircus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyingCircus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D718289B14E30EF700B2242F /* Flying Circus Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying Circus Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D718289F14E30EF700B2242F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D71828A114E30EF700B2242F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D71828A314E30EF700B2242F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D71828A514E30EF700B2242F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D71828A914E30EF700B2242F /* FlyingCircus-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FlyingCircus-Info.plist"; sourceTree = "<group>"; };
+		D71828A914E30EF700B2242F /* Flying Circus Player-Info.plist */ = {isa = PBXFileReference; path = "Flying Circus Player-Info.plist"; sourceTree = "<group>"; };
 		D71828AB14E30EF700B2242F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D71828AD14E30EF700B2242F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D71828AF14E30EF700B2242F /* FlyingCircus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FlyingCircus-Prefix.pch"; sourceTree = "<group>"; };
+		D71828AF14E30EF700B2242F /* Flying Circus Player-Prefix.pch */ = {isa = PBXFileReference; path = "Flying Circus Player-Prefix.pch"; sourceTree = "<group>"; };
 		D71828B014E30EF800B2242F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D71828B114E30EF800B2242F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D7DFF8C614E909980044C23E /* Imports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imports.h; sourceTree = "<group>"; };
 		D7F5C61714EAC6BA0052FD01 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D7F5C61814EAC6BA0052FD01 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D7F5C61C14EAD3460052FD01 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/images/Icon.png; sourceTree = "<group>"; };
+		D7F5C61D14EAD3460052FD01 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/images/Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +337,7 @@
 		D718289C14E30EF700B2242F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D718289B14E30EF700B2242F /* FlyingCircus.app */,
+				D718289B14E30EF700B2242F /* Flying Circus Player.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -369,10 +369,10 @@
 		D71828A814E30EF700B2242F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D71828A914E30EF700B2242F /* FlyingCircus-Info.plist */,
+				D71828A914E30EF700B2242F /* Flying Circus Player-Info.plist */,
 				D71828AA14E30EF700B2242F /* InfoPlist.strings */,
 				D71828AD14E30EF700B2242F /* main.m */,
-				D71828AF14E30EF700B2242F /* FlyingCircus-Prefix.pch */,
+				D71828AF14E30EF700B2242F /* Flying Circus Player-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -492,10 +492,10 @@
 				D70C351214E9826E0014407A /* play@2x.png */,
 				D70C351314E9826E0014407A /* play-highlighted.png */,
 				D70C351414E9826E0014407A /* play-highlighted@2x.png */,
-				D70C351514E9826E0014407A /* icon.png */,
-				D70C351614E9826E0014407A /* icon@2x.png */,
 				D70C351714E9826E0014407A /* paper.png */,
 				D70C351814E9826E0014407A /* paper@2x.png */,
+				D7F5C61C14EAD3460052FD01 /* Icon.png */,
+				D7F5C61D14EAD3460052FD01 /* Icon@2x.png */,
 				D70C351914E9826E0014407A /* checkbox-unchecked.png */,
 				D70C351A14E9826E0014407A /* checkbox-unchecked@2x.png */,
 				D70C351B14E9826E0014407A /* checkbox-checked@2x.png */,
@@ -573,9 +573,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D718289A14E30EF700B2242F /* FlyingCircus */ = {
+		D718289A14E30EF700B2242F /* Flying Circus Player */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D71828C414E30EF800B2242F /* Build configuration list for PBXNativeTarget "FlyingCircus" */;
+			buildConfigurationList = D71828C414E30EF800B2242F /* Build configuration list for PBXNativeTarget "Flying Circus Player" */;
 			buildPhases = (
 				D718289714E30EF700B2242F /* Sources */,
 				D718289814E30EF700B2242F /* Frameworks */,
@@ -585,9 +585,9 @@
 			);
 			dependencies = (
 			);
-			name = FlyingCircus;
+			name = "Flying Circus Player";
 			productName = FlyingCircus;
-			productReference = D718289B14E30EF700B2242F /* FlyingCircus.app */;
+			productReference = D718289B14E30EF700B2242F /* Flying Circus Player.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -599,7 +599,7 @@
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Università degli studi di Padova";
 			};
-			buildConfigurationList = D718289514E30EF700B2242F /* Build configuration list for PBXProject "FlyingCircus" */;
+			buildConfigurationList = D718289514E30EF700B2242F /* Build configuration list for PBXProject "Flying Circus Player" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -611,7 +611,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D718289A14E30EF700B2242F /* FlyingCircus */,
+				D718289A14E30EF700B2242F /* Flying Circus Player */,
 			);
 		};
 /* End PBXProject section */
@@ -636,8 +636,6 @@
 				D70C353D14E9826E0014407A /* play@2x.png in Resources */,
 				D70C353E14E9826E0014407A /* play-highlighted.png in Resources */,
 				D70C353F14E9826E0014407A /* play-highlighted@2x.png in Resources */,
-				D70C354014E9826E0014407A /* icon.png in Resources */,
-				D70C354114E9826E0014407A /* icon@2x.png in Resources */,
 				D70C354214E9826E0014407A /* paper.png in Resources */,
 				D70C354314E9826E0014407A /* paper@2x.png in Resources */,
 				D70C354414E9826E0014407A /* checkbox-unchecked.png in Resources */,
@@ -673,6 +671,8 @@
 				D70C356214E9826E0014407A /* wooden-panel.png in Resources */,
 				D70C356514E9827C0014407A /* links.xml in Resources */,
 				D70C356614E9827C0014407A /* info.xml in Resources */,
+				D7F5C61E14EAD3460052FD01 /* Icon.png in Resources */,
+				D7F5C61F14EAD3460052FD01 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,8 +748,8 @@
 					armv7,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nicola Miotto (458RFQE64U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nicola Miotto";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nicola Miotto";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -764,8 +764,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
+				PROVISIONING_PROFILE = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -779,8 +779,8 @@
 					armv7,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nicola Miotto (458RFQE64U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nicola Miotto";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nicola Miotto";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -789,8 +789,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "816EA8F8-9946-4EAE-8E74-5CEBBF115DA9";
+				PROVISIONING_PROFILE = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -800,11 +800,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FlyingCircus/FlyingCircus-Prefix.pch";
+				GCC_PREFIX_HEADER = "FlyingCircus/Flying Circus Player-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
-				INFOPLIST_FILE = "FlyingCircus/FlyingCircus-Info.plist";
+				INFOPLIST_FILE = "FlyingCircus/Flying Circus Player-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Flying Circus Player";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -813,11 +813,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FlyingCircus/FlyingCircus-Prefix.pch";
+				GCC_PREFIX_HEADER = "FlyingCircus/Flying Circus Player-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
-				INFOPLIST_FILE = "FlyingCircus/FlyingCircus-Info.plist";
+				INFOPLIST_FILE = "FlyingCircus/Flying Circus Player-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Flying Circus Player";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -825,7 +825,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D718289514E30EF700B2242F /* Build configuration list for PBXProject "FlyingCircus" */ = {
+		D718289514E30EF700B2242F /* Build configuration list for PBXProject "Flying Circus Player" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D71828C214E30EF800B2242F /* Debug */,
@@ -834,7 +834,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D71828C414E30EF800B2242F /* Build configuration list for PBXNativeTarget "FlyingCircus" */ = {
+		D71828C414E30EF800B2242F /* Build configuration list for PBXNativeTarget "Flying Circus Player" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D71828C514E30EF800B2242F /* Debug */,
