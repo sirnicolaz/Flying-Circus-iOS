@@ -265,7 +265,7 @@
     
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                                                 managedObjectContext:self.managedObjectContext 
-                                                                                                  sectionNameKeyPath:@"season" 
+                                                                                                  sectionNameKeyPath:@"season.number" 
                                                                                                            cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
