@@ -36,14 +36,15 @@
 
 // Just roughly parsing XML to populate DB
 + (void) populateWithContext:(NSManagedObjectContext*)context {
-        
-    // Generate seasons
+    
+    // Get handlers
     CXMLDocument *seasonDoc = [Seeder getXMLDbHandler:@"info.xml"];
     CXMLDocument *videoDoc = [Seeder getXMLDbHandler:@"links.xml"];
     
     
     NSArray *nodes = [seasonDoc nodesForXPath:@"//season" error:nil];
     
+    // Loop through seasons
     for (CXMLElement *node in nodes) {
         Season *season = [NSEntityDescription
                           insertNewObjectForEntityForName:@"Season" 
@@ -51,10 +52,12 @@
         int number =  [[[node attributeForName:@"number"] stringValue] intValue];
         season.number = [NSNumber numberWithInt:number];
         
+        // Get season's episodes
         NSMutableSet *episodes = [[NSMutableSet alloc] init];
         NSArray *episodeNodes = [seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode", [season.number intValue]] error:nil];
         ;
         
+        // Loop thourgh episodes
         for (CXMLElement *episodeNode in episodeNodes) {
             Episode *episode = [NSEntityDescription
                                 insertNewObjectForEntityForName:@"Episode" 
@@ -67,48 +70,51 @@
             episode.number = [NSNumber numberWithInt:number];
             episode.season = season;
             
+            // Set sketches, separating their titles with a comma
             CXMLElement *summaryElement = [[seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/summary", [season.number intValue], [episode.number intValue]] error:nil] objectAtIndex:0];
             NSString *amendedString = [[summaryElement stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             amendedString = [Seeder stripDoubleSpaceFrom:amendedString];
             amendedString = [amendedString stringByReplacingOccurrencesOfString:@"\n " withString:@"\n"];
             amendedString = [amendedString stringByReplacingOccurrencesOfString:@" \n " withString:@"\n"];
             amendedString = [amendedString stringByReplacingOccurrencesOfString:@" \n" withString:@"\n"];
+            episode.sketches = [amendedString stringByReplacingOccurrencesOfString:@"\n" withString:@","];
             
-            episode.summary = [amendedString stringByReplacingOccurrencesOfString:@"\n" withString:@","];
-            
+            // Set broadcast date from string
             CXMLElement *dateElement = [[seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/broadcastDate", [season.number intValue], [episode.number intValue]] error:nil] objectAtIndex:0];
-        
             [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            //[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehaviorDefault];
             [dateFormatter setDateFormat:@"dd MMMM yyyy"];
-            
             episode.broadcastDate = [dateFormatter dateFromString:[dateElement stringValue]];
             
-            NSArray *videoElemens = [videoDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part[1]/thumbnail", [season.number intValue], [episode.number intValue]] error:nil];
+            // Thumbnails
+            NSArray *thumbnails = [videoDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part[1]/thumbnail", [season.number intValue], [episode.number intValue]] error:nil];
             
-            
-            if ([videoElemens count] > 0) {
-                CXMLElement *aPartElement = (CXMLElement*)[videoElemens objectAtIndex:0];
-                episode.thumbnailUrl = [aPartElement stringValue];
-                //NSArray *videoElemens = [doc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part[1]/thumbnail/text()", season.number, episode.number] error:nil];
+            if ([thumbnails count] > 0) {
+                CXMLElement *thumbnailElement = (CXMLElement*)[thumbnails objectAtIndex:0];
+                episode.thumbnailUrl = [thumbnailElement stringValue];
                 
-                NSArray *partNodes = [videoDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part", [season.number intValue], [episode.number intValue]] error:nil];
+                NSArray *partElements = [videoDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/part", [season.number intValue], [episode.number intValue]] error:nil];
                 
                 NSMutableSet *parts = [[NSMutableSet alloc] init];
                 int duration = 0;
-                for (CXMLElement *partNode in partNodes) {
+                
+                // Loop through parts
+                for (CXMLElement *partElement in partElements) {
                     Part *part = [NSEntityDescription
                                   insertNewObjectForEntityForName:@"Part" inManagedObjectContext:context];
                     part.episode = episode;
-                    part.number = [NSNumber numberWithInt:[[[partNode attributeForName:@"number"] stringValue] intValue]];
-                    part.url = [(CXMLElement*)[[partNode elementsForName:@"url"] objectAtIndex:0] stringValue]; 
-                    duration += [[(CXMLElement*)[[partNode elementsForName:@"duration"] objectAtIndex:0] stringValue] intValue];
+                    part.number = [NSNumber numberWithInt:[[[partElement attributeForName:@"number"] stringValue] intValue]];
+                    part.url = [(CXMLElement*)[[partElement elementsForName:@"url"] objectAtIndex:0] stringValue]; 
+                    
+                    // Compute the total episode duration as the sum of the parts' duration
+                    duration += [[(CXMLElement*)[[partElement elementsForName:@"duration"] objectAtIndex:0] stringValue] intValue];
                     [parts addObject:part];
                 }
                 
                 int minutesDuration = duration / 60;
                 int secondsDuration = duration - (60 * minutesDuration);
+                
+                // To avoid xx:y when should be xx:0y
                 int secondsDec = secondsDuration / 10;
                 int secondsUnit = secondsDuration % 10;
                 episode.duration = [NSString stringWithFormat:@"%i:%i%i", minutesDuration, secondsDec, secondsUnit];

@@ -1,8 +1,8 @@
 //
 //  Episode.m
-//  FlyingCircus
+//  Flying Circus Player
 //
-//  Created by Nicola Miotto on 2/11/12.
+//  Created by Nicola Miotto on 2/14/12.
 //  Copyright (c) 2012 Università degli studi di Padova. All rights reserved.
 //
 
@@ -17,7 +17,7 @@
 @dynamic duration;
 @dynamic isWatched;
 @dynamic number;
-@dynamic summary;
+@dynamic sketches;
 @dynamic thumbnailUrl;
 @dynamic title;
 @dynamic parts;

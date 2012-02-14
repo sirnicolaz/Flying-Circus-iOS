@@ -93,7 +93,7 @@
         [self displayPart:1];     
         
         // - Reset sketches
-        [self.sketchesTextView setText:[self.episode.summary stringByReplacingOccurrencesOfString:@"," 
+        [self.sketchesTextView setText:[self.episode.sketches stringByReplacingOccurrencesOfString:@"," 
                                                                                        withString:@"\n------------\n"]];
         
         // - Reset title

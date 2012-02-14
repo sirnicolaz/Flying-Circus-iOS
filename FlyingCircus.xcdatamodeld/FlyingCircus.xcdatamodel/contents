@@ -5,7 +5,7 @@
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isWatched" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sketches" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="parts" optional="YES" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="Part" inverseName="episode" inverseEntity="Part" syncable="YES"/>
