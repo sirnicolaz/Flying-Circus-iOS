@@ -236,10 +236,10 @@
 		D71828A114E30EF700B2242F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D71828A314E30EF700B2242F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D71828A514E30EF700B2242F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D71828A914E30EF700B2242F /* Flying Circus Player-Info.plist */ = {isa = PBXFileReference; path = "Flying Circus Player-Info.plist"; sourceTree = "<group>"; };
+		D71828A914E30EF700B2242F /* Flying Circus Player-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Flying Circus Player-Info.plist"; sourceTree = "<group>"; };
 		D71828AB14E30EF700B2242F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D71828AD14E30EF700B2242F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D71828AF14E30EF700B2242F /* Flying Circus Player-Prefix.pch */ = {isa = PBXFileReference; path = "Flying Circus Player-Prefix.pch"; sourceTree = "<group>"; };
+		D71828AF14E30EF700B2242F /* Flying Circus Player-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flying Circus Player-Prefix.pch"; sourceTree = "<group>"; };
 		D71828B014E30EF800B2242F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D71828B114E30EF800B2242F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D7DFF8C614E909980044C23E /* Imports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imports.h; sourceTree = "<group>"; };
