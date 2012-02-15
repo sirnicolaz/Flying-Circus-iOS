@@ -46,6 +46,7 @@
 #define kAlertConnectionErrorDescription    @"An error occured attempting to access the Internet. Check your connection."
 
 // Others
+#define kNSFetcherControllerCacheName       @"Cache"
 #define kHTMLYouTubeEmbedding(src, w, h) [NSString stringWithFormat:@"\
                                 <html>\
                                     <head>\

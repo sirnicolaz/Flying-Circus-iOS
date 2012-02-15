@@ -99,10 +99,10 @@
 		D71828AC14E30EF700B2242F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D71828AA14E30EF700B2242F /* InfoPlist.strings */; };
 		D71828AE14E30EF700B2242F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828AD14E30EF700B2242F /* main.m */; };
 		D71828B214E30EF800B2242F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D71828B114E30EF800B2242F /* AppDelegate.m */; };
-		D7F5C61914EAC6BA0052FD01 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F5C61714EAC6BA0052FD01 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D7F5C61B14EAC6D90052FD01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */; };
 		D7F5C61E14EAD3460052FD01 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F5C61C14EAD3460052FD01 /* Icon.png */; };
 		D7F5C61F14EAD3460052FD01 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F5C61D14EAD3460052FD01 /* Icon@2x.png */; };
+		D7FA20C714EB19C0001B3A1F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FA20C514EB19C0001B3A1F /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -231,7 +231,7 @@
 		D70C35AE14E982D00014407A /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		D70C35AF14E982D00014407A /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		D70C35C314E98A320014407A /* FlyingCircus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlyingCircus.xcdatamodel; sourceTree = "<group>"; };
-		D718289B14E30EF700B2242F /* Flying Circus Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying Circus Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D718289B14E30EF700B2242F /* Flying Circus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flying Circus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D718289F14E30EF700B2242F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D71828A114E30EF700B2242F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D71828A314E30EF700B2242F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -243,11 +243,11 @@
 		D71828B014E30EF800B2242F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D71828B114E30EF800B2242F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D7DFF8C614E909980044C23E /* Imports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imports.h; sourceTree = "<group>"; };
-		D7F5C61714EAC6BA0052FD01 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		D7F5C61814EAC6BA0052FD01 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D7F5C61C14EAD3460052FD01 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/images/Icon.png; sourceTree = "<group>"; };
 		D7F5C61D14EAD3460052FD01 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/images/Icon@2x.png"; sourceTree = "<group>"; };
+		D7FA20C514EB19C0001B3A1F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Libraries/Reachability/Reachability.m; sourceTree = "<group>"; };
+		D7FA20C614EB19C0001B3A1F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Libraries/Reachability/Reachability.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +337,7 @@
 		D718289C14E30EF700B2242F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D718289B14E30EF700B2242F /* Flying Circus Player.app */,
+				D718289B14E30EF700B2242F /* Flying Circus.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -564,8 +564,8 @@
 		D7F5C61614EAC6930052FD01 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				D7F5C61714EAC6BA0052FD01 /* Reachability.m */,
-				D7F5C61814EAC6BA0052FD01 /* Reachability.h */,
+				D7FA20C514EB19C0001B3A1F /* Reachability.m */,
+				D7FA20C614EB19C0001B3A1F /* Reachability.h */,
 			);
 			name = Reachability;
 			sourceTree = "<group>";
@@ -587,7 +587,7 @@
 			);
 			name = "Flying Circus Player";
 			productName = FlyingCircus;
-			productReference = D718289B14E30EF700B2242F /* Flying Circus Player.app */;
+			productReference = D718289B14E30EF700B2242F /* Flying Circus.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -721,7 +721,7 @@
 				D70C35B814E982D00014407A /* AFXMLRequestOperation.m in Sources */,
 				D70C35B914E982D00014407A /* UIImageView+AFNetworking.m in Sources */,
 				D70C35C414E98A320014407A /* FlyingCircus.xcdatamodeld in Sources */,
-				D7F5C61914EAC6BA0052FD01 /* Reachability.m in Sources */,
+				D7FA20C714EB19C0001B3A1F /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,7 +804,7 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				INFOPLIST_FILE = "FlyingCircus/Flying Circus Player-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
-				PRODUCT_NAME = "Flying Circus Player";
+				PRODUCT_NAME = "Flying Circus";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -817,7 +817,7 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				INFOPLIST_FILE = "FlyingCircus/Flying Circus Player-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
-				PRODUCT_NAME = "Flying Circus Player";
+				PRODUCT_NAME = "Flying Circus";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

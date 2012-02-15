@@ -266,7 +266,7 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                                                 managedObjectContext:self.managedObjectContext 
                                                                                                   sectionNameKeyPath:@"season.number" 
-                                                                                                           cacheName:nil];
+                                                                                                           cacheName:kNSFetcherControllerCacheName];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -446,9 +446,11 @@
 - (void) filterContentForSearchText:(NSString*)searchText
 {
     NSString *query = searchText;
+    [NSFetchedResultsController deleteCacheWithName:kNSFetcherControllerCacheName];
+    
     if (query && query.length) {
         // Set a new predicate to filter out rows based on title or summary
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[c] %@ or summary contains[c] %@", query, query];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[c] %@ or sketches contains[c] %@", query, query];
         [self.fetchedResultsController.fetchRequest setPredicate:predicate];
     }
     else {
