@@ -157,7 +157,6 @@
     EpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [EpisodeTableViewCell selfFromNib];
-        [cell setup];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
 

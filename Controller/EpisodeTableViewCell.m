@@ -82,11 +82,13 @@
     [self.contentView addSubview:checkboxView];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)awakeFromNib
 {
-    //[super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    [self configureBackground];
+    [self configureTitle];
+    [self configureSubtitles];
+    [self configureCheckbox];
+    [self.accessoryView setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark - Custom editing mode handling
@@ -155,16 +157,6 @@
 
 #pragma mark - Public interface
 
-// Preliminary setup
-- (void)setup
-{
-    [self configureBackground];
-    [self configureTitle];
-    [self configureSubtitles];
-    [self configureCheckbox];
-    [self.accessoryView setBackgroundColor:[UIColor clearColor]];
-    
-}
 
 - (void)switchCheck
 {

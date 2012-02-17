@@ -30,6 +30,5 @@
 
 // Check if unchecked and vice-versa.
 - (void)switchCheck;
-- (void)setup;
 
 @end
