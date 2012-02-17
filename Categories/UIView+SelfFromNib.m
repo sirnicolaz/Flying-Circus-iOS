@@ -1,6 +1,5 @@
 //
 //  UIView+SelfFromNib.m
-//  NXLib
 //
 //  Created by Alberto De Bortoli on 14/08/11.
 //  Copyright 2010 Qwoote. All rights reserved.
