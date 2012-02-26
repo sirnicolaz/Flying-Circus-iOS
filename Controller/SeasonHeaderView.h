@@ -10,7 +10,7 @@
 
 @interface SeasonHeaderView : UIView
 
-@property (strong, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *title;
 
 - (id)initWithTitle:(NSString*)aTitle;
 

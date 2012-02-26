@@ -27,7 +27,7 @@
 - (void) configureSearchBar;
 - (void) configureNavigationBar;
 - (void) checkNetworkStatus;
-- (Episode*)episodeForRowAtIndexPath:(NSIndexPath*)indexPath;
+- (Episode*) episodeForRowAtIndexPath:(NSIndexPath*)indexPath;
 @end
 
 @implementation MasterViewController
@@ -35,10 +35,10 @@
 @synthesize episodeViewController       = _episodeViewController;
 @synthesize disableOverlayView          = _disableOverlayView;
 @synthesize tableSearchBar              = _tableSearchBar;
-@synthesize fetchedResultsController    = __fetchedResultsController;
-@synthesize managedObjectContext        = __managedObjectContext;
 @synthesize hostReachable               = _hostReachable;
 @synthesize internetReachable           = _internetReachable;
+@synthesize fetchedResultsController    = __fetchedResultsController;
+@synthesize managedObjectContext        = __managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,7 +66,9 @@
     // -- Fetch data
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
-		[[[UIAlertView alloc] initWithTitle:kAlertDbErrorTitle message:kAlertDbErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
+		[[[UIAlertView alloc] initWithTitle:kAlertDbErrorTitle 
+                                    message:kAlertDbErrorDescription delegate:nil 
+                          cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
 	}
 }
 
@@ -168,15 +170,6 @@
 {
     return kRowHeight;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-*/
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -326,16 +319,6 @@
 {
     [self.tableView endUpdates];
 }
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void) controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
 
 #pragma mark - UITableView override
 

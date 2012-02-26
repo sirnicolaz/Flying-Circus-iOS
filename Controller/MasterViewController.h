@@ -14,15 +14,12 @@
 @class ReactiveOverlayViewController;
 @class Reachability;
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
-    
-    NSArray *_seasons;
-    NSManagedObjectContext *_context;
-}
+@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 // To handle black translucent view over tableView while in search mode
 @property (strong, nonatomic) IBOutlet ReactiveOverlayViewController    *disableOverlayView;
-@property (nonatomic, assign) IBOutlet UISearchBar                      *tableSearchBar;
+
+@property (assign, nonatomic) IBOutlet UISearchBar                      *tableSearchBar;
 
 @property (strong, nonatomic) EpisodeViewController         *episodeViewController;
 @property (strong, nonatomic) NSFetchedResultsController    *fetchedResultsController;
