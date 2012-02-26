@@ -433,7 +433,9 @@
     NetworkStatus hostStatus = [self.hostReachable currentReachabilityStatus];
     
     if (internetStatus == NotReachable || hostStatus == NotReachable) {
-        NSLog(@"The internet is down.");
+        
+        DLog(@"The internet is down.");
+        
         [[[UIAlertView alloc] initWithTitle:kAlertConnectionErrorTitle message:kAlertConnectionErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
     }
 }

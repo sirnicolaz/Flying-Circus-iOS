@@ -42,17 +42,18 @@
 }
 
 
-- (void)drawRect:(CGRect)rect
+- (void) drawRect:(CGRect)rect
 {
     NSString* html =  kHTMLYouTubeEmbedding(self.part.url, self.frame.size.width, self.frame.size.height);
+    
     
     UIWebView *aWebView = [[UIWebView alloc] initWithFrame:self.frame]; 
     aWebView.delegate = self;
     [aWebView loadHTMLString:html baseURL:nil];
     [aWebView setBackgroundColor:[UIColor blackColor]];
+    [aWebView setHidden:YES];
     
     [self addSubview:aWebView];
-    [aWebView setHidden:YES];
     
 }
 
@@ -61,20 +62,23 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
-    NSLog(@"FAIL");
+    DLog(@"FAIL");
+    
     [[[UIAlertView alloc] initWithTitle:kAlertConnectionErrorTitle message:kAlertConnectionErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"FINISHED");
+    DLog(@"FINISHED");
+    
     [self.activityIndicator stopAnimating];
     [webView setHidden:NO];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"START");
+    DLog(@"START");
+    
     [self.activityIndicator startAnimating];
 }
 

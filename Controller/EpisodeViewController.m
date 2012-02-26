@@ -217,7 +217,7 @@
 - (CGFloat) getSizeToFitText:(NSString*)text
                        inBox:(CGSize)size
 {
-    CGFloat textFontSize; 
+    CGFloat textFontSize = 0.0; 
     BOOL found = NO;
     
     // Decrease font size until the text fits in the box 

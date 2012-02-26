@@ -134,7 +134,7 @@
         // Remove the delete button that's going to appear on the right
         for (UIView *subview in self.subviews)
         {
-            NSLog(@"%@", NSStringFromClass([subview class]));
+            DLog(@"%@", NSStringFromClass([subview class]));
             if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellDeleteConfirmationControl"])
             {
                 [subview removeFromSuperview];

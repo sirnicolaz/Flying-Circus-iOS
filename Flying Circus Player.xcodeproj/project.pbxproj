@@ -24,9 +24,7 @@
 		D70C350B14E982580014407A /* Ewert-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D70C350914E982580014407A /* Ewert-Regular.ttf */; };
 		D70C350C14E982580014407A /* AlikeAngular-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D70C350A14E982580014407A /* AlikeAngular-Regular.ttf */; };
 		D70C353814E9826E0014407A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C350D14E9826E0014407A /* Default.png */; };
-		D70C353914E9826E0014407A /* Default copy.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C350E14E9826E0014407A /* Default copy.png */; };
 		D70C353A14E9826E0014407A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C350F14E9826E0014407A /* Default@2x.png */; };
-		D70C353B14E9826E0014407A /* Default@2x copy.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351014E9826E0014407A /* Default@2x copy.png */; };
 		D70C353C14E9826E0014407A /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351114E9826E0014407A /* play.png */; };
 		D70C353D14E9826E0014407A /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351214E9826E0014407A /* play@2x.png */; };
 		D70C353E14E9826E0014407A /* play-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = D70C351314E9826E0014407A /* play-highlighted.png */; };
@@ -133,9 +131,7 @@
 		D70C350914E982580014407A /* Ewert-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ewert-Regular.ttf"; path = "Resources/Fonts/Ewert-Regular.ttf"; sourceTree = "<group>"; };
 		D70C350A14E982580014407A /* AlikeAngular-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AlikeAngular-Regular.ttf"; path = "Resources/Fonts/AlikeAngular-Regular.ttf"; sourceTree = "<group>"; };
 		D70C350D14E9826E0014407A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/images/Default.png; sourceTree = "<group>"; };
-		D70C350E14E9826E0014407A /* Default copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default copy.png"; path = "Resources/images/Default copy.png"; sourceTree = "<group>"; };
 		D70C350F14E9826E0014407A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/images/Default@2x.png"; sourceTree = "<group>"; };
-		D70C351014E9826E0014407A /* Default@2x copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x copy.png"; path = "Resources/images/Default@2x copy.png"; sourceTree = "<group>"; };
 		D70C351114E9826E0014407A /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Resources/images/play.png; sourceTree = "<group>"; };
 		D70C351214E9826E0014407A /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play@2x.png"; path = "Resources/images/play@2x.png"; sourceTree = "<group>"; };
 		D70C351314E9826E0014407A /* play-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play-highlighted.png"; path = "Resources/images/play-highlighted.png"; sourceTree = "<group>"; };
@@ -485,9 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				D70C350D14E9826E0014407A /* Default.png */,
-				D70C350E14E9826E0014407A /* Default copy.png */,
 				D70C350F14E9826E0014407A /* Default@2x.png */,
-				D70C351014E9826E0014407A /* Default@2x copy.png */,
 				D70C351114E9826E0014407A /* play.png */,
 				D70C351214E9826E0014407A /* play@2x.png */,
 				D70C351314E9826E0014407A /* play-highlighted.png */,
@@ -629,9 +623,7 @@
 				D70C350B14E982580014407A /* Ewert-Regular.ttf in Resources */,
 				D70C350C14E982580014407A /* AlikeAngular-Regular.ttf in Resources */,
 				D70C353814E9826E0014407A /* Default.png in Resources */,
-				D70C353914E9826E0014407A /* Default copy.png in Resources */,
 				D70C353A14E9826E0014407A /* Default@2x.png in Resources */,
-				D70C353B14E9826E0014407A /* Default@2x copy.png in Resources */,
 				D70C353C14E9826E0014407A /* play.png in Resources */,
 				D70C353D14E9826E0014407A /* play@2x.png in Resources */,
 				D70C353E14E9826E0014407A /* play-highlighted.png in Resources */,
@@ -748,8 +740,8 @@
 					armv7,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nicola Miotto";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nicola Miotto";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nicola Miotto (458RFQE64U)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -764,8 +756,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
+				PROVISIONING_PROFILE = "2FFA8D54-353D-4F76-B7D4-3E57CD443564";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2FFA8D54-353D-4F76-B7D4-3E57CD443564";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -779,8 +771,8 @@
 					armv7,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nicola Miotto";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nicola Miotto";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nicola Miotto (458RFQE64U)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -789,8 +781,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A4DAE9C-1BE6-4A1A-B07A-8CA82BD955AF";
+				PROVISIONING_PROFILE = "2FFA8D54-353D-4F76-B7D4-3E57CD443564";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2FFA8D54-353D-4F76-B7D4-3E57CD443564";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
