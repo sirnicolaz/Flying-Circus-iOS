@@ -40,6 +40,8 @@
 @synthesize fetchedResultsController    = __fetchedResultsController;
 @synthesize managedObjectContext        = __managedObjectContext;
 
+static bool gNotified = false;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -405,7 +407,7 @@
     [self.internetReachable startNotifier];
     
     // check if a pathway to a random host exists
-    self.hostReachable = [Reachability reachabilityWithHostName: @"www.android.com"];
+    self.hostReachable = [Reachability reachabilityWithHostName: @"www.youtube.com"];
     [self.hostReachable startNotifier];
 }
 
@@ -415,11 +417,15 @@
     NetworkStatus internetStatus = [self.internetReachable currentReachabilityStatus];
     NetworkStatus hostStatus = [self.hostReachable currentReachabilityStatus];
     
-    if (internetStatus == NotReachable || hostStatus == NotReachable) {
+    extern bool gNotified;
+    
+    if ((internetStatus == NotReachable || hostStatus == NotReachable) && !gNotified) {
         
         DLog(@"The internet is down.");
         
         [[[UIAlertView alloc] initWithTitle:kAlertConnectionErrorTitle message:kAlertConnectionErrorDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        
+        gNotified = true;
     }
 }
 
