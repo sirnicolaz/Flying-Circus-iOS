@@ -7,7 +7,8 @@ Introduction
 This application offers a fancy interface to watch Monty Python's Flying Circus episodes in srtreaming from YouTube.
 The idea arised from a need of tributing my favourite TV series.
 
-Soon in the AppStore ;)
+In the App Store http://itunes.apple.com/us/app/monty-pythons-flying-circus/id502889243?mt=8
+The Website http://www.flyingcircusplayer.com
 
 Credits
 -------
