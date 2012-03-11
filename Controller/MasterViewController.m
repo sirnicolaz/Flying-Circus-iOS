@@ -11,6 +11,7 @@
 #import "EpisodeViewController.h"
 #import "SeasonHeaderView.h"
 #import "ReactiveOverlayViewController.h"
+#import "SharingSettingsViewController.h"
 
 #import "Season.h"
 #import "Episode.h"
@@ -375,7 +376,7 @@ static bool gNotified = false;
     
 }
 
-- (void)  configureNavigationBar
+- (void) configureNavigationBar
 {
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
         // Setup navigation bar background for iOS5
@@ -386,6 +387,18 @@ static bool gNotified = false;
         [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.047 green:0.203 blue:0.070 alpha:1.0]];
     }
     
+    // Add "sharing" button
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"S" style:UIBarButtonItemStylePlain target:self action:@selector(showSharingSettings)];
+    
+}
+
+- (void) showSharingSettings
+{
+    SharingSettingsViewController *sharingSettingsVC = [[SharingSettingsViewController alloc] initWithNibName:@"SharingSettingsViewController" bundle:nil];
+    
+    sharingSettingsVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    
+    [self presentModalViewController:sharingSettingsVC animated:YES];
 }
 
 - (Episode*) episodeForRowAtIndexPath:(NSIndexPath*)indexPath

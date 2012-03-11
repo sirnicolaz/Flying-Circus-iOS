@@ -12,5 +12,6 @@
 
 + (void) populateWithContext:(NSManagedObjectContext*)context;
 + (BOOL) isPopulated:(NSManagedObjectContext*)context;
++ (void) fixDB:(NSManagedObjectContext*)context;
 
 @end

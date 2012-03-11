@@ -147,4 +147,41 @@
     return [seasons count] > 0 ? YES : NO;
 }
 
++ (void) fixDB:(NSManagedObjectContext*)context {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription 
+                                   entityForName:@"Season" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    
+    NSArray *seasons = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (Season *season in seasons) {
+        if ([season.number isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            for(Episode *episode in season.episodes) {
+                if ([episode.number isEqualToNumber:[NSNumber numberWithInt:6]]) {
+                    for (Part *part in episode.parts) {
+                        if ([part.url isEqualToString:@"http://www.youtube.com/watch?v=_"]) {
+                            part.number = [NSNumber numberWithInt:3];
+                            
+                            NSError *error;
+                            if (![context save:&error]) {
+                                DLog(@"Error saving");
+                            }
+                            
+                            break;
+                        }
+                        // Error already fixed
+                        else if ([part.number isEqualToNumber:[NSNumber numberWithInt:3]]) {
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            break;
+        }
+    }
+}
+
 @end

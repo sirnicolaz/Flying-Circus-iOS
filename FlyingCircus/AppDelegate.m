@@ -11,6 +11,7 @@
 #import "MasterViewController.h"
 #import "Imports.h"
 #import "Seeder.h"
+#import "SHK.h"
 
 @interface AppDelegate(Private)
 
@@ -43,6 +44,8 @@
     [self preloadYoutubePlugin];
     
     [self showSplash];
+    
+    [SHK setRootViewController:masterViewController];
     
     return YES;
 }
@@ -164,6 +167,9 @@
     // Populate DB in case it's not seeded
     if(![Seeder isPopulated:self.managedObjectContext]) {
         [Seeder populateWithContext:self.managedObjectContext];
+    }
+    else {
+        [Seeder fixDB:self.managedObjectContext];
     }
     
     return __persistentStoreCoordinator;
