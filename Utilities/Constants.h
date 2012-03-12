@@ -39,11 +39,21 @@
 #define kImagePaper                         @"paper"
 #define kImageSplash                        @"Default"
 
+// User defaults
+#define kTwitterSharing                     @"twitterSharing"
+#define SET_TWITTER_SHARING(flag)           [[NSUserDefaults standardUserDefaults] setBool:(flag) forKey:kTwitterSharing];
+#define IS_TWITTER_SHARING                  [[NSUserDefaults standardUserDefaults] boolForKey:kTwitterSharing]
+
 // Alert messages
 #define kAlertDbErrorTitle                  @"Transaction error"
 #define kAlertDbErrorDescription            @"An error occured attempting to save changes"
 #define kAlertConnectionErrorTitle          @"Connection error"
 #define kAlertConnectionErrorDescription    @"An error occured attempting to access the Internet. Check your connection."
+
+// Strings
+#define kStatusTwitterActivated             @"Finally watching the #MontyPython 's Flying Circus everywhere for free flyingcircusplayer.com Say no more, #knowwhatahmean, Nudge nudge?"
+
+#define kStatusTwitterEpisodeWatch(title)   @"I'm watching \"(title)\", Jolly Good! #MontyPython flyingcircusplayer.com"
 
 // Others
 #define kNSFetcherControllerCacheName       @"Cache"

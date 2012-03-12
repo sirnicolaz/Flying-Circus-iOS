@@ -9,6 +9,7 @@
 #import "PartView.h"
 #import "Part.h"
 #import "Imports.h"
+#import "SharingFacade.h"
 
 @implementation PartView
 
@@ -35,7 +36,7 @@
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [self.activityIndicator setHidesWhenStopped:YES];
     self.activityIndicator.center = self.center;
-    
+    self.userInteractionEnabled = YES;
     [self addSubview:self.activityIndicator];
     
     return self;
@@ -81,5 +82,13 @@
     
     [self.activityIndicator startAnimating];
 }
+
+#pragma mark - UIView delegate
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    DLog(@"Touches began");
+}
+
 
 @end

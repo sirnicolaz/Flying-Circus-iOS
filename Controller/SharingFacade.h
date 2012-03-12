@@ -18,7 +18,7 @@ typedef enum {
 @interface SharingFacade : NSObject
 
 // Like: "I've started using blab bla"
-+(void) shareFirstItem;
++(void) didConnectToTwitter;
 
 +(void) share:(Episode*)anEpisode;
 

@@ -7,24 +7,27 @@
 //
 
 #import "SharingFacade.h"
-
+#import "Episode.h"
 #import "SHKTwitter+AutoShare.h"
-#import "AppDelegate.h"
+#import "Constants.h"
 
 @implementation SharingFacade
 
-+(void) shareFirstItem
++(void) didConnectToTwitter
 {
+    // Create the item to share (in this example, a url)
+    SHKItem *item = [SHKItem text:kStatusTwitterActivated];
     
+    // Share the item
+    [SHKTwitter shareItem:item];
 }
 
 +(void) share:(Episode*)anEpisode
 {
     // Create the item to share (in this example, a url)
-    SHKItem *item = [SHKItem text:@"Test http://www.flyingcircusapp.com"];
+    SHKItem *item = [SHKItem text:kStatusTwitterEpisodeWatch(anEpisode.title)];
     
     // Share the item
-    [SHKTwitter logout];
     [SHKTwitter shareItem:item];
 }
 

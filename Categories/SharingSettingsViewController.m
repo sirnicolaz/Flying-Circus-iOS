@@ -8,12 +8,11 @@
 
 #import "SharingSettingsViewController.h"
 #import "SharingFacade.h"
-#import "SHKTwitter.h"
-#import "SHK.h"
+#import "Constants.h"
 
 @implementation SharingSettingsViewController
 
-@synthesize twitterSharingSwitcher;
+@synthesize twitterSharingSwitcher, background;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +36,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.twitterSharingSwitcher.onTintColor = [UIColor blackColor];
+    self.twitterSharingSwitcher.onTintColor = [UIColor colorWithRed:0.058 green:0.35 blue:0.09 alpha:1.0];
     self.twitterSharingSwitcher.knobImage = [UIImage imageNamed:@"twitter.png"];
     [self.twitterSharingSwitcher addTarget:self action:@selector(switchTwitterSharing:) forControlEvents:UIControlEventValueChanged];
 }
@@ -57,12 +56,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.twitterSharingSwitcher setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"twitterSharing"] 
+    [self.twitterSharingSwitcher setOn:IS_TWITTER_SHARING 
                               animated:NO 
                    ignoreControlEvents:YES];
     
     [super viewWillAppear:animated];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 #pragma mark - Actions
@@ -71,20 +75,18 @@
 {
     
     [self dismissModalViewControllerAnimated:YES];
-    if (//![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPost"] &&
-        self.twitterSharingSwitcher.isOn) {
+    if (self.twitterSharingSwitcher.isOn &&
+        ![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPost"]) {
         
-        // "I've started using bla bla"
-        [SharingFacade share:nil];
-        
+        [SharingFacade didConnectToTwitter];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstPost"];
     }
     
-    else if (!twitterSharingSwitcher.isOn) {
-        [SHKTwitter logout];
-    }
+    //else if (!twitterSharingSwitcher.isOn) {
+    //    [SHKTwitter logout];
+    //}
     
-    [[NSUserDefaults standardUserDefaults] setBool:self.twitterSharingSwitcher.isOn forKey:@"twitterSharing"];
+    SET_TWITTER_SHARING(self.twitterSharingSwitcher.isOn)
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "EpisodeTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @class EpisodeViewController;
 @class ReactiveOverlayViewController;
