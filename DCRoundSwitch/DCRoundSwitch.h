@@ -14,19 +14,20 @@
 
 @class DCRoundSwitchToggleLayer;
 @class DCRoundSwitchOutlineLayer;
-@class DCRoundSwitchKnobLayer;
+@class NMRoundSwitchImageKnobLayer;
 
 @interface DCRoundSwitch : UIControl
 {
 	@private
 		DCRoundSwitchOutlineLayer *outlineLayer;
 		DCRoundSwitchToggleLayer *toggleLayer;
-		DCRoundSwitchKnobLayer *knobLayer;
+		NMRoundSwitchImageKnobLayer *knobLayer;
 		CAShapeLayer *clipLayer;
 		BOOL ignoreTap;
 }
 
 @property (nonatomic, retain) UIColor *onTintColor;		// default: blue (matches normal UISwitch)
+@property (nonatomic, retain) UIImage *knobImage;		// default: usual round knob, no image
 @property (nonatomic, getter=isOn) BOOL on;				// default: NO
 @property (nonatomic, copy) NSString *onText;			// default: 'ON' - automatically localized
 @property (nonatomic, copy) NSString *offText;			// default: 'OFF' - automatically localized

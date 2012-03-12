@@ -19,42 +19,33 @@ CGGradientRef CreateGradientRefWithColors(CGColorSpaceRef colorSpace, CGColorRef
 - (void)drawInContext:(CGContextRef)context
 {
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-	CGRect knobRect = CGRectInset(self.bounds, 0, 0);
-    //CGRect knobR = GCRe
-	//CGFloat knobRadius = self.bounds.size.height - 2;
+	CGRect knobRect = CGRectInset(self.bounds, 2, 2);
+	CGFloat knobRadius = self.bounds.size.height - 2;
 
 	// knob outline (shadow is drawn in the toggle layer)
-	/*CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0.62 alpha:1.0].CGColor);
+	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0.62 alpha:1.0].CGColor);
 	CGContextSetLineWidth(context, 1.5);
 	CGContextStrokeEllipseInRect(context, knobRect);
-	CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 0, NULL);*/
+	CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 0, NULL);
 
 	// knob inner gradient
-	/*CGContextAddEllipseInRect(context, knobRect);
+	CGContextAddEllipseInRect(context, knobRect);
 	CGContextClip(context);
 	CGColorRef knobStartColor = [UIColor colorWithWhite:0.82 alpha:1.0].CGColor;
 	CGColorRef knobEndColor = (self.gripped) ? [UIColor colorWithWhite:0.894 alpha:1.0].CGColor : [UIColor colorWithWhite:0.996 alpha:1.0].CGColor;
 	CGPoint topPoint = CGPointMake(0, 0);
 	CGPoint bottomPoint = CGPointMake(0, knobRadius + 2);
-	CGGradientRef knobGradient = CreateGradientRefWithColors(colorSpace, knobStartColor, knobEndColor);*/
-    
-    // Draw twitter bird
-    UIImage *knobImage = [UIImage imageNamed:@"twitter.png"];
-    CGContextDrawImage(context, knobRect, knobImage.CGImage);
-
-    //[bird drawInRect:knobRect];
-    
-    
-	//CGContextDrawLinearGradient(context, knobGradient, topPoint, bottomPoint, 0);
-	//CGGradientRelease(knobGradient);
+	CGGradientRef knobGradient = CreateGradientRefWithColors(colorSpace, knobStartColor, knobEndColor);
+	CGContextDrawLinearGradient(context, knobGradient, topPoint, bottomPoint, 0);
+	CGGradientRelease(knobGradient);
 
 	// knob inner highlight
-	/*CGContextAddEllipseInRect(context, CGRectInset(knobRect, 0.5, 0.5));
+	CGContextAddEllipseInRect(context, CGRectInset(knobRect, 0.5, 0.5));
 	CGContextAddEllipseInRect(context, CGRectInset(knobRect, 1.5, 1.5));
 	CGContextEOClip(context);
 	CGGradientRef knobHighlightGradient = CreateGradientRefWithColors(colorSpace, [UIColor whiteColor].CGColor, [UIColor colorWithWhite:1.0 alpha:0.5].CGColor);
 	CGContextDrawLinearGradient(context, knobHighlightGradient, topPoint, bottomPoint, 0);
-	CGGradientRelease(knobHighlightGradient);*/
+	CGGradientRelease(knobHighlightGradient);
 
 	CGColorSpaceRelease(colorSpace);
 }

@@ -171,7 +171,8 @@
 		D7392B4C150D1448001B955A /* DCRoundSwitchToggleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7392B48150D1448001B955A /* DCRoundSwitchToggleLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D7392B4E150D14DC001B955A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7392B4D150D14DB001B955A /* QuartzCore.framework */; };
 		D7392B58150D18CA001B955A /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = D7392B57150D18CA001B955A /* bird.png */; };
-		D7392B60150D1C12001B955A /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D7392B5F150D1C11001B955A /* twitter.png */; };
+		D7392B62150DD591001B955A /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D7392B61150DD591001B955A /* twitter.png */; };
+		D7392B65150E3CAE001B955A /* NMRoundSwitchImageKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7392B64150E3CAD001B955A /* NMRoundSwitchImageKnobLayer.m */; };
 		D7F5C61B14EAC6D90052FD01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */; };
 		D7F5C61E14EAD3460052FD01 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F5C61C14EAD3460052FD01 /* Icon.png */; };
 		D7F5C61F14EAD3460052FD01 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F5C61D14EAD3460052FD01 /* Icon@2x.png */; };
@@ -458,7 +459,9 @@
 		D7392B48150D1448001B955A /* DCRoundSwitchToggleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchToggleLayer.m; sourceTree = "<group>"; };
 		D7392B4D150D14DB001B955A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D7392B57150D18CA001B955A /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
-		D7392B5F150D1C11001B955A /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		D7392B61150DD591001B955A /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		D7392B63150E3CAD001B955A /* NMRoundSwitchImageKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NMRoundSwitchImageKnobLayer.h; sourceTree = "<group>"; };
+		D7392B64150E3CAD001B955A /* NMRoundSwitchImageKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMRoundSwitchImageKnobLayer.m; sourceTree = "<group>"; };
 		D7DFF8C614E909980044C23E /* Imports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imports.h; sourceTree = "<group>"; };
 		D7F5C61A14EAC6D90052FD01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D7F5C61C14EAD3460052FD01 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/images/Icon.png; sourceTree = "<group>"; };
@@ -1009,6 +1012,8 @@
 				D7392B46150D1448001B955A /* DCRoundSwitchOutlineLayer.m */,
 				D7392B47150D1448001B955A /* DCRoundSwitchToggleLayer.h */,
 				D7392B48150D1448001B955A /* DCRoundSwitchToggleLayer.m */,
+				D7392B63150E3CAD001B955A /* NMRoundSwitchImageKnobLayer.h */,
+				D7392B64150E3CAD001B955A /* NMRoundSwitchImageKnobLayer.m */,
 			);
 			path = DCRoundSwitch;
 			sourceTree = "<group>";
@@ -1084,11 +1089,11 @@
 				D70C351414E9826E0014407A /* play-highlighted@2x.png */,
 				D70C351714E9826E0014407A /* paper.png */,
 				D70C351814E9826E0014407A /* paper@2x.png */,
-				D7392B5F150D1C11001B955A /* twitter.png */,
 				D7F5C61C14EAD3460052FD01 /* Icon.png */,
 				D7F5C61D14EAD3460052FD01 /* Icon@2x.png */,
 				D70C351914E9826E0014407A /* checkbox-unchecked.png */,
 				D70C351A14E9826E0014407A /* checkbox-unchecked@2x.png */,
+				D7392B61150DD591001B955A /* twitter.png */,
 				D70C351B14E9826E0014407A /* checkbox-checked@2x.png */,
 				D70C351C14E9826E0014407A /* checkbox-checked.png */,
 				D70C351D14E9826E0014407A /* back_button.png */,
@@ -1272,7 +1277,7 @@
 				D7392B14150BD77A001B955A /* FBConnect.bundle in Resources */,
 				D7392B3F150CDE5E001B955A /* SharingSettingsViewController.xib in Resources */,
 				D7392B58150D18CA001B955A /* bird.png in Resources */,
-				D7392B60150D1C12001B955A /* twitter.png in Resources */,
+				D7392B62150DD591001B955A /* twitter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1388,6 +1393,7 @@
 				D7392B4A150D1448001B955A /* DCRoundSwitchKnobLayer.m in Sources */,
 				D7392B4B150D1448001B955A /* DCRoundSwitchOutlineLayer.m in Sources */,
 				D7392B4C150D1448001B955A /* DCRoundSwitchToggleLayer.m in Sources */,
+				D7392B65150E3CAE001B955A /* NMRoundSwitchImageKnobLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

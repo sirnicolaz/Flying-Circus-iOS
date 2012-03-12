@@ -12,7 +12,7 @@
 #import "DCRoundSwitch.h"
 #import "DCRoundSwitchToggleLayer.h"
 #import "DCRoundSwitchOutlineLayer.h"
-#import "DCRoundSwitchKnobLayer.h"
+#import "NMRoundSwitchImageKnobLayer.h"
 
 @interface DCRoundSwitch ()
 
@@ -24,7 +24,7 @@
 @end
 
 @implementation DCRoundSwitch
-@synthesize on, onText, offText;
+@synthesize on, onText, offText, knobImage;
 @synthesize onTintColor;
 
 #pragma mark -
@@ -115,7 +115,7 @@
 	[toggleLayer addSublayer:outlineLayer];
 	[outlineLayer setNeedsDisplay];
 
-	knobLayer = [DCRoundSwitchKnobLayer layer];
+	knobLayer = [NMRoundSwitchImageKnobLayer layer];
 	[self.layer addSublayer:knobLayer];
 	[knobLayer setNeedsDisplay];
 
@@ -293,6 +293,59 @@
 	[self sendActionsForControlEvents:UIControlEventTouchUpOutside];
 }
 
+
+- (void)turnToggleOn:(BOOL)newOn
+            animated:(BOOL)animated
+          previousOn:(BOOL)previousOn
+ ignoreControlEvents:(BOOL)ignoreControlEvents
+{
+    [CATransaction begin];
+    if (!animated)
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    else
+        [CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
+    
+    CGFloat minToggleX = -toggleLayer.frame.size.width / 2.0 + toggleLayer.frame.size.height / 2.0;
+    CGFloat maxToggleX = -1;
+    
+    
+    if (self.on)
+    {
+        toggleLayer.frame = CGRectMake(maxToggleX,
+                                       toggleLayer.frame.origin.y,
+                                       toggleLayer.frame.size.width,
+                                       toggleLayer.frame.size.height);
+    }
+    else
+    {
+        toggleLayer.frame = CGRectMake(minToggleX,
+                                       toggleLayer.frame.origin.y,
+                                       toggleLayer.frame.size.width,
+                                       toggleLayer.frame.size.height);
+    }
+    
+    if (!toggleLayer.mask)
+    {
+        [self useLayerMasking];
+        [toggleLayer setNeedsDisplay];
+    }
+    
+    [self positionLayersAndMask];
+    
+    knobLayer.gripped = NO;
+    
+    [CATransaction setCompletionBlock:^{
+        [self removeLayerMask];
+        ignoreTap = NO;
+        
+        // send the action here so it get's sent at the end of the animations
+        if (previousOn != newOn && !ignoreControlEvents)
+            [self sendActionsForControlEvents:UIControlEventValueChanged];
+    }];
+    
+    [CATransaction commit];
+}
+
 #pragma mark Setters/Getters
 
 - (void)setOn:(BOOL)newOn
@@ -318,53 +371,31 @@
 	[self useLayerMasking];
 	[self positionLayersAndMask];
 
-	[CATransaction setCompletionBlock:^{
-		[CATransaction begin];
-		if (!animated)
-			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-		else
-			[CATransaction setValue:(id)kCFBooleanFalse forKey:kCATransactionDisableActions];
 
-		CGFloat minToggleX = -toggleLayer.frame.size.width / 2.0 + toggleLayer.frame.size.height / 2.0;
-		CGFloat maxToggleX = -1;
+    if (ignoreControlEvents) {
+        // The toggle is programmatically set before the view appear, so the transition has not to be seen
+        [self turnToggleOn:on 
+                  animated:animated 
+                previousOn:previousOn 
+       ignoreControlEvents:ignoreControlEvents];
+    }
+    else {
+        [CATransaction setCompletionBlock:^{
+            [self turnToggleOn:on 
+                      animated:animated 
+                    previousOn:previousOn 
+           ignoreControlEvents:ignoreControlEvents];
+        }];
+    }
+}
 
-
-		if (self.on)
-		{
-			toggleLayer.frame = CGRectMake(maxToggleX,
-										   toggleLayer.frame.origin.y,
-										   toggleLayer.frame.size.width,
-										   toggleLayer.frame.size.height);
-		}
-		else
-		{
-			toggleLayer.frame = CGRectMake(minToggleX,
-										   toggleLayer.frame.origin.y,
-										   toggleLayer.frame.size.width,
-										   toggleLayer.frame.size.height);
-		}
-
-		if (!toggleLayer.mask)
-		{
-			[self useLayerMasking];
-			[toggleLayer setNeedsDisplay];
-		}
-
-		[self positionLayersAndMask];
-
-		knobLayer.gripped = NO;
-
-		[CATransaction setCompletionBlock:^{
-			[self removeLayerMask];
-			ignoreTap = NO;
-
-			// send the action here so it get's sent at the end of the animations
-			if (previousOn != on && !ignoreControlEvents)
-				[self sendActionsForControlEvents:UIControlEventValueChanged];
-		}];
-
-		[CATransaction commit];
-	}];
+- (void)setKnobImage:(UIImage *)image
+{
+	if (image != self.knobImage)
+	{
+		knobLayer.knobImage = image;
+		[knobLayer setNeedsDisplay];
+	}
 }
 
 - (void)setOnTintColor:(UIColor *)anOnTintColor

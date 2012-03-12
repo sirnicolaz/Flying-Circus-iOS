@@ -38,6 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.twitterSharingSwitcher.onTintColor = [UIColor blackColor];
+    self.twitterSharingSwitcher.knobImage = [UIImage imageNamed:@"twitter.png"];
     [self.twitterSharingSwitcher addTarget:self action:@selector(switchTwitterSharing:) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -56,11 +57,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    
     [self.twitterSharingSwitcher setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"twitterSharing"] 
-                              animated:YES 
+                              animated:NO 
                    ignoreControlEvents:YES];
+    
+    [super viewWillAppear:animated];
     
 }
 
