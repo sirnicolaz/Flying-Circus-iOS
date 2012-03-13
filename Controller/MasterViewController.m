@@ -28,6 +28,7 @@
 - (void) configureSearchBar;
 - (void) configureNavigationBar;
 - (void) checkNetworkStatus;
+- (void) animateSettingsButtonEnlight:(BOOL)flag;
 - (Episode*) episodeForRowAtIndexPath:(NSIndexPath*)indexPath;
 @end
 
@@ -94,17 +95,38 @@ static bool gNotified = false;
     
     [self checkNetworkStatus];
     
+    
+    if (!DID_ENTER_SETTINGS) {
+        // Pulsating light button overlay
+        CGRect navBarFrame = self.navigationController.navigationBar.frame;
+        UIButton *leftLightBarButton = [[UIButton alloc] initWithFrame:CGRectMake(navBarFrame.origin.x + 16, navBarFrame.origin.y + 8, 26, 26)];
+        [leftLightBarButton setImage:[UIImage imageNamed:@"settings_button-light.png"] forState:UIControlStateNormal];
+        [leftLightBarButton setImage:[UIImage imageNamed:@"settings_button-highlighted.png"] forState:UIControlStateHighlighted];
+        [leftLightBarButton addTarget:self action:@selector(showSharingSettings) forControlEvents:UIControlEventTouchUpInside];
+        leftLightBarButton.alpha = 0.0;
+        leftLightBarButton.hidden = YES;
+        leftLightBarButton.tag = 42;
+        [self.navigationController.navigationBar addSubview:leftLightBarButton];
+        [self.navigationController.navigationBar bringSubviewToFront:leftLightBarButton];
+        [self animateSettingsButtonEnlight:YES];
+    }
+    
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+    
+    if (!DID_ENTER_SETTINGS) {
+        UIView *enlightenedButtonView = [self.navigationController.navigationBar viewWithTag:42];
+        [enlightenedButtonView removeFromSuperview];
+    }
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -387,13 +409,53 @@ static bool gNotified = false;
         [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.047 green:0.203 blue:0.070 alpha:1.0]];
     }
     
-    // Add "sharing" button
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"S" style:UIBarButtonItemStylePlain target:self action:@selector(showSharingSettings)];
+    // Add "settings" button
+    CGRect leftBarButtonFrame = CGRectMake(0, 0, 49, 49);
+    UIButton *lefBarButton = [[UIButton alloc] initWithFrame:leftBarButtonFrame];
+    [lefBarButton setImage:[UIImage imageNamed:@"settings_button.png"] forState:UIControlStateNormal];
+    [lefBarButton setImage:[UIImage imageNamed:@"settings_button-highlighted.png"] forState:UIControlStateHighlighted];
+    [lefBarButton addTarget:self action:@selector(showSharingSettings) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:lefBarButton];
+
+}
+
+- (void)animateSettingsButtonEnlight:(BOOL)flag
+{
+    UIView *enlightenedButtonView = [self.navigationController.navigationBar viewWithTag:42];
     
+    [UIView animateWithDuration:0.5
+                          delay:0.0 
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^(void) {
+                         if (flag) {
+                             enlightenedButtonView.hidden = NO;
+                             enlightenedButtonView.alpha = 1.0;
+                         }
+                         else {
+                             enlightenedButtonView.alpha = 0.0;
+                         }
+        
+                     }
+                     completion:^(BOOL finished) {
+                         // Pulsating button View removed
+                         if ([self.navigationController.navigationBar viewWithTag:42] == nil) return;
+                         
+                         if (!flag) enlightenedButtonView.hidden = YES;
+                         
+                         if (!DID_ENTER_SETTINGS) {
+                             // User entered settings, thus stop animating
+                             [self animateSettingsButtonEnlight:!flag];
+                         }
+                         else {
+                             [enlightenedButtonView removeFromSuperview];
+                         }
+                     }];
 }
 
 - (void) showSharingSettings
 {
+    SET_DID_ENTER_SETTINGS(YES);
+    
     SharingSettingsViewController *sharingSettingsVC = [[SharingSettingsViewController alloc] initWithNibName:@"SharingSettingsViewController" bundle:nil];
     
     sharingSettingsVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;

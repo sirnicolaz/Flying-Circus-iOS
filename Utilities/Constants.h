@@ -40,6 +40,9 @@
 #define kImageSplash                        @"Default"
 
 // User defaults
+#define kDidEnterSettings                   @"didEnterSettings"
+#define DID_ENTER_SETTINGS                  [[NSUserDefaults standardUserDefaults] boolForKey:kDidEnterSettings]
+#define SET_DID_ENTER_SETTINGS(flag)        [[NSUserDefaults standardUserDefaults] setBool:(flag) forKey:kDidEnterSettings];
 #define kTwitterSharing                     @"twitterSharing"
 #define SET_TWITTER_SHARING(flag)           [[NSUserDefaults standardUserDefaults] setBool:(flag) forKey:kTwitterSharing];
 #define IS_TWITTER_SHARING                  [[NSUserDefaults standardUserDefaults] boolForKey:kTwitterSharing]
@@ -75,5 +78,11 @@
                                             </embed>\
                                         </body>\
                                 </html>", (src), (w), (h)];
+
+#define kDbLatestVersion            @"3.0"
+#define kDbCurrentVersionKey        @"dbCurrentVersion"
+#define kDbCurrentVersion           [[NSUserDefaults standardUserDefaults] stringForKey:kDbCurrentVersionKey]
+#define IS_DB_UP_TO_DATE            [kDbCurrentVersion isEqualToString:kDbLatestVersion]
+#define SET_DB_VERSION(version)     [[NSUserDefaults standardUserDefaults] setValue:(version) forKey:kDbCurrentVersionKey];       
 
 #endif

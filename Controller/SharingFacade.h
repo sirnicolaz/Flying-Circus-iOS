@@ -24,4 +24,7 @@ typedef enum {
 
 +(void) setSharingWith:(SharingOptions)option
                 active:(BOOL)flag;
+
++(void) followMe;
+
 @end

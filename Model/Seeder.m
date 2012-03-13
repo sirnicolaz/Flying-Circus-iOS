@@ -35,14 +35,19 @@
 }
 
 // Just roughly parsing XML to populate DB
-+ (void) populateWithContext:(NSManagedObjectContext*)context {
++ (void) populateWithContext:(NSManagedObjectContext *)context
+           andAlreadyWatched:(NSDictionary *)alreadyWatched
+{
     
     // Get handlers
     CXMLDocument *seasonDoc = [Seeder getXMLDbHandler:@"info.xml"];
     CXMLDocument *videoDoc = [Seeder getXMLDbHandler:@"links.xml"];
     
-    
-    NSArray *nodes = [seasonDoc nodesForXPath:@"//season" error:nil];
+    NSError *errror;
+    NSArray *nodes = [seasonDoc nodesForXPath:@"//season" error:&errror];
+    if (errror) {
+        DLog(@"%@", [errror description]);
+    }
     
     // Loop through seasons
     for (CXMLElement *node in nodes) {
@@ -57,6 +62,11 @@
         NSArray *episodeNodes = [seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode", [season.number intValue]] error:nil];
         ;
         
+        // Already watched episodes for this season
+        NSMutableArray *alreadyWatchedEpisodes = alreadyWatched != nil ? 
+                                                    [alreadyWatched objectForKey:season.number] :
+                                                    [NSMutableArray arrayWithCapacity:0];
+        
         // Loop thourgh episodes
         for (CXMLElement *episodeNode in episodeNodes) {
             Episode *episode = [NSEntityDescription
@@ -69,6 +79,16 @@
             episode.title = title;
             episode.number = [NSNumber numberWithInt:number];
             episode.season = season;
+            
+            // Check if watched 
+            for (NSNumber *episodeNumber in alreadyWatchedEpisodes) {
+                if (episodeNumber == episode.number) {
+                    episode.isWatched = [NSNumber numberWithBool:YES];
+                    [alreadyWatchedEpisodes removeObject:episodeNumber];
+                    break;
+                }
+            }
+             
             
             // Set sketches, separating their titles with a comma
             CXMLElement *summaryElement = [[seasonDoc nodesForXPath:[NSString stringWithFormat:@"//season[@number=%i]/episode[@number=%i]/summary", [season.number intValue], [episode.number intValue]] error:nil] objectAtIndex:0];
@@ -134,6 +154,49 @@
     
 }
 
++ (void) resetDatabaseInContext:(NSManagedObjectContext *)context {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Season" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+        
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    
+    
+    for (NSManagedObject *managedObject in items) {
+        [context deleteObject:managedObject];
+    }
+    if (![context save:&error]) {
+        DLog(@"errror wile resetting db");
+    }
+}
+
++ (NSDictionary *) retrieveWatchedFlagInContext:(NSManagedObjectContext *)context {
+    NSMutableDictionary *alreadyWatched = [[NSMutableDictionary alloc] init];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription 
+                                   entityForName:@"Season" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    
+    NSArray *seasons = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (Season *season in seasons) {
+        if ([season.number isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            NSMutableArray *watchedEpisodes = [[NSMutableArray alloc] init];
+            for(Episode *episode in season.episodes) {
+                if (episode.isWatched) {
+                    [watchedEpisodes addObject:episode.number];
+                }
+            }
+            [alreadyWatched setObject:watchedEpisodes forKey:season.number];
+        }
+    }
+
+    return alreadyWatched;
+}
+
 + (BOOL) isPopulated:(NSManagedObjectContext*)context {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -145,43 +208,6 @@
     NSArray *seasons = [context executeFetchRequest:fetchRequest error:&error];
     
     return [seasons count] > 0 ? YES : NO;
-}
-
-+ (void) fixDB:(NSManagedObjectContext*)context {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription 
-                                   entityForName:@"Season" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    
-    NSArray *seasons = [context executeFetchRequest:fetchRequest error:&error];
-    
-    for (Season *season in seasons) {
-        if ([season.number isEqualToNumber:[NSNumber numberWithInt:1]]) {
-            for(Episode *episode in season.episodes) {
-                if ([episode.number isEqualToNumber:[NSNumber numberWithInt:6]]) {
-                    for (Part *part in episode.parts) {
-                        if ([part.url isEqualToString:@"http://www.youtube.com/watch?v=_"]) {
-                            part.number = [NSNumber numberWithInt:3];
-                            
-                            NSError *error;
-                            if (![context save:&error]) {
-                                DLog(@"Error saving");
-                            }
-                            
-                            break;
-                        }
-                        // Error already fixed
-                        else if ([part.number isEqualToNumber:[NSNumber numberWithInt:3]]) {
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            break;
-        }
-    }
 }
 
 @end

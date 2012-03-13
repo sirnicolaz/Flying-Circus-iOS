@@ -37,4 +37,9 @@
     
 }
 
++(void) followMe
+{
+    //[SHKTwitter followMe];
+}
+
 @end

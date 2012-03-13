@@ -18,6 +18,7 @@
             return currentObject;
         }
     }
+    
     return nil;
 }
 

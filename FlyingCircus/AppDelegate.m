@@ -164,12 +164,15 @@
         abort();
     }    
     
-    // Populate DB in case it's not seeded
+    // Populate DB in case it's not seeded. Otherwise, update it
     if(![Seeder isPopulated:self.managedObjectContext]) {
-        [Seeder populateWithContext:self.managedObjectContext];
+        [Seeder populateWithContext:self.managedObjectContext andAlreadyWatched:nil];
     }
-    else {
-        [Seeder fixDB:self.managedObjectContext];
+    else if (!IS_DB_UP_TO_DATE) {
+        NSDictionary *alreadyWatched = [Seeder retrieveWatchedFlagInContext:self.managedObjectContext];
+        [Seeder resetDatabaseInContext:self.managedObjectContext];
+        [Seeder populateWithContext:self.managedObjectContext andAlreadyWatched:alreadyWatched];
+        SET_DB_VERSION(kDbLatestVersion);
     }
     
     return __persistentStoreCoordinator;

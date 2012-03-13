@@ -13,4 +13,5 @@
 
 @property (nonatomic, retain) IBOutlet DCRoundSwitch *twitterSharingSwitcher;
 @property (nonatomic, retain) IBOutlet UIImageView   *background;
+
 @end

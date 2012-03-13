@@ -10,8 +10,10 @@
 
 @interface Seeder : NSObject
 
-+ (void) populateWithContext:(NSManagedObjectContext*)context;
++ (void) populateWithContext:(NSManagedObjectContext *)context
+           andAlreadyWatched:(NSDictionary *)alreadyWatched;
++ (void) resetDatabaseInContext:(NSManagedObjectContext *)context;
 + (BOOL) isPopulated:(NSManagedObjectContext*)context;
-+ (void) fixDB:(NSManagedObjectContext*)context;
++ (NSDictionary *) retrieveWatchedFlagInContext:(NSManagedObjectContext *)context;
 
 @end
