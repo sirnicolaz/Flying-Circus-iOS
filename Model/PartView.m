@@ -89,16 +89,16 @@
 #define mark - UIView delegate
 
 - (UIView *) hitTest:(CGPoint)point withEvent:(UIEvent*)event {
-    UIView *gotit = [super hitTest:point withEvent:event];
+    UIView *view = [super hitTest:point withEvent:event];
     
-    DLog(@"Share!!! %@", [gotit description]);
+    DLog(@"Share!!! %@", [view description]);
     
     // If play button touched
-    if ([gotit isKindOfClass:[UIButton class]]) {
+    if ([view isKindOfClass:[UIButton class]] && IS_TWITTER_SHARING) {
         [SharingFacade share:self.part.episode];
     }
     
-    return gotit;
+    return view;
 } 
 
 @end

@@ -14,6 +14,7 @@ UPDATE: The app has been removed from the store. After a long discussion with th
 	I had to give app. Apparently, the problem is that this app "create confusion, thanks to the nature of
 	search engines". Even proposing a new version working with original episodes (purchasable from iTunes), the
 	agreement has not been reached.
+	You can get the app by compiling the code, if you like it. Twitter sharing is still an experimental feature.
 	
 	So long, and thanks for the fish.
 
