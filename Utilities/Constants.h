@@ -83,6 +83,8 @@
 #define kDbCurrentVersionKey        @"dbCurrentVersion"
 #define kDbCurrentVersion           [[NSUserDefaults standardUserDefaults] stringForKey:kDbCurrentVersionKey]
 #define IS_DB_UP_TO_DATE            [kDbCurrentVersion isEqualToString:kDbLatestVersion]
-#define SET_DB_VERSION(version)     [[NSUserDefaults standardUserDefaults] setValue:(version) forKey:kDbCurrentVersionKey];       
+#define SET_DB_VERSION(version)     [[NSUserDefaults standardUserDefaults] setValue:(version) forKey:kDbCurrentVersionKey];   
+#define SET_JUST_SHARED(flag)       [[NSUserDefaults standardUserDefaults] setBool:(flag) forKey:@"justShared"];
+#define JUST_SHARED                 [[NSUserDefaults standardUserDefaults] boolForKey:@"justShared"]
 
 #endif

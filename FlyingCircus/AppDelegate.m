@@ -45,6 +45,7 @@
     
     [self showSplash];
     
+    SET_JUST_SHARED(NO)
     [SHK setRootViewController:masterViewController];
     
     return YES;

@@ -13,8 +13,8 @@
 
 @implementation PartView
 
-@synthesize part                = _part;
-@synthesize activityIndicator   = _activityIndicator;
+@synthesize part                    = _part;
+@synthesize activityIndicator       = _activityIndicator;
 
 - (id) initWithFrame:(CGRect)frame
 {
@@ -56,6 +56,9 @@
     
     [self addSubview:aWebView];
     
+    for (UIView *view in aWebView.subviews) {
+        DLog(@"%@", [view description]);
+    }
 }
 
 
@@ -83,12 +86,19 @@
     [self.activityIndicator startAnimating];
 }
 
-#pragma mark - UIView delegate
+#define mark - UIView delegate
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (UIView *) hitTest:(CGPoint)point withEvent:(UIEvent*)event {
+    UIView *gotit = [super hitTest:point withEvent:event];
     
-    DLog(@"Touches began");
-}
-
+    DLog(@"Share!!! %@", [gotit description]);
+    
+    // If play button touched
+    if ([gotit isKindOfClass:[UIButton class]]) {
+        [SharingFacade share:self.part.episode];
+    }
+    
+    return gotit;
+} 
 
 @end

@@ -24,11 +24,20 @@
 
 +(void) share:(Episode*)anEpisode
 {
-    // Create the item to share (in this example, a url)
-    SHKItem *item = [SHKItem text:kStatusTwitterEpisodeWatch(anEpisode.title)];
-    
-    // Share the item
-    [SHKTwitter shareItem:item];
+    if (!JUST_SHARED) {
+        
+        // Prevent from flooding
+        SET_JUST_SHARED(YES)
+        [NSTimer timerWithTimeInterval:60.0 
+                                target:self 
+                              selector:@selector(timerExpired) userInfo:nil repeats:NO];
+        
+        // Create the item to share (in this example, a url)
+        SHKItem *item = [SHKItem text:kStatusTwitterEpisodeWatch(anEpisode.title)];
+        
+        // Share the item
+        [SHKTwitter shareItem:item];
+    }
 }
 
 +(void) setSharingWith:(SharingOptions)option
@@ -40,6 +49,11 @@
 +(void) followMe
 {
     //[SHKTwitter followMe];
+}
+
++(void) timerExpired
+{
+    SET_JUST_SHARED(NO)
 }
 
 @end
