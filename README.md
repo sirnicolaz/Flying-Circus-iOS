@@ -10,7 +10,7 @@ The idea arised from a need of tributing my favourite TV series.
 In the App Store http://itunes.apple.com/us/app/monty-pythons-flying-circus/id502889243?mt=8
 The Website http://www.flyingcircusplayer.com
 
-UPDATE: The app has been removed from the store. After a long discussion with the Python (Monty) Pictures Limited,
+UPDATE: The app has been removed from the store. After a long discussion with the Python (Monty) Pictures Limited lawyer,
 	I had to give app. Apparently, the problem is that this app "create confusion, thanks to the nature of
 	search engines". Even proposing a new version working with original episodes (purchasable from iTunes), the
 	agreement has not been reached.
