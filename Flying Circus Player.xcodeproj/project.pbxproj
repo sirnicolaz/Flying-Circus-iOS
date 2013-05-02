@@ -1459,6 +1459,7 @@
 				ARCHS = (
 					armv6,
 					armv7,
+					armv7s,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
@@ -1490,6 +1491,7 @@
 				ARCHS = (
 					armv6,
 					armv7,
+					armv7s,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Nicola Miotto (458RFQE64U)";
@@ -1518,6 +1520,7 @@
 				INFOPLIST_FILE = "FlyingCircus/Flying Circus Player-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
 				PRODUCT_NAME = "Flying Circus";
+				VALID_ARCHS = "armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1531,6 +1534,7 @@
 				INFOPLIST_FILE = "FlyingCircus/Flying Circus Player-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
 				PRODUCT_NAME = "Flying Circus";
+				VALID_ARCHS = "armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
