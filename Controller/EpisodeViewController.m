@@ -64,7 +64,6 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
     [self configureView];
 }
 
@@ -160,7 +159,6 @@
         [self displayPart:previousPart];
     }
 }
-
 							
 @end
 

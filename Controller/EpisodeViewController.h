@@ -13,7 +13,6 @@
 
 @interface EpisodeViewController : UIViewController {
     
-    @private
     NSArray *_cachedSortedParts;
     Part    *_currentPart;
 }
